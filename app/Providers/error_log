@@ -1,0 +1,252 @@
+[04-May-2025 07:33:55 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[04-May-2025 07:33:57 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[04-May-2025 07:34:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[04-May-2025 07:34:02 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[04-May-2025 07:34:04 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 15:43:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 15:43:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 16:03:31 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 16:03:48 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 18:35:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 18:35:10 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 18:54:58 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 18:55:04 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 19:39:07 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 19:39:12 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 19:39:27 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 19:40:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 19:50:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 19:50:40 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 19:50:57 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 19:50:59 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 19:51:03 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 19:51:05 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 19:51:25 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 19:52:04 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 19:59:12 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 19:59:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 20:00:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 20:01:14 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 20:01:38 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 20:02:12 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 20:03:15 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 20:04:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 20:10:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[08-May-2025 20:11:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[08-May-2025 20:12:22 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[08-May-2025 20:13:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[08-May-2025 22:39:07 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[09-May-2025 14:38:44 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[09-May-2025 14:48:48 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[09-May-2025 14:48:51 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[09-May-2025 14:51:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[09-May-2025 14:58:09 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[09-May-2025 17:06:27 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[09-May-2025 17:50:18 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[09-May-2025 18:53:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[09-May-2025 23:59:56 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[10-May-2025 00:22:53 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[10-May-2025 03:51:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[10-May-2025 07:09:53 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[10-May-2025 08:05:24 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[10-May-2025 11:50:54 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[10-May-2025 12:00:43 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[10-May-2025 12:00:49 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[10-May-2025 15:44:14 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[10-May-2025 15:49:36 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[10-May-2025 21:44:20 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[10-May-2025 23:04:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\EventServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/EventServiceProvider.php on line 10
+[10-May-2025 23:05:43 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AppServiceProvider.php on line 7
+[10-May-2025 23:08:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/BroadcastServiceProvider.php on line 8
+[10-May-2025 23:25:43 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8
+[10-May-2025 23:44:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\RouteServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/RouteServiceProvider.php on line 11
+[11-May-2025 06:44:07 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Support\Providers\AuthServiceProvider" not found in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/premiercls.com/app/Providers/AuthServiceProvider.php on line 8

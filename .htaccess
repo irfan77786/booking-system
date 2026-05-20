@@ -1,0 +1,35 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Force HTTPS and WWW
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.dallasblacklimoservice\.com$ [NC]
+RewriteRule ^(.*)$ https://www.dallasblacklimoservice.com/$1 [R=301,L]
+
+# Remove index.php from URL
+RewriteCond %{THE_REQUEST} \s/+index\.php[?\s] [NC]
+RewriteRule ^index\.php$ https://www.dallasblacklimoservice.com/ [R=301,L]
+
+# Redirect assets to public folder
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^css/(.*)$ public/css/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^js/(.*)$ public/js/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^images/(.*)$ public/images/$1 [L]
+
+# Remove multiple slashes in URL
+RewriteCond %{THE_REQUEST} \s/+(.+)//+([^\s]*) [NC]
+RewriteRule .* /%1/%2 [R=301,L]
+
+
+# Front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+</IfModule>
