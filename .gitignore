@@ -30,3 +30,4 @@ old-project/dallascars/
 /.well-known
 /dallascars-project
 /public/pdfs
+composer.lock

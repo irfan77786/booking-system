@@ -282,7 +282,7 @@
             @endif
 
             {{-- Hours --}}
-            @if($bookingData['hours'])
+            @if(!empty($bookingData['hours']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Hours:</strong></div>
               <div class="col-sm-9">{{ $bookingData['hours'] ?? 'N/A' }}</div>

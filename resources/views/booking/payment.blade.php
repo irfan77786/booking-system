@@ -369,10 +369,19 @@
         toggleNewCardFields(true);
     });
 
+    const payButton = document.getElementById('final-pay-button');
+
+    function setPayButtonLoading(loading) {
+        if (!payButton) return;
+        payButton.disabled = loading;
+        payButton.textContent = loading ? 'Processing…' : 'BOOK NOW';
+    }
+
     // ✅ FINAL PAYMENT HANDLER
 form.addEventListener('submit', async function (event) {
     event.preventDefault();
     errorDiv.innerText = '';
+    setPayButtonLoading(true);
 
     // If a saved card is selected, submit form directly
     if (hiddenPaymentMethod.value && hiddenPaymentMethod.value !== '') {
@@ -384,6 +393,7 @@ form.addEventListener('submit', async function (event) {
     const cardholder = cardNameInput.value.trim();
     if (!cardholder) {
         errorDiv.innerText = 'Card holder name is required.';
+        setPayButtonLoading(false);
         return;
     }
 
@@ -397,6 +407,7 @@ form.addEventListener('submit', async function (event) {
 
     if (error) {
         errorDiv.innerText = error.message;
+        setPayButtonLoading(false);
         return;
     }
 

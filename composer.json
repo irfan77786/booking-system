@@ -46,5 +46,12 @@
         ]
     },
     "prefer-stable": true,
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "platform": {
+            "php": "8.2.30"
+        },
+        "sort-packages": true,
+        "platform-check": false
+    }
 }

@@ -3,18 +3,24 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class CreateBookingDocs
+class CreateBookingDocs implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $bookingData;
-    public $customBookingId;
+    public int $tries = 3;
+
+    public int $timeout = 120;
+
+    public array $bookingData;
+
+    public string $customBookingId;
 
     /**
      * Create a new job instance.
