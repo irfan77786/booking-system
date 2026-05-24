@@ -24,7 +24,7 @@
     <div class="container">
         <div class="thankyou-card text-center">
             <h2 class="fw-bold mb-2 text-primary"><i class="bi bi-check-circle-fill"></i> Reservation Submitted</h2>
-            <p class="thankyou-subtitle mb-3">Your confirmation number <strong class="text-primary">{{ $booking->booking_id }}</strong></p>
+            <p class="thankyou-subtitle mb-3">Your confirmation number <strong class="text-primary">{{ $bookingId }}</strong></p>
 
             <div class="d-flex flex-column align-items-center mb-4">
                 <img src="{{ asset('assets/img/site/black-car-service.webp') }}" alt="Black Car Service" class="img-fluid thankyou-img" />

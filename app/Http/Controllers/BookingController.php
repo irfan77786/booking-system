@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CreateBookingDocs;
+use App\Support\BookingQueue;
 use Carbon\Carbon;
 use App\Models\Booking;
 use App\Models\Vehicle;
@@ -992,11 +992,24 @@ class BookingController extends Controller
 
         if (auth()->check()) {
             $user = auth()->user();
-            $cardsList = PaymentMethod::all([
-                'customer' => $user->stripe_customer_id,
-                'type' => 'card',
-            ]);
-            $cards = $cardsList->data ?? [];
+            try {
+                $stripeCustomerId = $this->ensureStripeCustomerId($user, session('guest', []));
+                if ($stripeCustomerId) {
+                    $cardsList = PaymentMethod::all([
+                        'customer' => $stripeCustomerId,
+                        'type' => 'card',
+                    ]);
+                    $cards = $cardsList->data ?? [];
+                }
+            } catch (\Throwable $e) {
+                Log::warning('bookRide: could not load saved cards: ' . $e->getMessage());
+            }
+        } else {
+            try {
+                $this->ensureStripeCustomerId(null, session('guest', []));
+            } catch (\Throwable $e) {
+                Log::warning('bookRide: could not pre-create Stripe customer: ' . $e->getMessage());
+            }
         }
 
         if (isset($validated['meet_option']) && $validated['meet_option'] === 'none') {
@@ -1068,7 +1081,190 @@ class BookingController extends Controller
 
         return $id;
     }
-    //
+
+    private function generateNextSequentialBookingId(): string
+    {
+        $lastNumericId = 41100;
+        $latestId = Booking::query()
+            ->where('booking_id', 'like', 'pm_%')
+            ->orderByDesc('id')
+            ->value('booking_id');
+
+        if ($latestId && preg_match('/pm_(\d+)/', $latestId, $matches)) {
+            $lastNumericId = (int) $matches[1] + 1;
+        }
+
+        return 'pm_' . $lastNumericId;
+    }
+
+    private function ensureStripeCustomerId($user, array $guest): ?string
+    {
+        if ($user) {
+            if ($user->stripe_customer_id) {
+                return $user->stripe_customer_id;
+            }
+
+            $customer = \Stripe\Customer::create([
+                'email' => $user->email,
+                'name' => trim($user->first_name . ' ' . $user->last_name),
+            ]);
+            $user->update(['stripe_customer_id' => $customer->id]);
+
+            return $customer->id;
+        }
+
+        if (session('stripe_customer_id')) {
+            return session('stripe_customer_id');
+        }
+
+        if (empty($guest['email'])) {
+            return null;
+        }
+
+        $customer = \Stripe\Customer::create([
+            'email' => $guest['email'],
+            'name' => trim(($guest['first_name'] ?? '') . ' ' . ($guest['last_name'] ?? '')),
+        ]);
+        session(['stripe_customer_id' => $customer->id]);
+
+        return $customer->id;
+    }
+
+    private function buildProcessBookingPayload(
+        string $customBookingId,
+        $user,
+        string $paymentMethodId,
+        $selectedPrice,
+        string $pickupDateYmd,
+        string $pickupTimeHis,
+        ?string $returnDateYmd,
+        ?string $returnTimeHis,
+        bool $isRoundTrip,
+        bool $isBookingForOthers,
+        ?string $bookerFirstName,
+        ?string $bookerLastName,
+        ?string $bookerEmail,
+        ?string $bookerNumber,
+        ?string $firstName,
+        ?string $lastName,
+        ?string $email,
+        ?string $number,
+        ?string $pickupLocation,
+        ?string $dropoffLocation,
+        $vehicleId,
+        ?string $vehicleName,
+        $hours,
+        array $guest,
+        ?array $flightDetailsForEmail
+    ): array {
+        $booker = null;
+        if ($isBookingForOthers
+            && !empty($bookerFirstName)
+            && !empty($bookerLastName)
+            && !empty($bookerEmail)
+            && !empty($bookerNumber)
+        ) {
+            $booker = [
+                'first_name' => $bookerFirstName,
+                'last_name' => $bookerLastName,
+                'email' => $bookerEmail,
+                'phone_number' => $bookerNumber,
+            ];
+        }
+
+        $returnService = null;
+        if (session('return_service')) {
+            $returnPickupDate = session('return_date') ? $this->safeFormatDate(session('return_date')) : null;
+            $returnPickupTime = session('return_time') ? $this->safeFormatTime(session('return_time')) : now()->format('H:i:s');
+            $returnService = [
+                'vehicle_id' => $vehicleId,
+                'pickup_location' => session('dropoff_location'),
+                'dropoff_location' => session('pickup_location'),
+                'pickup_date' => $returnPickupDate ?? now()->format('Y-m-d'),
+                'pickup_time' => $returnPickupTime,
+            ];
+        }
+
+        $breakdown = null;
+        $breakdownData = session('breakdown_data');
+        if ($breakdownData && is_array($breakdownData)) {
+            $breakdown = [
+                'base_fare' => $breakdownData['baseFare'] ?? null,
+                'per_km_rate' => $breakdownData['perKmRate'] ?? null,
+                'total_kms' => $breakdownData['distance_km'] ?? null,
+                'hourly_fare' => $breakdownData['hourlyFare'] ?? null,
+                'total_hours' => $hours,
+                'return_base_fare' => session('return_base_fare') ?? null,
+                'return_per_km_rate' => session('return_per_km_rate') ?? null,
+                'return_total_kms' => session('return_km') ?? null,
+            ];
+        }
+
+        $bookingDataForEmail = [
+            'booking_id' => $customBookingId,
+            'isBookingForOthers' => $isBookingForOthers,
+            'booker_first_name' => $bookerFirstName,
+            'booker_last_name' => $bookerLastName,
+            'booker_number' => $bookerNumber,
+            'booker_email' => $bookerEmail,
+            'passenger_name' => trim($firstName . ' ' . $lastName),
+            'email' => $email,
+            'phone' => $number,
+            'pickup_location' => $pickupLocation,
+            'dropoff_location' => $dropoffLocation,
+            'hours' => $hours,
+            'pickup_date' => $pickupDateYmd,
+            'pickup_time' => $pickupTimeHis,
+            'return_date' => $returnDateYmd,
+            'return_time' => $returnTimeHis,
+            'is_round_trip' => $isRoundTrip,
+            'vehicle_type' => $vehicleName ?? 'Standard',
+            'passengers' => 1,
+            'total_amount' => $selectedPrice,
+            'payment_status' => 'Authorized',
+            'special_instructions' => session('note') ?? null,
+            'flight_details' => $flightDetailsForEmail,
+        ];
+
+        return [
+            'custom_booking_id' => $customBookingId,
+            'booker' => $booker,
+            'return_service' => $returnService,
+            'booking' => [
+                'booking_id' => $customBookingId,
+                'user_id' => $user ? $user->id : null,
+                'vehicle_id' => $vehicleId,
+                'pickup_location' => $pickupLocation,
+                'dropoff_location' => $dropoffLocation,
+                'pickup_date' => $pickupDateYmd,
+                'pickup_time' => $pickupTimeHis,
+                'return_date' => $returnDateYmd,
+                'return_time' => $returnTimeHis,
+                'total_price' => $selectedPrice,
+                'payment_status' => 'Processing',
+                'round_trip' => session('round_trip') ? 1 : 0,
+                'note' => session('note') ?? null,
+            ],
+            'stripe' => [
+                'payment_method_id' => $paymentMethodId,
+                'amount' => $selectedPrice,
+            ],
+            'stripe_customer_id' => $user?->stripe_customer_id ?? session('stripe_customer_id'),
+            'user_id' => $user?->id,
+            'guest' => $guest,
+            'passenger' => [
+                'first_name' => $isBookingForOthers ? ($guest['first_name'] ?? $firstName) : $firstName,
+                'last_name' => $isBookingForOthers ? ($guest['last_name'] ?? $lastName) : $lastName,
+                'email' => $isBookingForOthers ? ($guest['email'] ?? $email) : $email,
+                'phone_number' => $isBookingForOthers ? ($guest['number'] ?? $number) : $number,
+                'is_booking_for_others' => $isBookingForOthers,
+            ],
+            'breakdown' => $breakdown,
+            'flight_details' => $flightDetailsForEmail,
+            'booking_data_for_email' => $bookingDataForEmail,
+        ];
+    }
+
     public function completeBook(Request $request)
     {
         if (!session('pickup_location') || !session('pickup_date')) {
@@ -1083,7 +1279,7 @@ class BookingController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+        $customBookingId = null;
 
         try {
             $user = auth()->user();
@@ -1110,140 +1306,6 @@ class BookingController extends Controller
             $booker_email        = session('booker_email') ?? null;
             $hours               = session('select_hours') ?? null;
 
-            $flight_details = null;
-
-            // -------------------------
-            // Stripe Customer Handling
-            // -------------------------
-            $stripeCustomerId = null;
-
-            if ($user) {
-                // Logged-in user
-                if (!$user->stripe_customer_id) {
-                    $customer = \Stripe\Customer::create([
-                        'email' => $user->email,
-                        'name' => $user->first_name . ' ' . $user->last_name,
-                    ]);
-                    $user->update(['stripe_customer_id' => $customer->id]);
-                    $stripeCustomerId = $customer->id;
-                } else {
-                    $stripeCustomerId = $user->stripe_customer_id;
-                }
-            } else {
-                // Guest user
-                if (!session('stripe_customer_id')) {
-                    $customer = \Stripe\Customer::create([
-                        'email' => $guest['email'],
-                        'name' => $guest['first_name'] . ' ' . $guest['last_name'],
-                    ]);
-                    session(['stripe_customer_id' => $customer->id]);
-                    $stripeCustomerId = $customer->id;
-                } else {
-                    $stripeCustomerId = session('stripe_customer_id');
-                }
-            }
-
-            try {
-                // Attach PaymentMethod to Customer
-                \Stripe\PaymentMethod::retrieve($request->payment_method_id)->attach([
-                    'customer' => $stripeCustomerId,
-                ]);
-
-                // -------------------------
-                // Create PaymentIntent
-                // -------------------------
-                $amountInCents = (int) round(((float) $selected_price) * 100);
-                $paymentIntent = \Stripe\PaymentIntent::create([
-                    'amount' => $amountInCents,
-                    'currency' => 'usd',
-                    'customer' => $stripeCustomerId,
-                    'payment_method' => $request->payment_method_id,
-                    'capture_method' => 'manual',
-                    'off_session' => true,
-                    'confirm' => true,
-                ]);
-            } catch (\Stripe\Exception\CardException $e) {
-                // Log the Stripe card error
-                \Log::error('Stripe Card Error: ' . $e->getError()->message);
-                // Redirect back with user-friendly message
-                return redirect()->back()->with('error', 'Card error: ' . $e->getError()->message);
-            } catch (\Stripe\Exception\ApiErrorException $e) {
-                // Log any API-related errors
-                \Log::error('Stripe API Error: ' . $e->getMessage());
-                return redirect()->back()->with('error', 'Stripe API error: ' . $e->getMessage());
-            } catch (\Exception $e) {
-                // Log general errors
-                \Log::error('General Error: ' . $e->getMessage());
-                return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
-            }
-
-
-            $transactionId = $paymentIntent->id;
-
-            if ($paymentIntent->status === 'requires_action' && $paymentIntent->next_action->type === 'use_stripe_sdk') {
-                return redirect()->back()->with('error', 'Payment requires additional authentication.');
-            }
-
-            // Manual capture: success state is `requires_capture` (authorized, not yet charged in Stripe)
-            if (!in_array($paymentIntent->status, ['requires_capture', 'succeeded'], true)) {
-                return redirect()->back()->with(
-                    'error',
-                    'Payment could not be authorized. Please try again or use another card. (Status: ' . $paymentIntent->status . ')'
-                );
-            }
-
-            $paymentStatusLabel = $paymentIntent->status === 'succeeded' ? 'Paid' : 'Authorized';
-
-            // -------------------------
-            // Booking ID Generation
-            // -------------------------
-            $latestBooking = Booking::orderBy('id', 'desc')->first();
-            $lastNumericId = 41100;
-
-            if ($latestBooking && preg_match('/pm_(\d+)/', $latestBooking->booking_id, $matches)) {
-                $lastNumericId = (int)$matches[1] + 1;
-            }
-
-            // Only create a Booker row when the booking is for someone else AND we
-            // actually have the booker's contact info. The `booker` table requires
-            // all four columns NOT NULL, so creating one with missing data fails.
-            $booker = null;
-            if ($isBookingForOthers
-                && !empty($booker_first_name)
-                && !empty($booker_last_name)
-                && !empty($booker_email)
-                && !empty($booker_number)
-            ) {
-                $booker = Booker::create([
-                    'first_name' => $booker_first_name,
-                    'last_name'  => $booker_last_name,
-                    'email'      => $booker_email,
-                    'phone_number' => $booker_number,
-                ]);
-            }
-
-            $customBookingId = 'pm_' . $lastNumericId;
-
-            // -------------------------
-            // Return Service Handling
-            // -------------------------
-            $returnServiceId = null;
-            if (session('return_service')) {
-                $returnPickupDate = session('return_date') ? $this->safeFormatDate(session('return_date')) : null;
-                $returnPickupTime = session('return_time') ? $this->safeFormatTime(session('return_time')) : now()->format('H:i:s');
-                $returnService = ReturnService::create([
-                    'vehicle_id' => $vehicle_id,
-                    'pickup_location' => session('dropoff_location'),
-                    'dropoff_location' => session('pickup_location'),
-                    'pickup_date' => $returnPickupDate ?? now()->format('Y-m-d'),
-                    'pickup_time' => $returnPickupTime,
-                ]);
-                $returnServiceId = $returnService->id;
-            }
-
-            // -------------------------
-            // Create Booking
-            // -------------------------
             $pickupDateYmd = $this->safeFormatDate($pickup_date);
             $isRoundTrip = session('round_trip') ? true : false;
             $returnDateYmd = $isRoundTrip ? $this->safeFormatDate($return_date) : null;
@@ -1265,106 +1327,51 @@ class BookingController extends Controller
                 return redirect()->back()->with('error', 'Invalid return time');
             }
 
-            $booking = Booking::create([
-                'booker_id' => $booker ? $booker->id : null,
-                'booking_id' => $customBookingId,
-                'user_id' => $user ? $user->id : null,
-                'vehicle_id' => $vehicle_id,
-                'pickup_location' => $pickup_location,
-                'dropoff_location' => $dropoff_location,
-                'pickup_date' => $pickupDateYmd,
-                'pickup_time' => $pickupTimeHis,
-                'return_date' => $returnDateYmd,
-                'return_time' => $returnTimeHis,
-                'total_price' => $selected_price,
-                'payment_status' => $paymentStatusLabel,
-                'return_service_id' => $returnServiceId,
-                'round_trip' => session('round_trip') ? 1 : 0,
-                'note' => session('note') ?? null,
-            ]);
+            $customBookingId = $this->generateNextSequentialBookingId();
 
-            // Payment record
-            $booking->payments()->create([
-                'payment_method' => "card",
-                'payment_status' => $paymentStatusLabel,
-                'transaction_id' => $transactionId,
-                'amount' => $selected_price,
-            ]);
-
-            // Passenger record
-            $passenger = $booking->passengers()->create([
-                'first_name' => $isBookingForOthers ? $guest['first_name'] ?? $first_name : $first_name,
-                'last_name' => $isBookingForOthers ? $guest['last_name'] ?? $last_name : $last_name,
-                'email' => $isBookingForOthers ? $guest['email'] ?? $email : $email,
-                'phone_number' => $isBookingForOthers ? $guest['number'] ?? $number : $number,
-                'is_booking_for_others' => $isBookingForOthers,
-                'booker_id' => $booker ? $booker->id : null,
-            ]);
-
-            // Breakdown
-            $breakdownData = session('breakdown_data');
-            if ($breakdownData && is_array($breakdownData)) {
-                $booking->breakdown()->create([
-                    'booking_id' => $booking->id,
-                    'base_fare' => $breakdownData['baseFare'] ?? null,
-                    'per_km_rate' => $breakdownData['perKmRate'] ?? null,
-                    'total_kms' => $breakdownData['distance_km'] ?? null,
-                    'hourly_fare' => $breakdownData['hourlyFare'] ?? null,
-                    'total_hours' => $hours,
-                    'return_base_fare' => session('return_base_fare') ?? null,
-                    'return_per_km_rate' => session('return_per_km_rate') ?? null,
-                    'return_total_kms' => session('return_km') ?? null,
-                ]);
-            }
-
-            // Flight details
+            $flightDetailsForEmail = null;
             if (session()->has('pickup_flight_details') || session()->has('flight_number') || session('is_airport')) {
-                $flight_details = [
-                    'passenger_id' => $passenger->id,
+                $flightDetailsForEmail = [
                     'pickup_flight_details' => session('pickup_flight_details'),
                     'flight_number' => session('flight_number'),
                     'meet_option' => session('meet_option'),
                     'no_flight_info' => session('no_flight_info', false),
                     'inside_pickup_fee' => 0.00,
                 ];
-                FlightDetail::create($flight_details);
             }
 
-            // Dispatch booking documents
-            $bookingData = [
-                'booking_id' => $customBookingId,
-                'isBookingForOthers' => $isBookingForOthers,
-                'booker_first_name' => $booker_first_name,
-                'booker_last_name' => $booker_last_name,
-                'booker_number' => $booker_number,
-                'booker_email' => $booker_email,
-                'passenger_name' => ($first_name . ' ' . $last_name),
-                'email' => $email,
-                'phone' => $number,
-                'pickup_location' => $pickup_location,
-                'dropoff_location' => $dropoff_location,
-                'hours' => $hours,
-                'pickup_date' => $pickupDateYmd,
-                'pickup_time' => $pickupTimeHis,
-                'return_date' => $returnDateYmd,
-                'return_time' => $returnTimeHis,
-                'is_round_trip' => $isRoundTrip,
-                'vehicle_type' => $vehicle_name ?? 'Standard',
-                'passengers' => 1,
-                'total_amount' => $selected_price,
-                'payment_status' => $paymentStatusLabel,
-                'special_instructions' => session('note') ?? null,
-                'flight_details' => $flight_details,
-            ];
+            $payload = $this->buildProcessBookingPayload(
+                $customBookingId,
+                $user,
+                $request->payment_method_id,
+                $selected_price,
+                $pickupDateYmd,
+                $pickupTimeHis,
+                $returnDateYmd,
+                $returnTimeHis,
+                $isRoundTrip,
+                $isBookingForOthers,
+                $booker_first_name,
+                $booker_last_name,
+                $booker_email,
+                $booker_number,
+                $first_name,
+                $last_name,
+                $email,
+                $number,
+                $pickup_location,
+                $dropoff_location,
+                $vehicle_id,
+                $vehicle_name,
+                $hours,
+                $guest,
+                $flightDetailsForEmail
+            );
 
-            // Run synchronously so admin/booker receive mail without a queue worker
-            // (the job still implements job structure for tests / future queue use).
-            // Isolated try/catch: PDF/mail failures MUST NOT block the thank-you
-            // redirect or roll back the already-saved booking.
             try {
-                CreateBookingDocs::dispatchSync($bookingData, $customBookingId);
+                BookingQueue::dispatchProcessBooking($payload);
             } catch (\Throwable $e) {
-                \Log::error('Booking docs dispatch failed (booking still saved): ' . $e->getMessage(), [
+                \Log::error('ProcessBooking dispatch failed (payment authorized): ' . $e->getMessage(), [
                     'booking_id' => $customBookingId,
                     'file' => $e->getFile() . ':' . $e->getLine(),
                 ]);
@@ -1396,26 +1403,19 @@ class BookingController extends Controller
             ]);
 
             return redirect()->route('thankyou');
-        } catch (\Stripe\Exception\CardException $e) {
-            \Log::error('completeBook Stripe CardException: ' . $e->getMessage());
-            return redirect()->back()->with('error', $e->getError()->message);
-        } catch (\Stripe\Exception\ApiErrorException $e) {
-            \Log::error('completeBook Stripe ApiErrorException: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Stripe API error: ' . $e->getMessage());
         } catch (\Throwable $e) {
             \Log::error('completeBook fatal: ' . $e->getMessage(), [
                 'file' => $e->getFile() . ':' . $e->getLine(),
                 'trace' => substr($e->getTraceAsString(), 0, 2000),
             ]);
 
-            // If we already created the booking, do NOT bounce the user back to
-            // the payment page (that would risk a double-charge). Send them to
-            // thank-you with the booking_id we just stored.
-            if (!empty($customBookingId) && \App\Models\Booking::where('booking_id', $customBookingId)->exists()) {
+            // Payment may already be authorized — do not send back to payment page.
+            if (!empty($customBookingId)) {
                 session([
                     'booking_completed' => true,
                     'booking_id' => $customBookingId,
                 ]);
+
                 return redirect()->route('thankyou');
             }
 
@@ -1431,49 +1431,11 @@ class BookingController extends Controller
             return redirect()->route('booking');
         }
 
-        $booking = Booking::with(['vehicle', 'passengers', 'booker'])
-            ->where('booking_id', $bookingId)
-            ->first();
-
-        if (!$booking) {
-            \Log::warning('ThankYou: booking not found for session booking_id', [
-                'booking_id' => $bookingId,
-            ]);
-            return redirect()->route('booking');
-        }
-
-        $travelInfo = null;
-
-        try {
-            if (empty($booking->dropoff_location)) {
-                $hours = $booking->total_hours ?? 0;
-                $hourlyRate = $booking->vehicle->base_hourly_fare ?? 0;
-                $travelInfo = [
-                    'type' => 'hourly',
-                    'hours' => $hours,
-                    'fare' => $hourlyRate * $hours,
-                ];
-            } else {
-                $distance = $this->getDistanceBetweenAddresses($booking->pickup_location, $booking->dropoff_location);
-
-                if ($distance !== null && $booking->vehicle) {
-                    $baseFare = $booking->vehicle->base_fare ?? 0;
-                    $perKmRate = $booking->vehicle->per_km_rate ?? 0;
-                    $travelInfo = [
-                        'type' => 'point_to_point',
-                        'distance' => $distance,
-                        'fare' => $baseFare + ($distance * $perKmRate),
-                    ];
-                }
-            }
-        } catch (\Throwable $e) {
-            \Log::warning('ThankYou: travelInfo computation failed: ' . $e->getMessage());
-            $travelInfo = null;
-        }
+        $booking = Booking::where('booking_id', $bookingId)->first();
 
         return view('booking.thankyou', [
+            'bookingId' => $bookingId,
             'booking' => $booking,
-            'travelInfo' => $travelInfo,
             'seo' => [
                 'title' => 'Thank You for Your Booking | Dallas Limo And Black Cars',
                 'description' => 'Thank you for booking with Dallas Limo And Black Cars. Your luxury transportation has been confirmed. Check your email for booking details.',
