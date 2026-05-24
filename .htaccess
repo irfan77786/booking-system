@@ -3,12 +3,12 @@ RewriteEngine On
 
 # Force HTTPS and WWW
 RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} !^www\.dallasblacklimoservice\.com$ [NC]
-RewriteRule ^(.*)$ https://www.dallasblacklimoservice.com/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} !^www\.dallasblacklimocars\.com$ [NC]
+RewriteRule ^(.*)$ https://www.dallasblacklimocars.com/$1 [R=301,L]
 
 # Remove index.php from URL
 RewriteCond %{THE_REQUEST} \s/+index\.php[?\s] [NC]
-RewriteRule ^index\.php$ https://www.dallasblacklimoservice.com/ [R=301,L]
+RewriteRule ^index\.php$ https://www.dallasblacklimocars.com/ [R=301,L]
 
 # Redirect assets to public folder
 RewriteCond %{REQUEST_URI} !^/public/
