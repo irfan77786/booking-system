@@ -550,7 +550,7 @@ $step = 3;
                     separateDialCode: false,
                     preferredCountries: ['us', 'gb', 'ca', 'pk'],
                     dropdownContainer: document.body,
-                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js',
+                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js',
                     formatOnDisplay: true
                 });
                 if (!numInput.value.trim()) itiNumber.setNumber('+1');
@@ -565,7 +565,7 @@ $step = 3;
                     separateDialCode: false,
                     preferredCountries: ['us', 'gb', 'ca', 'pk'],
                     dropdownContainer: document.body,
-                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js',
+                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js',
                     formatOnDisplay: true
                 });
                 if (!phoneInput.value.trim()) itiPhone.setNumber('+1');

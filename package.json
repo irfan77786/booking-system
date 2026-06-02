@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "minify:assets": "npx clean-css-cli -o public/assets/css/style.min.css public/assets/css/style.css && npx clean-css-cli -o public/assets/css/custom.min.css public/assets/css/custom.css && npx clean-css-cli -o public/assets/css/bootstrap-material-datetimepicker.min.css public/assets/css/bootstrap-material-datetimepicker.css && npx terser public/assets/js/custom.js -o public/assets/js/custom.min.js -c -m && npx terser public/assets/js/bootstrap-material-datetimepicker.js -o public/assets/js/bootstrap-material-datetimepicker.min.js -c -m"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -16,6 +17,8 @@
         "laravel-vite-plugin": "^2.0.0",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.1.0",
-        "vite": "^7.0.7"
+        "vite": "^7.0.7",
+        "clean-css-cli": "^5.6.3",
+        "terser": "^5.39.0"
     }
 }
