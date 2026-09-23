@@ -1004,7 +1004,7 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                     <div class="mb-2 d-flex align-items-center justify-content-between w-100">
                                         <!-- Vehicle Image -->
                                         <div class="vehicle-img-container d-flex align-items-center">
-                                            <img src="{{ rtrim(config('services.admin_url'), '/') . '/storage/' . ltrim($value['vehicle_image'], '/') }}"
+                                            <img src="{{ admin_storage_url($value['vehicle_image'] ?? null) }}"
                                                 alt="Vehicle Image" class="img-fluid rounded-3 vehicle_img">
                                         </div>
 

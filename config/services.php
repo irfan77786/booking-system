@@ -46,5 +46,5 @@ return [
     /*
     | Admin panel base URL (vehicle images live under /storage on that host).
     */
-    'admin_url' => rtrim(env('ADMIN_URL', 'https://admin.dallasblacklimocars.com'), '/'),
+    'admin_url' => rtrim(env('ADMIN_URL') ?: 'https://admin.dallasblacklimocars.com', '/'),
 ];
