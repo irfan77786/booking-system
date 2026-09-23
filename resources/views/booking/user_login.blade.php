@@ -245,6 +245,8 @@ $step = 3;
     .phone-input-wrapper .iti {
         width: 100%;
         min-width: 0;
+        flex-wrap: nowrap;
+        display: flex !important;
     }
 
     .phone-input-wrapper {
@@ -252,17 +254,24 @@ $step = 3;
     }
 
     .phone-input-wrapper .iti__selected-flag {
-        background: none !important;
+        background: transparent !important;
         padding: 1px 6px 0 8px !important;
+        z-index: 2;
     }
 
-    .phone-input-wrapper .iti {
-        flex-wrap: nowrap;
-        display: flex !important;
+    .phone-input-wrapper .iti__flag {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .phone-input-wrapper .iti__flag-container {
         flex-shrink: 0;
+        z-index: 2;
+    }
+
+    .phone-input-wrapper.floating-bordered-input {
+        overflow: visible !important;
     }
 
     .phone-input-wrapper .iti input.form-control,
@@ -480,8 +489,14 @@ $step = 3;
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const ITI_UTILS = 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/utils.js';
         let itiNumber, itiPhone;
-        if (typeof window.intlTelInput !== 'undefined') {
+
+        function initPhoneInputs() {
+            if (typeof window.intlTelInput === 'undefined') {
+                return false;
+            }
+
             const numInput = document.querySelector('#number');
             const phoneInput = document.querySelector('#phone');
             const dialCodeMap = [
@@ -544,36 +559,44 @@ $step = 3;
                     if (!input.value.startsWith('+')) input.value = '+' + (input.value.replace(/^\+?/, '') || '');
                 });
             }
-            if (numInput) {
-                itiNumber = window.intlTelInput(numInput, {
-                    initialCountry: 'us',
-                    separateDialCode: false,
-                    preferredCountries: ['us', 'gb', 'ca', 'pk'],
-                    dropdownContainer: document.body,
-                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js',
-                    formatOnDisplay: true
-                });
+
+            const itiOptions = {
+                initialCountry: 'us',
+                separateDialCode: false,
+                preferredCountries: ['us', 'gb', 'ca', 'pk'],
+                dropdownContainer: document.body,
+                utilsScript: ITI_UTILS,
+                formatOnDisplay: true
+            };
+
+            if (numInput && !numInput.closest('.iti')) {
+                itiNumber = window.intlTelInput(numInput, itiOptions);
                 if (!numInput.value.trim()) itiNumber.setNumber('+1');
                 enforcePlusPrefix(numInput);
                 numInput.addEventListener('input', function() { restrictAndFormat(itiNumber, numInput); });
                 numInput.addEventListener('keyup', function() { restrictAndFormat(itiNumber, numInput); });
                 numInput.addEventListener('countrychange', function() { restrictAndFormat(itiNumber, numInput); });
             }
-            if (phoneInput) {
-                itiPhone = window.intlTelInput(phoneInput, {
-                    initialCountry: 'us',
-                    separateDialCode: false,
-                    preferredCountries: ['us', 'gb', 'ca', 'pk'],
-                    dropdownContainer: document.body,
-                    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js',
-                    formatOnDisplay: true
-                });
+            if (phoneInput && !phoneInput.closest('.iti')) {
+                itiPhone = window.intlTelInput(phoneInput, itiOptions);
                 if (!phoneInput.value.trim()) itiPhone.setNumber('+1');
                 enforcePlusPrefix(phoneInput);
                 phoneInput.addEventListener('input', function() { restrictAndFormat(itiPhone, phoneInput); });
                 phoneInput.addEventListener('keyup', function() { restrictAndFormat(itiPhone, phoneInput); });
                 phoneInput.addEventListener('countrychange', function() { restrictAndFormat(itiPhone, phoneInput); });
             }
+
+            return true;
+        }
+
+        if (!initPhoneInputs()) {
+            let tries = 0;
+            const timer = setInterval(function() {
+                tries += 1;
+                if (initPhoneInputs() || tries >= 40) {
+                    clearInterval(timer);
+                }
+            }, 100);
         }
 
         function validateAndPopulatePhone(formId) {

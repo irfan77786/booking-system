@@ -1,1 +1,1 @@
-<img src="{{ asset('assets/img/site/black-car-service-dallas-logo.webp') }}" alt="Dallas Limo And Black Cars Logo" style="width: 180px;">
+<img src="{{ config('services.brand_logo_url') }}" alt="Dallas Black Cars Limo Service" style="width: 180px; height: auto; background:#000;">

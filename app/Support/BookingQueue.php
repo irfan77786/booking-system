@@ -9,9 +9,24 @@ class BookingQueue
 {
     /**
      * Queue booking completion (Stripe + DB + email). Returns immediately.
+     *
+     * Local/Herd: run after the HTTP response so no separate worker is required.
+     * Production: push to the database queue (cron/worker must process it).
      */
     public static function dispatchProcessBooking(array $payload): void
     {
+        if (self::shouldRunAfterResponse()) {
+            ProcessBookingCompletion::dispatch($payload)
+                ->onConnection('sync')
+                ->afterResponse();
+
+            Log::info('BookingQueue: ProcessBookingCompletion afterResponse', [
+                'booking_id' => $payload['custom_booking_id'] ?? null,
+            ]);
+
+            return;
+        }
+
         ProcessBookingCompletion::dispatch($payload)
             ->onConnection(config('queue.default', 'database'));
 
@@ -24,8 +39,22 @@ class BookingQueue
         ]);
     }
 
+    public static function shouldRunAfterResponse(): bool
+    {
+        if (! filter_var(env('QUEUE_AFTER_RESPONSE', true), FILTER_VALIDATE_BOOL)) {
+            return false;
+        }
+
+        return app()->environment('local')
+            || filter_var(env('QUEUE_AUTO_RUN_WORKER', false), FILTER_VALIDATE_BOOL);
+    }
+
     public static function shouldAutoRunWorker(): bool
     {
+        if (self::shouldRunAfterResponse()) {
+            return false;
+        }
+
         if (filter_var(env('QUEUE_AUTO_RUN_WORKER', false), FILTER_VALIDATE_BOOL)) {
             return true;
         }

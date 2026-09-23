@@ -256,39 +256,6 @@ session()->has('price') || ($currentStep >= 3)))
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
-                    style="margin: 0 0 16px; background-color: #FDFAF3; border: 1px solid #9C844C; border-radius: 12px;">
-                    <tr>
-                        <td style="padding: 14px; vertical-align: top;">
-                            <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td style="width: 36px; vertical-align: top; padding-top: 2px;">
-                                        <div
-                                            style="width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; background-color: #9C844C; color: #ffffff; font-size: 15px; font-weight: 700; font-family: Georgia, 'Times New Roman', serif;">
-                                            i
-                                        </div>
-                                    </td>
-                                    <td style="vertical-align: top; padding-left: 8px;">
-                                        <p
-                                            style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: 700; line-height: 1.4;">
-                                            Important Event Notice - FIFA World Cup 2026 (June 13 - July 15, 2026):
-                                        </p>
-                                        <p
-                                            style="margin: 0; font-size: 15px; color: #333; font-style: italic; line-height: 1.5;">
-                                            If this booking falls within the FIFA World Cup 2026 event dates, all rates,
-                                            fees, and minimums are subject to change without notice based on event demand,
-                                            availability, and operational conditions. You acknowledge and agree that these
-                                            rates are not guaranteed until final payment is made in accordance with our
-                                            policy. By confirming this reservation, you expressly authorize any rate
-                                            adjustments and agree that such changes are not a basis for refund, credit,
-                                            cancellation, or chargeback.
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
                 <p>Welcome to Dallas Black Limo Service Service! These Terms and Conditions govern your use of this website and
                     our services. By getting access to and the usage of this website and our services, you agree to be
                     bound using those Terms. If you do not agree to those Terms, you can no longer use our offerings or

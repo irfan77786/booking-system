@@ -47,4 +47,9 @@ return [
     | Admin panel base URL (vehicle images live under /storage on that host).
     */
     'admin_url' => rtrim(env('ADMIN_URL') ?: 'https://admin.dallasblacklimocars.com', '/'),
+
+    /*
+    | Public brand logo (site, emails, OG). PDF uses a local PNG copy when available.
+    */
+    'brand_logo_url' => env('BRAND_LOGO_URL', 'https://dallasblackcarslimoservice.com/img/black-car-service-dallas-logo.webp'),
 ];

@@ -199,31 +199,33 @@
       <div style="display: table-row;">
         <div style="display: table-cell; vertical-align: middle; width: 62%;">
           @php
-          $logoUrl = 'https://www.dallasblacklimoservice.com/img/dallas-black-limo-service-logo.png';
-          $logoContext = stream_context_create([
-              'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
-              'http' => ['timeout' => 10],
-          ]);
-          $logoRaw = @file_get_contents($logoUrl, false, $logoContext);
-          $logoData = ($logoRaw !== false && $logoRaw !== '') ? base64_encode($logoRaw) : null;
+          $logoData = null;
           $mime = 'image/png';
-
-          if (!$logoData) {
-              $logoPath = public_path('assets/logo.jpeg');
-              if (!is_readable($logoPath)) {
-                  $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.png');
-              }
-              if (is_readable($logoPath)) {
-                  $logoData = base64_encode(file_get_contents($logoPath));
-                  $mime = str_ends_with(strtolower((string) $logoPath), '.png') ? 'image/png' : 'image/jpeg';
+          $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.png');
+          if (!is_readable($logoPath)) {
+              $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.webp');
+              $mime = 'image/webp';
+          }
+          if (is_readable($logoPath)) {
+              $logoData = base64_encode(file_get_contents($logoPath));
+          } else {
+              $logoUrl = config('services.brand_logo_url');
+              $logoContext = stream_context_create([
+                  'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
+                  'http' => ['timeout' => 10],
+              ]);
+              $logoRaw = @file_get_contents($logoUrl, false, $logoContext);
+              if ($logoRaw !== false && $logoRaw !== '') {
+                  $logoData = base64_encode($logoRaw);
+                  $mime = str_contains(strtolower((string) $logoUrl), '.png') ? 'image/png' : 'image/webp';
               }
           }
           @endphp
           @if($logoData)
-          <img src="data:{{ $mime }};base64,{{ $logoData }}" alt="Dallas Black Limo Service"
-            style="max-width: 250px; max-height: 60px; height: auto;" />
+          <img src="data:{{ $mime }};base64,{{ $logoData }}" alt="Dallas Black Cars Limo Service"
+            style="max-width: 250px; max-height: 60px; height: auto; background:#000;" />
           @else
-          <div style="font-weight: bold; font-size: 18px;">Dallas Black Limo Service</div>
+          <div style="font-weight: bold; font-size: 18px;">Dallas Black Cars Limo Service</div>
           @endif
         </div>
         <div style="text-align: right;">
