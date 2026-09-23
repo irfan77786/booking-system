@@ -79,6 +79,7 @@ class Booking extends Mailable
                 'bookingData' => $this->bookingData,
                 'isAdmin' => $this->isAdmin,
                 'sendToBooker' => $this->sendToBooker,
+                'logoPath' => is_readable($logoPath) ? $logoPath : null,
                 'logoUrl' => config('services.brand_logo_url'),
             ]
         );
