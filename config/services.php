@@ -42,4 +42,9 @@ return [
     'google_maps' => [
         'api_key' => env('GOOGLE_MAPS_API_KEY'),
     ],
+
+    /*
+    | Admin panel base URL (vehicle images live under /storage on that host).
+    */
+    'admin_url' => rtrim(env('ADMIN_URL', 'https://admin.dallasblacklimocars.com'), '/'),
 ];
