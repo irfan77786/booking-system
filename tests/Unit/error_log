@@ -1,0 +1,4 @@
+[10-Aug-2026 21:55:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function test() in /home/dallwske/dallasblacklimocars.com/tests/Unit/ExampleTest.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/tests/Unit/ExampleTest.php on line 3

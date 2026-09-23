@@ -1,0 +1,8 @@
+[10-Aug-2026 21:55:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function it() in /home/dallwske/dallasblacklimocars.com/tests/Feature/ExampleTest.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/tests/Feature/ExampleTest.php on line 3
+[10-Aug-2026 21:55:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function test() in /home/dallwske/dallasblacklimocars.com/tests/Feature/ProfileTest.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/tests/Feature/ProfileTest.php on line 5

@@ -1,0 +1,15 @@
+[10-Aug-2026 14:43:28 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 14:43:36 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 14:52:47 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 14:55:23 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 14:55:24 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 14:57:38 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 14:57:38 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 21:54:57 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 21:54:57 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 21:56:29 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 21:56:30 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 21:58:33 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 21:58:33 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17
+[10-Aug-2026 22:00:50 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/CreateBookingDocs.php on line 13
+[10-Aug-2026 22:00:51 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Bus\Dispatchable" not found in /home/dallwske/dallasblacklimocars.com/app/Jobs/ProcessBookingCompletion.php on line 17

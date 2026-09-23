@@ -1,0 +1,12 @@
+[10-Aug-2026 21:56:08 UTC] PHP Fatal error:  Uncaught Error: Class "App\Http\Controllers\Controller" not found in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/BookingController.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/BookingController.php on line 27
+[10-Aug-2026 21:56:09 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Routing\Controller" not found in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/Controller.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/Controller.php on line 10
+[10-Aug-2026 21:56:09 UTC] PHP Fatal error:  Uncaught Error: Class "App\Http\Controllers\Controller" not found in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/ProfileController.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Http/Controllers/ProfileController.php on line 13

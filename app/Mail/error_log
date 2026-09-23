@@ -1,0 +1,28 @@
+[10-Aug-2026 14:43:55 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 14:55:25 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 14:57:39 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 21:54:58 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 21:56:28 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 21:58:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
+[10-Aug-2026 22:00:52 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/dallwske/dallasblacklimocars.com/app/Mail/Booking.php on line 13
