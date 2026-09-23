@@ -14,9 +14,15 @@
         <div class="header"
             style="padding: 20px 10px; text-align: center; border-bottom: 1px solid #eee; background-color: #000000;">
             <div style="background-color: #000000; padding: 15px; display: inline-block;">
-                <img src="{{ config('services.brand_logo_url') }}"
-                    alt="Dallas Black Cars Limo Service"
-                    style="max-width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #000000;">
+                @if(!empty($logoPath) && isset($message))
+                <img src="{{ $message->embed($logoPath) }}"
+                    alt="Dallas Black Cars Limo Service" width="250"
+                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #000000; border: 0;">
+                @else
+                <img src="{{ $logoUrl ?? config('services.brand_logo_url') }}"
+                    alt="Dallas Black Cars Limo Service" width="250"
+                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #000000; border: 0;">
+                @endif
             </div>
             <h2 style="margin: 0; font-size: 22px; color: #ffffff;">Booking {{ $isAdmin ? 'Notification' :
                 'Confirmation' }}</h2>

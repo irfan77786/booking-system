@@ -68,12 +68,18 @@ class Booking extends Mailable
      */
     public function content()
     {
+        $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.png');
+        if (! is_readable($logoPath)) {
+            $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.webp');
+        }
+
         return new Content(
             view: 'emails.booking',
             with: [
                 'bookingData' => $this->bookingData,
                 'isAdmin' => $this->isAdmin,
-                'sendToBooker' => $this->sendToBooker
+                'sendToBooker' => $this->sendToBooker,
+                'logoUrl' => config('services.brand_logo_url'),
             ]
         );
     }
