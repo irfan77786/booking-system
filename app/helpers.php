@@ -2,7 +2,8 @@
 
 if (! function_exists('admin_storage_url')) {
     /**
-     * Absolute URL for a file stored on the admin panel (e.g. vehicle images).
+     * Same-origin URL for admin storage files (vehicle images).
+     * Proxied via /media/... so mobile browsers are not blocked by admin SSL / mixed content.
      */
     function admin_storage_url(?string $path): string
     {
@@ -10,26 +11,22 @@ if (! function_exists('admin_storage_url')) {
             return '';
         }
 
+        // Absolute remote URL → extract storage-relative path when it is our admin host
         if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        $base = '';
-        try {
-            $base = rtrim((string) config('services.admin_url'), '/');
-        } catch (\Throwable $e) {
-            $base = '';
-        }
-
-        if ($base === '') {
-            $base = 'https://admin.dallasblacklimocars.com';
+            $parts = parse_url($path);
+            $urlPath = $parts['path'] ?? '';
+            if (preg_match('#/storage/(.+)$#', $urlPath, $m)) {
+                $path = $m[1];
+            } else {
+                return $path;
+            }
         }
 
         $path = ltrim($path, '/');
-        if (! str_starts_with($path, 'storage/')) {
-            $path = 'storage/' . $path;
+        if (str_starts_with($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
         }
 
-        return $base . '/' . $path;
+        return url('/media/' . $path);
     }
 }

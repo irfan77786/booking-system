@@ -1005,7 +1005,11 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                         <!-- Vehicle Image -->
                                         <div class="vehicle-img-container d-flex align-items-center">
                                             <img src="{{ admin_storage_url($value['vehicle_image'] ?? null) }}"
-                                                alt="Vehicle Image" class="img-fluid rounded-3 vehicle_img">
+                                                alt="{{ $value['vehicle_name'] ?? 'Vehicle' }}"
+                                                class="img-fluid rounded-3 vehicle_img"
+                                                loading="lazy"
+                                                decoding="async"
+                                                referrerpolicy="no-referrer">
                                         </div>
 
                                         <!-- Vehicle Info -->

@@ -611,7 +611,11 @@
                                                 <!-- Vehicle Image and Capacity Info -->
                                                 <div class="mb-3 col-12 col-md-4 d-flex flex-column align-items-center">
                                                     <img src="{{ admin_storage_url($value->vehicle_image ?? null) }}"
-                                                        alt="Vehicle Image" class="img-fluid rounded-3 vehicle_img"
+                                                        alt="{{ $value->vehicle_name ?? 'Vehicle' }}"
+                                                        class="img-fluid rounded-3 vehicle_img"
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        referrerpolicy="no-referrer"
                                                         style="max-height: 200px; object-fit: cover;">
 
                                                     <div
