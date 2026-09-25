@@ -115,9 +115,9 @@ $step = 3;
     .continue-btn {
         width: 100%;
         padding: 11px;
-        background: linear-gradient(90deg, #e52c43, #ff6c00);
+        background: #c6a15b;
         border: none;
-        color: #fff;
+        color: #141210;
         font-size: 14px;
         font-weight: 500;
         border-radius: 4px;
@@ -128,9 +128,9 @@ $step = 3;
     #continue_right {
         width: 100%;
         padding: 11px;
-        background: linear-gradient(90deg, #e52c43, #ff6c00);
+        background: #c6a15b;
         border: none;
-        color: #fff;
+        color: #141210;
         font-size: 14px;
         border-radius: 4px;
         cursor: pointer;
@@ -181,9 +181,9 @@ $step = 3;
     .login-btn {
         width: 100%;
         padding: 11px;
-        background: #e52c43;
+        background: #c6a15b;
         border: none;
-        color: #fff;
+        color: #141210;
         font-size: 14px;
         font-weight: 500;
         border-radius: 4px;
@@ -192,7 +192,7 @@ $step = 3;
     }
 
     .login-btn:hover {
-        background: #145570;
+        background: #ddc07a;
     }
 
     .cta-button {

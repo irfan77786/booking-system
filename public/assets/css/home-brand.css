@@ -1,0 +1,260 @@
+body.home-brand {
+    background: #f7f4ee;
+    color: #2a261f;
+}
+
+body.home-brand .brand-header {
+    background: #141210;
+    border-bottom: 3px solid #c6a15b;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+body.home-brand .brand-logo {
+    max-height: 64px;
+    width: auto;
+}
+
+body.home-brand .custom-navbar .navbar-toggler {
+    background: transparent;
+    border: 1px solid #c6a15b;
+}
+
+body.home-brand .custom-navbar .navbar-collapse {
+    background: #141210;
+}
+
+body.home-brand .custom-navbar .navbar-nav .nav-item > .nav-link:before {
+    background: #c6a15b;
+}
+
+body.home-brand .custom-navbar .navbar-nav .nav-link {
+    color: #f3ead7 !important;
+}
+
+body.home-brand .custom-navbar .navbar-nav .nav-link.active,
+body.home-brand .custom-navbar .navbar-nav .nav-link:hover,
+body.home-brand .custom-navbar .navbar-nav .nav-link:focus {
+    color: #c6a15b !important;
+}
+
+body.home-brand .custom-navbar .dropdown-menu {
+    background: #fffdf8;
+    border: 1px solid #e4d7bc;
+}
+
+body.home-brand .custom-navbar .dropdown-item {
+    color: #2a261f;
+}
+
+body.home-brand .custom-navbar .dropdown-item:hover,
+body.home-brand .custom-navbar .dropdown-item:focus {
+    background: #f7f4ee;
+    color: #8c6a2f;
+}
+
+body.home-brand .theme-color {
+    background: none;
+    -webkit-text-fill-color: #c6a15b;
+    color: #c6a15b;
+}
+
+body.home-brand .btn-primary,
+body.home-brand .search_btn {
+    background: #c6a15b !important;
+    background-image: none !important;
+    color: #141210 !important;
+    border: 0 !important;
+    border-radius: 4px;
+}
+
+body.home-brand .btn-primary:hover,
+body.home-brand .search_btn:hover {
+    background: #ddc07a !important;
+    color: #141210 !important;
+}
+
+body.booking-steps .btn-primary,
+body.booking-steps .continue-btn,
+body.booking-steps .login-btn,
+body.booking-steps .cta-button,
+body.booking-steps #continue_right,
+body.booking-steps #final-pay-button,
+body.booking-steps button.mt-2.select_car_btn.btn.btn_dark.btn-primary.trigger-loader,
+body.booking-steps a.select-vehicle.btn.btn-primary {
+    background: #c6a15b !important;
+    background-image: none !important;
+    border-color: #c6a15b !important;
+    color: #141210 !important;
+}
+
+body.booking-steps .btn-primary:hover,
+body.booking-steps .continue-btn:hover,
+body.booking-steps .login-btn:hover,
+body.booking-steps .cta-button:hover,
+body.booking-steps #continue_right:hover,
+body.booking-steps #final-pay-button:hover,
+body.booking-steps button.mt-2.select_car_btn.btn.btn_dark.btn-primary.trigger-loader:hover,
+body.booking-steps a.select-vehicle.btn.btn-primary:hover {
+    background: #ddc07a !important;
+    background-image: none !important;
+    border-color: #ddc07a !important;
+    color: #141210 !important;
+}
+
+body.home-brand input[type="checkbox"] {
+    accent-color: #c6a15b;
+}
+
+body.home-brand .footer {
+    background: #141210;
+    border-top: 3px solid #c6a15b;
+}
+
+body.home-brand .footer h4,
+body.home-brand .footer .h6 {
+    color: #c6a15b !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+body.home-brand .footer a,
+body.home-brand .footer p {
+    color: #f3ead7;
+}
+
+body.home-brand .footer a:hover {
+    color: #c6a15b;
+}
+
+body.home-brand .t-policy a {
+    color: #e7d3a1;
+}
+
+.brand-kicker {
+    color: #8c6a2f;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.brand-panel {
+    background: #fffdf8;
+    border: 1px solid #e4d7bc;
+    border-radius: 8px;
+}
+
+.brand-promise {
+    background: #141210;
+    color: #f3ead7;
+}
+
+.brand-promise strong {
+    color: #c6a15b;
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.fleet-tile {
+    background: #fffdf8;
+    color: #2a261f;
+    border: 1px solid #e4d7bc;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.fleet-tile img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: transparent;
+    display: block;
+    image-rendering: auto;
+}
+
+.fleet-tile h3 {
+    color: #8c6a2f;
+}
+
+.step-no {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #c6a15b;
+    line-height: 1;
+}
+
+.service-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #e4d7bc;
+}
+
+.service-row img {
+    width: 160px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.route-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e4d7bc;
+}
+
+.quote-card {
+    background: #fffdf8;
+    border-top: 3px solid #c6a15b;
+    padding: 22px;
+    height: 100%;
+}
+
+.brand-form {
+    background: #fffdf8;
+    border: 1px solid #e4d7bc;
+    border-radius: 8px;
+    padding: 22px;
+}
+
+.brand-form .form-label {
+    display: block;
+}
+
+.brand-form .form-control,
+.brand-form .iti {
+    display: block;
+    width: 100%;
+}
+
+.brand-form .iti .form-control {
+    width: 100%;
+}
+
+body.home-brand .accordion-button:not(.collapsed) {
+    color: #141210;
+    background: #f7f4ee;
+    box-shadow: none;
+}
+
+body.home-brand .accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(198, 161, 91, 0.35);
+}
+
+@media (max-width: 575px) {
+    .service-row {
+        grid-template-columns: 1fr;
+    }
+
+    .service-row img {
+        width: 100%;
+        height: 180px;
+    }
+}

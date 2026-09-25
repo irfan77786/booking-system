@@ -9,19 +9,19 @@
 </head>
 
 <body
-    style="font-family: 'Abel', 'Helvetica', 'Arial', sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0; background-color: #f4f4f4;">
-    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 6px; background-color: #ffffff;">
+    style="font-family: 'Abel', 'Helvetica', 'Arial', sans-serif; line-height: 1.6; color: #2a261f; margin: 0; padding: 0; background-color: #f7f4ee;">
+    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 6px; background-color: #fffdf8;">
         <div class="header"
-            style="padding: 20px 10px; text-align: center; border-bottom: 1px solid #eee; background-color: #000000;">
-            <div style="background-color: #000000; padding: 15px; display: inline-block;">
+            style="padding: 20px 10px; text-align: center; border-bottom: 4px solid #c6a15b; background-color: #141210;">
+            <div style="background-color: #141210; padding: 15px; display: inline-block;">
                 @if(!empty($logoPath) && isset($message))
                 <img src="{{ $message->embed($logoPath) }}"
                     alt="Dallas Black Cars Limo Service" width="250"
-                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #000000; border: 0;">
+                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #141210; border: 0;">
                 @else
                 <img src="{{ $logoUrl ?? config('services.brand_logo_url') }}"
                     alt="Dallas Black Cars Limo Service" width="250"
-                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #000000; border: 0;">
+                    style="max-width: 250px; width: 250px; margin-bottom: 10px; height: auto; display: block; background-color: #141210; border: 0;">
                 @endif
             </div>
             <h2 style="margin: 0; font-size: 22px; color: #ffffff;">Booking {{ $isAdmin ? 'Notification' :
@@ -37,7 +37,7 @@
             <p style="font-size: 12px; margin: 0 0 10px;">A new booking has been received. Please find the details
                 below:</p>
             <div class="admin-note"
-                style="background-color: #baddfc; border-left: 4px solid #12143e; padding: 12px; margin: 15px 0; font-size: 15px; color: #333;">
+                style="background-color: #f7f4ee; border-left: 4px solid #c6a15b; padding: 12px; margin: 15px 0; font-size: 15px; color: #2a261f;">
                 <strong>Action Required:</strong> Please review and confirm this booking at your earliest convenience.
             </div>
             @elseif($sendToBooker)
@@ -55,9 +55,9 @@
 
             {{-- Booking confirmation fields (aligned with resources/views/pdfs/booking.blade.php) --}}
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #12143e; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
+                    style="background: #141210; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
                     Booking Confirmation #{{ $bookingData['booking_id'] ?? 'N/A' }}</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     <tr>
@@ -149,9 +149,9 @@
             {{-- Booker Information (order/labels match PDF; placeholder omitted on booker-only copy) --}}
             @if(!empty($bookingData['isBookingForOthers']) && (!empty($bookingData['booker_first_name']) || !empty($bookingData['booker_last_name']) || !empty($bookingData['booker_email']) || !empty($bookingData['booker_number'])))
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #baddfc; margin: 0; padding: 8px 12px; font-size: 14px; color: #12143e; border-radius: 4px 4px 0 0;">
+                    style="background: #e7d3a1; margin: 0; padding: 8px 12px; font-size: 14px; color: #141210; border-radius: 4px 4px 0 0;">
                     Booker Information</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     @if(!empty($bookingData['booker_first_name']) || !empty($bookingData['booker_last_name']))
@@ -176,9 +176,9 @@
             </div>
             @elseif(!$sendToBooker)
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #baddfc; margin: 0; padding: 8px 12px; font-size: 14px; color: #12143e; border-radius: 4px 4px 0 0;">
+                    style="background: #e7d3a1; margin: 0; padding: 8px 12px; font-size: 14px; color: #141210; border-radius: 4px 4px 0 0;">
                     Booker Information</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     <tr>
@@ -190,9 +190,9 @@
 
             {{-- Trip Routing (matches PDF labels; hourly shows stop line) --}}
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #baddfc; margin: 0; padding: 8px 12px; font-size: 14px; color: #12143e; border-radius: 4px 4px 0 0;">
+                    style="background: #e7d3a1; margin: 0; padding: 8px 12px; font-size: 14px; color: #141210; border-radius: 4px 4px 0 0;">
                     Trip Routing Information</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     @if(!empty($bookingData['pickup_location']) || !empty($bookingData['dropoff_location']) || !empty($bookingData['hours']))
@@ -230,9 +230,9 @@
                     && !empty($fd['pickup_flight_details']);
             @endphp
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #12143e; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
+                    style="background: #141210; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
                     Flight/Airport Information</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     @if($hasFlightBlock)
@@ -262,9 +262,9 @@
 
             {{-- Notes (PDF Notes/Comments) --}}
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #12143e; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
+                    style="background: #141210; margin: 0; padding: 8px 12px; font-size: 14px; color: #ffffff; border-radius: 4px 4px 0 0;">
                     Notes/Comments</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     <tr>
@@ -278,9 +278,9 @@
             {{-- Charges & Fees (matches PDF breakdown) --}}
             @if(isset($bookingData['total_amount']))
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #baddfc; margin: 0; padding: 8px 12px; font-size: 14px; color: #12143e; border-radius: 4px 4px 0 0;">
+                    style="background: #e7d3a1; margin: 0; padding: 8px 12px; font-size: 14px; color: #141210; border-radius: 4px 4px 0 0;">
                     Charges &amp; Fees</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     <tr>
@@ -292,20 +292,20 @@
                         <td style="color: #333; padding: 4px 0;"><strong>$0.00</strong></td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bold; color: #28a745; width: 40%; padding: 4px 0;">Payment/Deposits:</td>
+                        <td style="font-weight: bold; color: #8c6a2f; width: 40%; padding: 4px 0;">Payment/Deposits:</td>
                         <td style="color: #333; padding: 4px 0;"><strong>$0.00</strong></td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bold; color: #dc3545; width: 40%; padding: 4px 0;">Total Due:</td>
-                        <td style="color: #dc3545; padding: 4px 0;"><strong>${{ number_format($bookingData['total_amount'], 2) }}</strong></td>
+                        <td style="font-weight: bold; color: #8c6a2f; width: 40%; padding: 4px 0;">Total Due:</td>
+                        <td style="color: #8c6a2f; padding: 4px 0;"><strong>${{ number_format($bookingData['total_amount'], 2) }}</strong></td>
                     </tr>
                 </table>
             </div>
             @else
             <div class="booking-details"
-                style="background-color: #f8f9fa; border-radius: 4px; margin: 20px 0; border: 1px solid #e0e0e0;">
+                style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
-                    style="background: #baddfc; margin: 0; padding: 8px 12px; font-size: 14px; color: #12143e; border-radius: 4px 4px 0 0;">
+                    style="background: #e7d3a1; margin: 0; padding: 8px 12px; font-size: 14px; color: #141210; border-radius: 4px 4px 0 0;">
                     Charges &amp; Fees</h3>
                 <table cellpadding="0" cellspacing="0" width="100%" style="font-size: 12px; padding: 10px;">
                     <tr>
@@ -319,7 +319,7 @@
         </div>
 
         <div class="footer"
-            style="text-align: center; padding: 20px 10px; font-size: 13px; color: #777; border-top: 1px solid #e1e1e1;">
+            style="text-align: center; padding: 20px 10px; font-size: 13px; color: #f3ead7; background-color: #141210; border-top: 4px solid #c6a15b;">
             <p style="margin: 0 0 5px;">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
         </div>
     </div>

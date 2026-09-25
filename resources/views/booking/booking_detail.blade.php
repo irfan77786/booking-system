@@ -19,7 +19,7 @@
     .switch-wrapper input{opacity:0;width:0;height:0}
     .switch-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#bdbdbd;transition:.2s;border-radius:24px}
     .switch-slider:before{position:absolute;content:"";height:20px;width:20px;left:2px;top:2px;background:#fff;transition:.2s;border-radius:50%}
-    .switch-wrapper input:checked + .switch-slider{background:linear-gradient(90deg, #e52c43, #ff6c00)}
+    .switch-wrapper input:checked + .switch-slider{background:#c6a15b}
     .switch-wrapper input:checked + .switch-slider:before{transform:translateX(20px)}
 
     #meet-option:invalid,

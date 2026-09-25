@@ -78,7 +78,8 @@ session()->has('price') || ($currentStep >= 3)))
         display: block;
         font-weight: 600;
         letter-spacing: 2px;
-        background: linear-gradient(90deg, #e52c43, #ff6c00);
+        background: #c6a15b;
+        color: #141210;
         border-radius: 4px !important;
     }
 </style>

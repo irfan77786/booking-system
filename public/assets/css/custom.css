@@ -153,8 +153,8 @@ button.mt-2.select_car_btn.btn.btn_dark.btn-primary.trigger-loader {
 }
 
 button.mt-2.select_car_btn.btn.btn_dark.btn-primary.trigger-loader:hover {
-  background: linear-gradient(90deg, #e52c43, #ff6c00) !important;
-  color: #fff !important;
+  background: #c6a15b !important;
+  color: #141210 !important;
   border-radius: 5px;
 }
 

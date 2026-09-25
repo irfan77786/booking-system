@@ -68,9 +68,9 @@ class Booking extends Mailable
      */
     public function content()
     {
-        $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.png');
+        $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.webp');
         if (! is_readable($logoPath)) {
-            $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.webp');
+            $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.png');
         }
 
         return new Content(

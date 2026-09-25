@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/home-brand.css') }}">
 <style>
     @media (max-width: 767px) {
         #hero-banner-container,
@@ -74,4 +75,22 @@
             </div>
         </div>
     </section>
+
+    @include('partials.home_sections')
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var phone = document.querySelector('#contact_no');
+    if (phone && window.intlTelInput) {
+        window.intlTelInput(phone, {
+            initialCountry: 'us',
+            separateDialCode: true,
+            preferredCountries: ['us', 'gb', 'ca'],
+            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/utils.js'
+        });
+    }
+});
+</script>
 @endsection
