@@ -26,11 +26,9 @@ use Stripe\Stripe;
 
 class BookingController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
+
+
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -86,10 +84,10 @@ class BookingController extends Controller
             'final_price' => $final,
         ]);
 
-        // Already authenticated users have no reason to see the
-        // "Login or Continue as Guest" screen. Submitting either form
-        // here would hit a `guest`-only route and bounce them out of
-        // the booking flow, so skip straight to passenger info.
+         
+         
+         
+         
         if (Auth::check()) {
             $user = Auth::user();
             session()->put('booker_first_name', $user->first_name);
@@ -112,16 +110,16 @@ class BookingController extends Controller
         ]);
     }
 
-    // Show the form for Point to Point or Hourly Hire
+     
     public function showForm(Request $request)
     {
         if ($request->edit) {
             session(['edit' => 1]);
         }
 
-        // A completed booking leaves this flag set; the home route is outside
-        // checkBookingCompletion, so it never got cleared. Allow a new search
-        // without the next booking URL being blocked or fully flushed.
+         
+         
+         
         if (session('booking_completed')) {
             session()->forget('booking_completed');
         }
@@ -141,7 +139,7 @@ class BookingController extends Controller
         ]);
     }
 
-    // Handle Point to Point form submission
+     
     public function handlePointToPoint(Request $request)
     {
         Log::info('booking.point_to_point.enter', [
@@ -157,7 +155,7 @@ class BookingController extends Controller
         session([
             'booking_completed' => false
         ]);
-        // If it's a GET (i.e., user clicked back)
+         
         if ($request->isMethod('get')) {
             $sessionData = session()->only([
                 'pickup_location',
@@ -176,7 +174,7 @@ class BookingController extends Controller
                     'session_snapshot_keys' => array_keys(session()->all()),
                 ]);
 
-                return redirect()->route('booking'); // or wherever the user should be
+                return redirect()->route('booking');  
             }
 
             Log::info('booking.point_to_point.get_ok_show_confirmation', [
@@ -314,7 +312,7 @@ class BookingController extends Controller
         return view('booking.confirmation', [
             'step' => 2,
             'data' => $vehicles,
-            'distance' => $distanceData, // mapped per vehicle
+            'distance' => $distanceData,  
             'userData' => $data,
             'service_type' => 'pointToPoint',
             'seo' => [
@@ -328,7 +326,7 @@ class BookingController extends Controller
         ]);
     }
 
-    // Handle Hourly Hire form submission
+     
     public function handleHourlyHire(Request $request)
     {
         session()->forget('round_trip');
@@ -469,36 +467,36 @@ class BookingController extends Controller
     }
 
 
-    // Helper function to simulate distance calculation
-    // private function calculateDistance($pickup, $dropoff = null,array $stops)
-    // {
-    //     $response = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json', [
-    //         'origins' => $pickup,
-    //         'destinations' => $dropoff,
-    //         'key' => "AIzaSyBtkrakOJ7xvcL2FIF5XbhCV1PIaNKz4zQ",
-    //     ]);
-    //     $data = $response->json();
-    //     if ($data['status'] !== 'OK' || empty($data['rows'][0]['elements'][0]['distance'])) {
-    //         return ['error' => 'Distance calculation failed'];
-    //     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
 
-    //     $distanceMeters = $data['rows'][0]['elements'][0]['distance']['value'];
-    //     $distanceKm = $distanceMeters / 1000;
-    //     $baseFare = 5;
-    //     $perKmRate = 1.5;
-    //     $price = $baseFare + ($distanceKm * $perKmRate);
+     
+     
+     
+     
+     
 
-    //     return [
-    //         'distance_km' => round($distanceKm, 2),
-    //         'price' => round($price, 2),
-    //     ];
-    // }
+     
+     
+     
+     
+     
 
     private function calculateDistanceWithStops($pickup, $dropoff, array $stops, $baseFare, $hourlyFare, $perKmRate, $hours = null)
     {
         if ($dropoff == null) {
-            // Hourly booking only (no dropoff or stops)
+             
             $price =  ($hourlyFare * $hours);
 
             return [
@@ -530,18 +528,18 @@ class BookingController extends Controller
                 return ['error' => 'Distance calculation failed between ' . $origin . ' and ' . $destination];
             }
 
-            $segmentDistance = $data['rows'][0]['elements'][0]['distance']['value']; // in meters
+            $segmentDistance = $data['rows'][0]['elements'][0]['distance']['value'];  
             $totalDistance += $segmentDistance;
         }
 
-        $distanceMiles = $totalDistance / 1609.34; //miles
-        // echo $baseFare ."+".($distanceMiles .'*'. $perKmRate);
-        // exit();
+        $distanceMiles = $totalDistance / 1609.34; 
+         
+         
         $price = $baseFare + ($distanceMiles * $perKmRate);
         $totalPrice = $price + ($hours ? ($hourlyFare * $hours) : 0);
 
         return [
-            'distance_km' => round($distanceMiles, 2), // Legacy key, actually returns miles
+            'distance_km' => round($distanceMiles, 2),  
             'distance_miles' => round($distanceMiles, 2),
             'price' => round($totalPrice, 2),
             'baseFare' => $baseFare,
@@ -579,7 +577,7 @@ class BookingController extends Controller
         $dropoff = $request->input('dropoff_location');
         $vehicleId = $request->input('vehicle_id');
 
-        // Validate input
+         
         if (!$pickup || !$dropoff || !$vehicleId) {
             return response()->json(['success' => false, 'message' => 'Missing required data']);
         }
@@ -599,7 +597,7 @@ class BookingController extends Controller
         $perKmRate = $computed['perKmRate'];
         $price = $computed['price'];
 
-        // Store in session (for use in Blade later)
+         
         session([
             'return_base_fare' => $baseFare,
             'return_per_km_rate' => $perKmRate,
@@ -763,18 +761,18 @@ class BookingController extends Controller
             session()->put('booker_last_name', $user->last_name);
             session()->put('booker_email', $user->email);
         }
-        // First check for required session data before any other processing
+         
         if (!session('pickup_location') || !session('pickup_date')) {
-            // If AJAX request, return JSON response
+             
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Your session has expired. Please refresh the page and try again.',
                     'redirect' => route('booking')
-                ], 419); // 419 is for CSRF token mismatch/expired
+                ], 419);  
             }
 
-            // For regular form submission
+             
             return redirect()->route('booking');
         }
 
@@ -874,7 +872,7 @@ class BookingController extends Controller
             ]);
         }
 
-        // Rest of your POST handling code...
+         
         $rules = array_merge([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
@@ -891,9 +889,9 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            // Log the error or return a response for debugging
-            // dd($validator->errors());
-            // Log::error('Validation failed', $validator->errors()->toArray());
+             
+             
+             
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -977,7 +975,7 @@ class BookingController extends Controller
 
         $user = null;
         $cards = [];
-        // Validate request fields
+         
         $validated = $request->validate([
             'pickup_flight_details' => 'nullable|string|max:255',
             'flight_number' => 'nullable|string|max:50',
@@ -1016,17 +1014,17 @@ class BookingController extends Controller
             $validated['meet_option'] = null;
         }
 
-        // Normalize checkbox values (Laravel treats unchecked boxes as missing)
+         
         $validated['return_service'] = $request->has('return-service');
         $validated['no_flight_info'] = $request->has('no_flight_info');
 
         $validated['meet_option'] = $validated['meet_option'] ?? null;
-        // Optional: Ensure inside_pickup_fee is accurate
+         
         $validated['inside_pickup_fee'] = 0;
 
-        // Store data in session
+         
         session([
-            // Original values
+             
             'pickup_flight_details' => $validated['pickup_flight_details'] ?? '',
             'flight_number' => $validated['flight_number'] ?? '',
             'meet_option' => $validated['meet_option'] ?? null,
@@ -1035,7 +1033,7 @@ class BookingController extends Controller
             'return_service' => $validated['return_service'],
             'note' => $validated['note'] ?? null,
 
-            // Additional return_* values from the request
+             
             'return_pickup_location' => $request->input('return_pickup_location'),
             'return_dropoff_location' => $request->input('return_dropoff_location'),
             'return_pickup_date' => $request->input('return_pickup_date'),
@@ -1046,9 +1044,9 @@ class BookingController extends Controller
             'return_vehicle_id' => $request->input('vehicle_id'),
         ]);
 
-        // Optional: recalculate total with fee
+         
         $basePrice = session('calculated_price', 0);
-        $returnPrice = session('return_price', 0); // Fetch return price if available
+        $returnPrice = session('return_price', 0);  
         $insidePickupFee = $validated['inside_pickup_fee'] ?? 0;
 
         if ((session('round_trip') == 'on' && $returnPrice) || ($request->input('return_pickup_location') && $request->has('return-service'))) {
@@ -1059,7 +1057,7 @@ class BookingController extends Controller
 
         session(['final_price' => $total]);
 
-        // Redirect to payment view (or wherever step 5 is)
+         
         return view('booking.payment', [
             'step' => 5,
             'cards' => $cards,
@@ -1285,7 +1283,7 @@ class BookingController extends Controller
             $user = auth()->user();
             $guest = session('guest', []);
 
-            // Prepare booking session data
+             
             $pickup_location     = session('pickup_location');
             $dropoff_location    = session('dropoff_location');
             $pickup_date         = session('pickup_date');
@@ -1377,7 +1375,7 @@ class BookingController extends Controller
                 ]);
             }
 
-            // Clear session
+             
             session()->forget([
                 'pickup_location',
                 'dropoff_location',
@@ -1409,7 +1407,7 @@ class BookingController extends Controller
                 'trace' => substr($e->getTraceAsString(), 0, 2000),
             ]);
 
-            // Payment may already be authorized — do not send back to payment page.
+             
             if (!empty($customBookingId)) {
                 session([
                     'booking_completed' => true,
@@ -1488,99 +1486,99 @@ class BookingController extends Controller
                 $data['rows'][0]['elements'][0]['status'] === 'OK'
             ) {
                 $distanceMeters = $data['rows'][0]['elements'][0]['distance']['value'];
-                $distanceMiles = $distanceMeters / 1609.34; // Convert meters to miles
+                $distanceMiles = $distanceMeters / 1609.34;  
                 return round($distanceMiles, 2);
             }
         }
 
-        return null; // Return null if something went wrong
+        return null;  
     }
-    // public function completeBook(Request $request)
-    // {
+     
+     
 
-    //     $validator = Validator::make($request->all(), [
-    //         'payment_method_id' => 'required|string',
-    //     ]);
+     
+     
+     
 
-    //     if ($validator->fails()) {
-    //         return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
-    //     }
-    //     try {
-    //         $pickup_location = session('pickup_location');
-    //         $dropoff_location = session('dropoff_location');
-    //         $pickup_date = session('pickup_date');
-    //         $pickup_time = session('pickup_time');
-    //         $first_name = session('first_name');
-    //         $last_name = session('last_name');
-    //         $email = session('email');
-    //         $number = session('number');
-    //         $selected_price = session('selected_price');
-    //         $selected_distance = session('selected_distance');
-    //         $vehicle_id = session('vehicle_id');
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
-    //         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+     
 
-    //         $paymentIntent = \Stripe\PaymentIntent::create([
-    //             'amount' => session('selected_price') * 100, // Stripe requires amount in cents
-    //             'currency' => 'usd',
-    //             'payment_method' => $request->payment_method_id,
-    //             'confirmation_method' => 'manual',
-    //             'confirm' => true,
-    //         ]);
-    //         $transactionId = $paymentIntent->id;
-    //         // Payment succeeded
-    //         if ($paymentIntent->status === 'requires_action' && $paymentIntent->next_action->type === 'use_stripe_sdk') {
-    //             return response()->json([
-    //                 'requires_action' => true,
-    //                 'payment_intent_client_secret' => $paymentIntent->client_secret
-    //             ]);
-    //         }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
 
 
-    //         $booking = Booking::create([
-    //             'user_id' => Auth::id(), // or null for guest
-    //             'vehicle_id' => $vehicle_id,
-    //             'pickup_location' => $pickup_location,
-    //             'dropoff_location' => $dropoff_location,
-    //             'pickup_date' => $pickup_date,
-    //             'pickup_time' => $pickup_time,
-    //             'total_price' => $selected_price,
-    //             'payment_status' => "Paid",
-    //         ]);
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
-    //         $booking->payments()->create([
-    //             'payment_method' => "card",
-    //             'payment_status' => "Paid",
-    //             'transaction_id' => $transactionId,
-    //             'amount' => $selected_price,
-    //         ]);
+     
+     
+     
+     
+     
+     
 
-    //         $booking->passengers()->create([
-    //             'first_name' => $first_name,
-    //             'last_name' => $last_name,
-    //             'email' => $email,
-    //             'phone_number' => $number,
-    //             'booker_first_name' => session('bookingForSomeoneElse') ? session('booker_first_name') : session('first_name'),
-    //             'booker_last_name' => session('bookingForSomeoneElse') ? session('booker_last_name') : session('last_name'),
-    //             'booker_email' => session('bookingForSomeoneElse') ? session('booker_email') : session('email'),
-    //             'booker_number' => session('bookingForSomeoneElse') ? session('booker_number') : session('number'),
-    //             'is_booking_for_others' => session('bookingForSomeoneElse') ? true : false,
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
-    //         ]);
-    //         return response()->json([
-    //             'success' => true,
-    //             'message' => 'Booking created successfully',
-    //             'booking_id' => $booking->id,
-    //         ]);
-    //     } catch (\Stripe\Exception\CardException $e) {
-    //         return response()->json(['success' => false, 'message' => $e->getError()->message], 400);
-    //     }
-    // }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     public function saveReturnService(Request $request)
     {
         try {
-            // Validate the request
+             
             $validator = Validator::make($request->all(), [
                 'return_pickup_location' => 'required|string',
                 'return_dropoff_location' => 'required|string',
@@ -1600,7 +1598,7 @@ class BookingController extends Controller
                 ], 422);
             }
 
-            // Store return service data in session
+             
             session([
                 'return_service' => 1,
                 'return_pickup_location' => $request->return_pickup_location,
@@ -1617,7 +1615,7 @@ class BookingController extends Controller
                 'return_km' => $request->input('return_km', 0),
             ]);
 
-            // Get vehicle name for display
+             
             $vehicleName = null;
             if ($request->return_vehicle_id) {
                 $vehicle = Vehicle::find($request->return_vehicle_id);

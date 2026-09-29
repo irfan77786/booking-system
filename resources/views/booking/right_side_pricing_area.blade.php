@@ -91,8 +91,8 @@ session()->has('price') || ($currentStep >= 3)))
     @endphp
 
     <div class="p-3 mt-3 rounded-lg shadow-sm bg-light">
-        <!--<h2 class="mb-3 step-title" style="font-size: 16px">Trip Breakdown</h2>-->
-        <!--<h2 class="mb-2 step-title font-weight-bold" style="font-size: 16px">Outward Trip</h2>-->
+        
+        
 
         @php
         $base = session('calculated_price');
@@ -122,20 +122,20 @@ session()->has('price') || ($currentStep >= 3)))
         <div id="return-trip-section"
             style="{{ (session('round_trip') == 'on' && session('return_price')) ? '' : 'display: none;' }}">
             <hr />
-            <!--<h2 class="mb-3 step-title font-weight-bold" style="font-size: 16px">Return Trip</h2>-->
+            
 
-            <!--<div class="mb-1 d-flex justify-content-between">-->
-            <!--    <span class="text-muted">Base Fare (Return)</span>-->
-            <!--    <span id="return-base-fare">${{ session('return_base_fare') }}</span>-->
-            <!--</div>-->
-            <!--<div class="mb-1 d-flex justify-content-between">-->
-            <!--    <span class="text-muted">Per Mile Rate</span>-->
-            <!--    <span id="return-per-km-rate">${{ session('return_per_km_rate') }}</span>-->
-            <!--</div>-->
-            <!--<div class="mb-1 d-flex justify-content-between">-->
-            <!--    <span class="text-muted">Distance in Miles</span>-->
-            <!--    <span id="return-distance">{{ session('return_km') }} Miles</span>-->
-            <!--</div>-->
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             @if(session('return_price'))
             <div class="mb-1 d-flex justify-content-between">
                 <span class="pricing_summary_label">Return Trip</span>
@@ -199,56 +199,51 @@ session()->has('price') || ($currentStep >= 3)))
         </div>
     </div>
 
-
-
-
-
-    <!--<ul>-->
-    <!--    <li>-->
-    <!--        <div class="items-center d-flex"><span-->
-    <!--                class="text-[#2B3252] mx-1 text-xl ml-[-2.5px]"><svg stroke="currentColor"-->
-    <!--                    fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"-->
-    <!--                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
-    <!--                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">-->
-    <!--                    </path>-->
-    <!--                </svg></span>-->
-    <!--            <p class="text-sm  ml-[5px] pb-0 mb-0" style="font-size: 14px">Tolls will be-->
-    <!--                additional if applicable.</p>-->
-    <!--        </div>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <div class="items-center d-flex"><span-->
-    <!--                class="text-[#2B3252] mx-1 text-xl ml-[-2.5px]"><svg stroke="currentColor"-->
-    <!--                    fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"-->
-    <!--                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
-    <!--                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">-->
-    <!--                    </path>-->
-    <!--                </svg></span>-->
-    <!--            <p class="text-sm  ml-[5px] pb-0 mb-0" style="font-size: 14px">Trip Price includes-->
-    <!--                base fare, gratuity and tax.</p>-->
-    <!--        </div>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <div class="items-center d-flex"><span-->
-    <!--                class="text-[#2B3252] mx-1 text-xl ml-[-2.5px]"><svg stroke="currentColor"-->
-    <!--                    fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"-->
-    <!--                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
-    <!--                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">-->
-    <!--                    </path>-->
-    <!--                </svg></span>-->
-    <!--            <p class="text-sm  ml-[5px] pb-0 mb-0" style="font-size: 14px">All transactions-->
-    <!--                are safe and secure.</p>-->
-    <!--        </div>-->
-    <!--    </li>-->
-    <!--</ul>-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </div>
 </div>
 </div>
 
-{{-- ✅ TERMS MODAL --}}
 <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

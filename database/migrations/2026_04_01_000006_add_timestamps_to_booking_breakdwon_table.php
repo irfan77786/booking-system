@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Shared DB table `booking_breakdwon` (legacy spelling) may omit Laravel timestamps.
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('booking_breakdwon')) {

@@ -12,7 +12,7 @@
                 {{ __('Thanks for signing up! Before getting started, please verify your email address by clicking the link we just sent you. If you didn\'t receive the email, you can request another one below.') }}
             </p>
 
-            <!-- Status -->
+            
             @if (session('status') == 'verification-link-sent')
                 <div class="alert alert-success mb-3">
                     {{ __('A new verification link has been sent to the email address you provided during registration.') }}
@@ -21,7 +21,7 @@
 
             <div class="d-flex justify-content-between align-items-center mt-4">
 
-                <!-- Resend Email -->
+                
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
                     <button type="submit" class="btn btn-primary">
@@ -29,7 +29,7 @@
                     </button>
                 </form>
 
-                <!-- Logout -->
+                
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn btn-link text-decoration-none small text-danger">

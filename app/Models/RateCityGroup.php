@@ -23,10 +23,8 @@ class RateCityGroup extends Model
         return $this->hasMany(RateCityGroupVehicleRate::class, 'group_id');
     }
 
-    /**
-     * Match pickup text to the newest group that contains a city name, then the vehicle row for that group.
-     * Same matching order as {@see \App\Http\Controllers\BookingController::calculateDistanceBasedPrice()}.
-     */
+    
+
     public static function vehicleRateForPickup(Vehicle $vehicle, ?string $pickupLocation): ?RateCityGroupVehicleRate
     {
         if ($pickupLocation === null || trim($pickupLocation) === '') {

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Pax count, luggage count, and detailed service option for admin reservation v2.
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('bookings')) {

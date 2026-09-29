@@ -1,10 +1,10 @@
 let autocompletePickup, autocompleteDropoff, autocompletePickupHourly;
 let map, directionsService, directionsRenderer;
 let pickupMarker = null,
-    dropoffMarker = null; // Global marker references
+    dropoffMarker = null; 
 let distanceInKm = 0;
 let stopInputs = [];
-let stopAutocompletes = []; // store autocomplete instances
+let stopAutocompletes = []; 
 let animationPath = [];
 let animationProgress = 0;
 let animationId = null;
@@ -16,7 +16,6 @@ const options = {
     types: ["geocode", "establishment"],
 };
 
-/** Single-point fitBounds zooms extremely tight on phones; use explicit zoom instead. */
 function isHomeSearchMapMobileViewport() {
     return typeof $ !== "undefined" && $(window).width() < 768;
 }
@@ -82,7 +81,7 @@ function resetMap() {
         mapElement.style.removeProperty("display");
     }
 
-    // Show the header text content again
+    
     $("#home-text-content").css("visibility", "visible");
     $("#home-text-content").css("pointer-events", "auto");
 
@@ -129,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mapOverlay = document.querySelector(".map-overlay");
     let locChangeTimer;
 
-    // Only react to actual user input (not focus/blur). Avoid 'change' to prevent blur-triggered logic.
+    
     $pickup.add($dropoff).on("input", function () {
         clearTimeout(locChangeTimer);
         locChangeTimer = setTimeout(function () {
@@ -153,18 +152,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const pickupEmpty = activePickup.trim() === "";
         const dropoffEmpty = activeDropoff.trim() === "";
 
-        // When both fields are empty → show image overlay, but don't re-create it if it already exists
+        
         if (pickupEmpty && dropoffEmpty) {
             pickupPlacePoint = null;
             dropoffPlacePoint = null;
             resetMap();
         } else {
-            // When at least one field has value → show real map
+            
             if (map) {
                 const overlay = map.querySelector(".map-overlay");
-                if (overlay) overlay.remove(); // cleanly remove overlay if present
+                if (overlay) overlay.remove(); 
 
-                // Remove fallback image styles
+                
                 map.style.removeProperty("background-image");
                 map.style.removeProperty("background-size");
                 map.style.removeProperty("background-position");
@@ -173,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Hourly: show map when field has value (but don't hide heading text yet)
+    
     $(
         "#pickup-location-hourly, #pickup-location-hourly_mobile, #pickup-location-hourly_form",
     ).on("keyup", function () {
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hourlyVal === "") {
             resetMap();
         } else {
-            // Show map without hiding text
+            
             const mapElement = document.getElementById("map");
             if (mapElement) {
                 const overlay = mapElement.querySelector(".map-overlay");
@@ -192,12 +191,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 mapElement.style.removeProperty("background-repeat");
                 mapElement.style.display = "block";
                 $("#hide_on_map").hide();
-                // Do not hide home-text-content here; let initMap handle it when place is selected
+                
             }
         }
     });
 
-    // Hourly pickup: when field is cleared, remove the map
+    
     $hourly.on("input keyup", function () {
         const hourlyEmpty = $hourly.val().trim() === "";
         if (hourlyEmpty) {
@@ -217,7 +216,7 @@ function triggerPlaceChangedIfPrefilled() {
             const pickupAddress = pickupInput?.value?.trim();
             const dropoffAddress = dropoffInput?.value?.trim();
 
-            if (!pickupAddress && !dropoffAddress) return; // No need to do anything if both are empty
+            if (!pickupAddress && !dropoffAddress) return; 
 
             const geocodePromise = (address) => {
                 return new Promise((resolve) => {
@@ -264,7 +263,7 @@ function triggerPlaceChangedIfPrefilled() {
                 }
 
                 document.getElementById("map").style.display = "block";
-                // Hide header text when map is shown via prefill
+                
                 if (document.getElementById("home-text-content")) {
                     document.getElementById(
                         "home-text-content",
@@ -274,13 +273,12 @@ function triggerPlaceChangedIfPrefilled() {
                     ).style.pointerEvents = "none";
                 }
 
-                initMap(pickupPlace, dropoffPlace); // Show whatever location is available
+                initMap(pickupPlace, dropoffPlace); 
             });
         } catch (exception) {}
     }, 1);
 }
 
-// Improved date input handling for mobile devices
 document.addEventListener("DOMContentLoaded", function () {
     const isIOS =
         /iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -289,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateInputs = document.querySelectorAll('input[type="date"]');
     const dateDisplays = document.querySelectorAll(".date-display");
 
-    // Format date for display
+    
     function formatDateForDisplay(dateString) {
         if (!dateString) return "";
         const options = {
@@ -301,17 +299,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return new Date(dateString).toLocaleDateString("en-US", options);
     }
 
-    // Initialize date displays
+    
     dateDisplays.forEach((display, index) => {
         if (dateInputs[index] && dateInputs[index].value) {
             display.value = formatDateForDisplay(dateInputs[index].value);
         }
     });
 
-    // Handle date changes
+    
     dateInputs.forEach((input, index) => {
         if (isIOS) {
-            // For iOS, we'll use the native date picker but with better handling
+            
             input.addEventListener("change", function () {
                 if (dateDisplays[index]) {
                     dateDisplays[index].value = formatDateForDisplay(
@@ -320,21 +318,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
-            // Make the entire date display area clickable on iOS
+            
             if (dateDisplays[index]) {
                 dateDisplays[index].addEventListener("click", function (e) {
                     e.preventDefault();
                     input.focus();
-                    // Trigger the date picker
+                    
                     input.showPicker ? input.showPicker() : input.click();
                 });
 
-                // Make sure the display is visible on iOS
+                
                 dateDisplays[index].style.pointerEvents = "auto";
                 dateDisplays[index].style.backgroundColor = "#fff";
             }
         } else {
-            // For non-iOS devices, keep the original behavior
+            
             input.addEventListener("change", function () {
                 if (dateDisplays[index]) {
                     dateDisplays[index].value = formatDateForDisplay(
@@ -360,17 +358,17 @@ function getBootstrapIconForPlace(place = {}) {
         .toLowerCase();
     const addressComponents = place.address_components || [];
 
-    // Check types for airport
+    
     if (types.includes("airport")) {
         return "bi-airplane";
     }
 
-    // Check name for airport
+    
     if (name.includes("airport")) {
         return "bi-airplane";
     }
 
-    // Check address components for airport
+    
     for (const comp of addressComponents) {
         const longName = comp.long_name.toLowerCase();
         const shortName = comp.short_name.toLowerCase();
@@ -379,7 +377,7 @@ function getBootstrapIconForPlace(place = {}) {
         }
     }
 
-    // Check for hotel/lodging suggestions
+    
     const hotelKeywords = [
         "hotel",
         "motel",
@@ -408,7 +406,7 @@ function getBootstrapIconForPlace(place = {}) {
         return "bi-building";
     }
 
-    // Default icon for everything else
+    
     return "bi-geo-alt";
 }
 
@@ -419,7 +417,7 @@ function getPlaceIconSvg(place = {}) {
         const getAirplaneIcon = (s = "18px", c = "black") =>
             `<svg width="${s}" height="${s}" viewBox="0 0 128 128" fill="${c}" xmlns="http://www.w3.org/2000/svg"><path d="M119.7,18.2c7.8-7.8-3-17.9-10.7-10.3L80.7,36.3L15.8,19.2L5,30l53.5,28.2L36.8,79.8L20,77.7l-8.6,8.6l19.1,10l10,19.1l8.6-8.6l-2-16.7l21.6-21.6l27.6,53.2l10.8-10.8L90.8,47.2L119.7,18.2z"/></svg>`;
 
-        // CHANGE THIS LINE: Add the parentheses to execute the function
+        
         return getAirplaneIcon();
     }
 
@@ -427,7 +425,7 @@ function getPlaceIconSvg(place = {}) {
         return '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M14 14V1.5a.5.5 0 0 0-.757-.429L10 3 6.757 1.071A.5.5 0 0 0 6 1.5V4L2.757 2.071A.5.5 0 0 0 2 2.5V14H1v1h14v-1zM3 3.383l2 1.2V14H3zm3 1.2 3-1.8V14H6zm4 0 3-1.8V14h-3z"/><path d="M4 6h1v1H4zm0 2h1v1H4zm0 2h1v1H4zm3-4h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm3-4h1v1h-1zm0 2h1v1h-1zm0 2h1v1h-1z"/></svg>';
     }
 
-    // This part is already returning a string, so it works fine.
+    
     return '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.53 5.53 0 0 0-5.5 5.5C2.5 9.086 6.6 15 8 15s5.5-5.914 5.5-9.5A5.53 5.53 0 0 0 8 0m0 3a2.5 2.5 0 1 1 0 5A2.5 2.5 0 0 1 8 3"/></svg>';
 }
 
@@ -471,12 +469,12 @@ function setupCustomAutocomplete(
     );
     let debounceTimer;
 
-    // Function to handle place selection
+    
     function selectPlace(place, displayText) {
         input.value = displayText || place.formatted_address || place.name;
         hideLocationSuggestions(suggestionsContainer);
 
-        // Check if it's an airport
+        
         let isAirport = false;
         if (place.name && place.name.toLowerCase().includes("airport"))
             isAirport = true;
@@ -501,7 +499,7 @@ function setupCustomAutocomplete(
     }
 
     if (!input || !suggestionsContainer) return;
-    // Handle input with debounce
+    
     input.addEventListener("input", function () {
         clearTimeout(debounceTimer);
         const query = this.value.trim();
@@ -527,10 +525,10 @@ function setupCustomAutocomplete(
                         return;
                     }
 
-                    // Clear previous suggestions
+                    
                     suggestionsContainer.innerHTML = "";
 
-                    // Add new suggestions
+                    
                     predictions.forEach((prediction) => {
                         const item = document.createElement("div");
                         item.className = "suggestion-item";
@@ -543,7 +541,7 @@ function setupCustomAutocomplete(
             `;
 
                         item.addEventListener("click", () => {
-                            // Get place details when a suggestion is clicked
+                            
                             placesService.getDetails(
                                 {
                                     placeId: prediction.place_id,
@@ -585,7 +583,7 @@ function setupCustomAutocomplete(
         }, 500);
     });
 
-    // Hide suggestions when clicking outside
+    
     document.addEventListener("click", (e) => {
         if (
             !input.contains(e.target) &&
@@ -595,7 +593,7 @@ function setupCustomAutocomplete(
         }
     });
 
-    // Handle keyboard navigation
+    
     input.addEventListener("keydown", (e) => {
         const visibleItems =
             suggestionsContainer.querySelectorAll(".suggestion-item");
@@ -636,16 +634,16 @@ function handlePointToPointUpdate() {
 }
 
 function initAutocomplete() {
-    // Initialize autocomplete for all location inputs
+    
 
-    // Desktop / Default
+    
     setupCustomAutocomplete(
         "pickup-location",
         "pickup-suggestions",
         "is-airport",
         function (place) {
             pickupPlacePoint = place;
-            // Sync with mobile
+            
             $("#pickup-location_mobile").val($("#pickup-location").val());
             $("#is-airport_mobile").val($("#is-airport").val());
             handlePointToPointUpdate();
@@ -659,7 +657,7 @@ function initAutocomplete() {
         "is-airport-dropoff",
         function (place) {
             dropoffPlacePoint = place;
-            // Sync with mobile
+            
             $("#dropoff-location_mobile").val($("#dropoff-location").val());
             handlePointToPointUpdate();
         },
@@ -674,14 +672,14 @@ function initAutocomplete() {
         },
     );
 
-    // Mobile
+    
     setupCustomAutocomplete(
         "pickup-location_mobile",
         "pickup-suggestions_mobile",
         "is-airport_mobile",
         function (place) {
             pickupPlacePoint = place;
-            // Sync with desktop
+            
             $("#pickup-location").val($("#pickup-location_mobile").val());
             $("#is-airport").val($("#is-airport_mobile").val());
             handlePointToPointUpdate();
@@ -694,7 +692,7 @@ function initAutocomplete() {
         "is-airport-dropoff_mobile",
         function (place) {
             dropoffPlacePoint = place;
-            // Sync with desktop
+            
             $("#dropoff-location").val($("#dropoff-location_mobile").val());
             handlePointToPointUpdate();
         },
@@ -709,7 +707,7 @@ function initAutocomplete() {
         },
     );
 
-    // Form (Service Pages)
+    
     setupCustomAutocomplete(
         "pickup-location_form",
         "pickup-suggestions_form",
@@ -740,7 +738,7 @@ function initAutocomplete() {
         },
     );
 
-    // Hero (if exists)
+    
     setupCustomAutocomplete(
         "pickup-location_hero",
         "pickup-suggestions_hero",
@@ -764,27 +762,18 @@ function initAutocomplete() {
     setupCustomAutocomplete("pickup_address", "quote-pickup-suggestions", null);
     setupCustomAutocomplete("dropoff_address", "quote-dropoff-suggestions", null);
 
-    // Add window resize listener for map width if needed
+    
     if (typeof updateMapWidth === "function") {
         window.addEventListener("resize", updateMapWidth);
     }
 }
 
-// Compatibility script for old map logic
 function updateMapWidth() {
     const map = document.getElementById("map");
     if (!map) return;
-    // logic is handled by CSS mostly in new template
+    
 }
 
-// function initializeStopAutocomplete(formId) {
-//     const stopContainer = document.querySelectorAll(`#${formId} .stop-location-input`);
-//     stopInputs = stopInputs.concat(Array.from(stopContainer)); // Store the inputs globally
-//     stopInputs.forEach(function (input) {
-//         const autocomplete = new google.maps.places.Autocomplete(input, { types: ['geocode'] });
-//         input.addEventListener('change', calculateRoute);  // Recalculate route when stop changes
-//     });
-// }
 function initializeStopAutocomplete(formId) {
     const stopContainer = document.querySelectorAll(
         `#${formId} .stop-location-input`,
@@ -797,10 +786,10 @@ function initializeStopAutocomplete(formId) {
                 input,
                 options,
             );
-            autocomplete.inputElement = input; // Store reference to input
+            autocomplete.inputElement = input; 
             stopAutocompletes.push(autocomplete);
 
-            // Add event listener if you want to update map on stop change
+            
             autocomplete.addListener("place_changed", () => {
                 calculateRoute();
             });
@@ -808,7 +797,6 @@ function initializeStopAutocomplete(formId) {
     });
 }
 
-// Handle pickup and dropoff location changes with smooth transitions
 function onLocationChanged() {
     const $pickup = $("#pickup-location").length
         ? $("#pickup-location")
@@ -824,38 +812,38 @@ function onLocationChanged() {
     const pickupVal = $pickup.val() ? $pickup.val().trim() : "";
     const dropoffVal = $dropoff.val() ? $dropoff.val().trim() : "";
     const zoomLevel = getHomeSearchMapSinglePlaceZoom();
-    const animationDuration = 500; // ms
+    const animationDuration = 500; 
 
-    // Clear directions if either field is empty
+    
     if ((pickupVal === "" || dropoffVal === "") && directionsRenderer) {
         $(".below-map").addClass("main-hero");
         directionsRenderer.setMap(null);
         directionsRenderer = null;
     }
 
-    // Handle map display based on which fields have values
+    
     if (pickupVal === "" && dropoffVal === "") {
-        // Both fields are empty - hide the map
+        
         if (mapElement) {
-            // Fade out effect
+            
             $(mapElement).fadeOut(animationDuration);
             $("#hide_on_map").fadeIn(animationDuration);
-            // Show header text
+            
             $("#home-text-content").css("visibility", "visible");
             $("#home-text-content").css("pointer-events", "auto");
         }
     } else if (map) {
-        // Ensure map is visible
+        
         if (mapElement.style.display === "none") {
             mapElement.style.display = "block";
             $("#hide_on_map").hide();
             $(mapElement).hide().fadeIn(animationDuration);
-            // Hide header text
+            
             $("#home-text-content").css("visibility", "hidden");
             $("#home-text-content").css("pointer-events", "none");
         }
 
-        // Animate to the appropriate marker
+        
         let targetPosition = null;
         if (pickupVal !== "" && pickupMarker) {
             targetPosition = pickupMarker.getPosition();
@@ -864,15 +852,15 @@ function onLocationChanged() {
         }
 
         if (targetPosition) {
-            // Smooth pan and zoom
+            
             map.panTo(targetPosition);
             map.setZoom(zoomLevel);
         }
     }
 
-    // Clean up markers if their corresponding input is empty
+    
     if (pickupVal === "" && pickupMarker) {
-        // Fade out marker before removing
+        
         const markerElement = document.querySelector(
             'img[src*="' + pickupMarker.getIcon().url.split(",")[1] + '"]',
         );
@@ -892,7 +880,7 @@ function onLocationChanged() {
     }
 
     if (dropoffVal === "" && dropoffMarker) {
-        // Fade out marker before removing
+        
         const markerElement = document.querySelector(
             'img[src*="' + dropoffMarker.getIcon().url.split(",")[1] + '"]',
         );
@@ -912,8 +900,6 @@ function onLocationChanged() {
     }
 }
 
-// Initialize Google Map with Directions service
-// Function to animate the car along the route
 function animateCar() {
     if (animationPath.length === 0 || animationProgress >= 1) {
         animationProgress = 0;
@@ -921,19 +907,19 @@ function animateCar() {
         return;
     }
 
-    // Increase progress (slower movement)
-    const speed = 0.000005; // Reduced from 0.001 to 0.0005 for slower movement
+    
+    const speed = 0.000005; 
     animationProgress += speed;
     if (animationProgress > 1) {
         animationProgress = 1;
     }
 
-    // Get current position along the path
+    
     const path = animationPath;
     const pathLength = google.maps.geometry.spherical.computeLength(path);
     let distance = pathLength * animationProgress;
 
-    // Find the current position
+    
     let currentPosition = { lat: 0, lng: 0 };
     for (let i = 0; i < path.length - 1; i++) {
         const from = path[i];
@@ -942,7 +928,7 @@ function animateCar() {
             google.maps.geometry.spherical.computeDistanceBetween(from, to);
 
         if (distance <= segmentLength) {
-            // Calculate position within this segment
+            
             const heading = google.maps.geometry.spherical.computeHeading(
                 from,
                 to,
@@ -957,11 +943,11 @@ function animateCar() {
         distance -= segmentLength;
     }
 
-    // Update car marker position
+    
     if (window.carMarker) {
         carMarker.setPosition(currentPosition);
 
-        // Calculate rotation
+        
         if (window.lastCarPosition) {
             const heading = google.maps.geometry.spherical.computeHeading(
                 window.lastCarPosition,
@@ -980,11 +966,11 @@ function animateCar() {
         window.lastCarPosition = currentPosition;
     }
 
-    // Add a small delay to control frame rate
+    
     if (animationProgress < 1) {
         setTimeout(() => {
             animationId = requestAnimationFrame(animateCar);
-        }, 20); // ~50 FPS (1000ms / 50 = 20ms per frame)
+        }, 20); 
     }
 }
 
@@ -1018,14 +1004,14 @@ function initMap(pickupPlace, dropoffPlace) {
             featureType: "all",
             elementType: "geometry.fill",
             stylers: [
-                { color: "#FFFBF8" }, // Almost white with a tiny hint of orange/cream
+                { color: "#FFFBF8" }, 
             ],
         },
         {
             featureType: "all",
             elementType: "geometry.stroke",
             stylers: [
-                { color: "#FEECE2" }, // Very pale peach border
+                { color: "#FEECE2" }, 
                 { weight: 0.5 },
             ],
         },
@@ -1033,21 +1019,21 @@ function initMap(pickupPlace, dropoffPlace) {
             featureType: "water",
             elementType: "geometry.fill",
             stylers: [
-                { color: "#FDE0D2" }, // Soft, very light orange-tinted water
+                { color: "#FDE0D2" }, 
             ],
         },
         {
             featureType: "road",
             elementType: "geometry.fill",
             stylers: [
-                { color: "#ffffff" }, // Pure white roads to make them "clean"
+                { color: "#ffffff" }, 
             ],
         },
         {
             featureType: "road.highway",
             elementType: "geometry.fill",
             stylers: [
-                { color: "#FFD9C2" }, // Subtle, light orange for main roads
+                { color: "#FFD9C2" }, 
             ],
         },
         {
@@ -1059,14 +1045,14 @@ function initMap(pickupPlace, dropoffPlace) {
             featureType: "poi.park",
             elementType: "geometry.fill",
             stylers: [
-                { color: "#F2F5F0" }, // Keeping parks slightly neutral/green-tinted for clarity
+                { color: "#F2F5F0" }, 
             ],
         },
         {
             featureType: "administrative",
             elementType: "labels.text.fill",
             stylers: [
-                { color: "#8C6D62" }, // Soft brown-grey text (easier on the eyes than black)
+                { color: "#8C6D62" }, 
                 { weight: 0.4 },
             ],
         },
@@ -1081,7 +1067,7 @@ function initMap(pickupPlace, dropoffPlace) {
         ? pickupPlace.geometry.location
         : dropoffPlace.geometry.location;
 
-    // Reuse global map instance or create new one
+    
     if (!map) {
         map = new google.maps.Map(mapElement, {
             center: mapCenter,
@@ -1092,7 +1078,7 @@ function initMap(pickupPlace, dropoffPlace) {
             gestureHandling: "cooperative",
         });
     } else {
-        // Smoothly update the map center if needed
+        
         const currentCenter = map.getCenter();
         if (
             currentCenter &&
@@ -1104,7 +1090,7 @@ function initMap(pickupPlace, dropoffPlace) {
         }
     }
 
-    // Initialize global directions service and renderer if not already done
+    
     if (!directionsService) {
         directionsService = new google.maps.DirectionsService();
     }
@@ -1113,18 +1099,18 @@ function initMap(pickupPlace, dropoffPlace) {
             map: map,
             suppressMarkers: true,
             polylineOptions: {
-                strokeColor: "#e52c43", // Lighter shade of #e52c43
+                strokeColor: "#e52c43", 
                 strokeOpacity: 0.9,
                 strokeWeight: 6,
             },
         });
     } else {
-        // Clear previous directions
+        
         directionsRenderer.setDirections({ routes: [] });
         directionsRenderer.setMap(map);
     }
 
-    // Smoothly update or create markers
+    
     const updateOrCreateMarker = (place, isPickup) => {
         const marker = isPickup ? pickupMarker : dropoffMarker;
         const position = isPickup
@@ -1132,19 +1118,19 @@ function initMap(pickupPlace, dropoffPlace) {
             : dropoffPlace.geometry.location;
 
         if (marker) {
-            // Smoothly move existing marker
+            
             marker.setPosition(position);
             return marker;
         } else {
-            // Create new marker with fade-in effect
+            
             const newMarker = new google.maps.Marker({
                 position: position,
                 map: map,
-                icon: createCustomMarker(isPickup ? "#e52c43" : "#FF6C00", ""), // Removed 'A' and 'B' labels
+                icon: createCustomMarker(isPickup ? "#e52c43" : "#FF6C00", ""), 
                 animation: google.maps.Animation.DROP,
             });
 
-            // Store reference
+            
             if (isPickup) {
                 pickupMarker = newMarker;
             } else {
@@ -1155,7 +1141,7 @@ function initMap(pickupPlace, dropoffPlace) {
         }
     };
 
-    // Clear markers that should no longer be shown
+    
     if (!hasPickup && pickupMarker) {
         const markerElement = document.querySelector(
             'img[src*="' + pickupMarker.getIcon().url.split(",")[1] + '"]',
@@ -1194,7 +1180,7 @@ function initMap(pickupPlace, dropoffPlace) {
         }
     }
 
-    // Function to create a custom marker with centered label
+    
     function createCustomMarker() {
         const svg = `<svg viewBox="0 0 466.583 466.582" width="34px" height="34px" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgb(229,44,67)"/><stop offset="100%" stop-color="rgb(255,108,0)"/></linearGradient></defs><path fill="url(#g)" d="M233.292,0c-85.1,0-154.334,69.234-154.334,154.333c0,34.275,21.887,90.155,66.908,170.834 c31.846,57.063,63.168,104.643,64.484,106.64l22.942,34.775l22.941-34.774c1.317-1.998,32.641-49.577,64.483-106.64 c45.023-80.68,66.908-136.559,66.908-170.834C387.625,69.234,318.391,0,233.292,0z M233.292,233.291c-44.182,0-80-35.817-80-80 s35.818-80,80-80c44.182,0,80,35.817,80,80S277.473,233.291,233.292,233.291z"/></svg>`;
         return {
@@ -1203,7 +1189,7 @@ function initMap(pickupPlace, dropoffPlace) {
         };
     }
 
-    // Update or create markers with smooth transitions
+    
     if (hasPickup) {
         updateOrCreateMarker(pickupPlace, true);
     }
@@ -1212,12 +1198,12 @@ function initMap(pickupPlace, dropoffPlace) {
         updateOrCreateMarker(dropoffPlace, false);
     }
 
-    // Calculate bounds to show all markers
+    
     const bounds = new google.maps.LatLngBounds();
     if (hasPickup) bounds.extend(pickupPlace.geometry.location);
     if (hasDropoff) bounds.extend(dropoffPlace.geometry.location);
 
-    // Only fit bounds when both endpoints exist; one-point bounds make fitBounds zoom to max on mobile.
+    
     if (!bounds.isEmpty()) {
         if (hasPickup && hasDropoff) {
             const padding = isHomeSearchMapMobileViewport() ? 130 : 100;
@@ -1256,7 +1242,6 @@ function initMap(pickupPlace, dropoffPlace) {
     }
 }
 
-// Add a stop location (dynamically create stop inputs)
 function addStop(formId) {
     const stopContainer = document.getElementById(`${formId}-stop-container`);
     const stopInput = document.createElement("div");
@@ -1269,41 +1254,39 @@ function addStop(formId) {
         </div>`;
     stopContainer.appendChild(stopInput);
 
-    // Reinitialize autocomplete for the new stop input
+    
     initializeStopAutocomplete(formId);
-    // Trigger route recalculation after adding a new stop
+    
     calculateRoute();
 }
 
-// Remove a stop location (dynamically remove stop inputs)
 function removeStop(element, formId) {
-    // const stopContainer = document.getElementById(`${formId}-stop-container`);
-    // stopContainer.removeChild(element.parentElement.parentElement);
+    
+    
     const stopContainer = document.getElementById(`${formId}-stop-container`);
     const stopDiv = element.parentElement.parentElement;
     const input = stopDiv.querySelector("input");
 
-    // Remove input from stopInputs and corresponding autocomplete
+    
     const index = stopInputs.indexOf(input);
     if (index !== -1) {
-        stopInputs.splice(index, 1); // Remove input from inputs array
-        stopAutocompletes.splice(index, 1); // Remove corresponding autocomplete instance
+        stopInputs.splice(index, 1); 
+        stopAutocompletes.splice(index, 1); 
     }
 
-    // Remove the stop input from DOM
+    
     stopContainer.removeChild(stopDiv);
-    // Trigger route recalculation after removing a stop
+    
     calculateRoute();
 }
 
-// Function to calculate the route and re-render the map
 function calculateRoute(swapped = false) {
-    // Get the current input values
+    
     const pickupInput = document.getElementById("pickup-location");
     const dropoffInput = document.getElementById("dropoff-location");
 
     console.log("js file : " + pickupInput.value, dropoffInput.value);
-    // Check if we were called with place objects directly
+    
     if (
         arguments.length === 2 &&
         arguments[0] &&
@@ -1311,13 +1294,13 @@ function calculateRoute(swapped = false) {
         arguments[0].geometry &&
         arguments[1].geometry
     ) {
-        // We were called with place objects directly
+        
         const pickupPlace = arguments[0];
         const dropoffPlace = arguments[1];
         return renderRoute(pickupPlace, dropoffPlace, []);
     }
 
-    // If autocomplete objects aren't initialized yet, initialize them
+    
     if (!window.autocompletePickup || !window.autocompleteDropoff) {
         if (window.google && google.maps && google.maps.places) {
             window.autocompletePickup = new google.maps.places.Autocomplete(
@@ -1332,13 +1315,13 @@ function calculateRoute(swapped = false) {
         }
     }
 
-    // If swapped parameter is true, swap the values in the input fields
+    
     if (swapped) {
         const temp = pickupInput.value;
         pickupInput.value = dropoffInput.value;
         dropoffInput.value = temp;
 
-        // Trigger place_changed event to update the autocomplete places
+        
         if (window.autocompletePickup)
             google.maps.event.trigger(
                 window.autocompletePickup,
@@ -1351,7 +1334,7 @@ function calculateRoute(swapped = false) {
             );
     }
 
-    // Get the places from autocomplete
+    
     const pickupPlace = window.autocompletePickup.getPlace();
     const dropoffPlace = window.autocompleteDropoff.getPlace();
 
@@ -1366,7 +1349,7 @@ function calculateRoute(swapped = false) {
 
     const waypoints = [];
 
-    // Handle any stop locations if they exist
+    
     if (window.stopAutocompletes) {
         stopAutocompletes.forEach((ac) => {
             const stopPlace = ac.getPlace();
@@ -1379,7 +1362,7 @@ function calculateRoute(swapped = false) {
         });
     }
 
-    // Make the request to the Directions API with waypoints (stops)
+    
     const request = {
         origin: pickupPlace.geometry.location,
         destination: dropoffPlace.geometry.location,
@@ -1388,14 +1371,14 @@ function calculateRoute(swapped = false) {
         optimizeWaypoints: true,
     };
 
-    // Initialize the map if not already done
+    
     if (!window.map) {
-        // Create a new map instance
+        
         const mapElement = document.getElementById("map");
         if (mapElement) {
             window.map = new google.maps.Map(mapElement, {
                 zoom: 12,
-                center: { lat: 32.7767, lng: -96.797 }, // Default to Dallas
+                center: { lat: 32.7767, lng: -96.797 }, 
                 gestureHandling: "cooperative",
                 styles: [
                     {
@@ -1418,13 +1401,13 @@ function calculateRoute(swapped = false) {
         }
     }
 
-    // Ensure we have a valid map instance
+    
     if (!window.map) {
         console.error("Failed to initialize map");
         return;
     }
 
-    // Show the map if it was hidden
+    
     const mapDisplayElement = document.getElementById("map");
     if (mapDisplayElement) {
         mapDisplayElement.style.display = "block";
@@ -1432,13 +1415,13 @@ function calculateRoute(swapped = false) {
         $("#home-text-content").css("pointer-events", "none");
     }
 
-    // Get and display the route
+    
     window.directionsService =
         window.directionsService || new google.maps.DirectionsService();
 
     window.directionsService.route(request, function (response, status) {
         if (status === "OK") {
-            // Initialize or update directions renderer
+            
             if (!window.directionsRenderer) {
                 window.directionsRenderer = new google.maps.DirectionsRenderer({
                     map: window.map,
@@ -1452,15 +1435,15 @@ function calculateRoute(swapped = false) {
             }
             window.directionsRenderer.setDirections(response);
 
-            // Update markers with the correct positions
+            
             if (window.pickupMarker) window.pickupMarker.setMap(null);
             if (window.dropoffMarker) window.dropoffMarker.setMap(null);
 
-            // Add custom markers
+            
             const route = response.routes[0];
             const bounds = new google.maps.LatLngBounds();
 
-            // Add pickup marker
+            
             window.pickupMarker = new google.maps.Marker({
                 position: pickupPlace.geometry.location,
                 map: window.map,
@@ -1476,7 +1459,7 @@ function calculateRoute(swapped = false) {
                 title: "Pickup: " + pickupInput.value,
             });
 
-            // Add dropoff marker
+            
             window.dropoffMarker = new google.maps.Marker({
                 position: dropoffPlace.geometry.location,
                 map: window.map,
@@ -1492,12 +1475,12 @@ function calculateRoute(swapped = false) {
                 title: "Dropoff: " + dropoffInput.value,
             });
 
-            // Extend bounds to include all points
+            
             bounds.extend(pickupPlace.geometry.location);
             bounds.extend(dropoffPlace.geometry.location);
             waypoints.forEach((waypoint) => bounds.extend(waypoint.location));
 
-            // Fit map to bounds with padding
+            
             window.map.fitBounds(bounds, {
                 top: 50,
                 right: 50,
@@ -1509,11 +1492,10 @@ function calculateRoute(swapped = false) {
         }
     });
 
-    // Recalculate the distance
+    
     calculateDistance(pickupPlace, dropoffPlace, waypoints);
 }
 
-// Function to calculate distance when form is submitted
 function calculateDistance(pickupPlace, dropoffPlace, callback) {
     const distanceService = new google.maps.DistanceMatrixService();
     distanceService.getDistanceMatrix(
@@ -1521,17 +1503,17 @@ function calculateDistance(pickupPlace, dropoffPlace, callback) {
             origins: [pickupPlace.geometry.location],
             destinations: [dropoffPlace.geometry.location],
             travelMode: "DRIVING",
-            unitSystem: google.maps.UnitSystem.IMPERIAL, // Ensures miles are returned
+            unitSystem: google.maps.UnitSystem.IMPERIAL, 
         },
         function (response, status) {
             if (status === "OK") {
                 const element = response.rows[0].elements[0];
 
                 if (element.status === "OK") {
-                    const distanceText = element.distance.text; // e.g., '8.4 mi'
-                    const durationText = element.duration.text; // e.g., '45 mins'
+                    const distanceText = element.distance.text; 
+                    const durationText = element.duration.text; 
 
-                    // Show in map info box
+                    
                     const infoBox = document.getElementById("route-info-box");
                     const distEl = document.getElementById("route-distance");
                     const durEl = document.getElementById("route-duration");
@@ -1542,7 +1524,7 @@ function calculateDistance(pickupPlace, dropoffPlace, callback) {
                         infoBox.style.display = "block";
                     }
 
-                    // Optional callback
+                    
                     if (typeof callback === "function") {
                         callback(distanceText, durationText);
                     }
@@ -1559,7 +1541,6 @@ function calculateDistance(pickupPlace, dropoffPlace, callback) {
     );
 }
 
-// Form validation before submission
 function validateForm(formId) {
     const form = document.getElementById(formId);
     const inputs = form.querySelectorAll("input[required], select[required]");
@@ -1574,9 +1555,9 @@ function validateForm(formId) {
 var searchForm = document.querySelector(".search-form");
 if (searchForm) {
     searchForm.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
 
-        // Get latest places from pickup & dropoff autocompletes
+        
         const geocoder = new google.maps.Geocoder();
         const pickupInput = document.getElementById("pickup-location");
         const dropoffInput = document.getElementById("dropoff-location");
@@ -1585,7 +1566,7 @@ if (searchForm) {
         let pickupPlace = autocompletePickup?.getPlace?.();
         let dropoffPlace = autocompleteDropoff?.getPlace?.();
 
-        // Fallback if autocomplete has no place (e.g., form is prefilled)
+        
         if (!pickupPlace && pickupAddress) {
             pickupPlace = await new Promise((resolve) => {
                 geocoder.geocode(
@@ -1613,10 +1594,10 @@ if (searchForm) {
             return;
         }
 
-        // Collect stop text values (input values, not Autocomplete objects)
+        
         const stopAddresses = stopAutocompletes
             .map((auto, index) => {
-                const input = auto.inputElement; // We'll store this manually when creating each Autocomplete
+                const input = auto.inputElement; 
                 const value = input.value.trim();
                 if (!value) {
                     alert(
@@ -1625,19 +1606,19 @@ if (searchForm) {
                 }
                 return value;
             })
-            .filter(Boolean); // Remove empty or invalid entries
+            .filter(Boolean); 
 
         const pointToPointForm = document.querySelector("#pointToPoint");
-        // Clear any existing hidden inputs
-        // const existingHiddenStops = form.querySelectorAll('[name^="stop_"]');
-        // existingHiddenStops.forEach(input => input.remove());
+        
+        
+        
 
-        // Append new hidden input fields for each stop
+        
         stopAddresses.forEach((address, index) => {
             const hiddenInput = document.createElement("input");
             hiddenInput.type = "hidden";
-            hiddenInput.name = "stops[]"; // Set the name dynamically
-            hiddenInput.value = address; // Set the stop address as the value
+            hiddenInput.name = "stops[]"; 
+            hiddenInput.value = address; 
             pointToPointForm.appendChild(hiddenInput);
         });
 
@@ -1650,21 +1631,21 @@ if (hourForm) {
     document
         .querySelector("#hourForm")
         .addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); 
 
-            // Get latest places from pickup & dropoff autocompletes
-            // const pickupPlace = autocompletePickup.getPlace();
-            // const dropoffPlace = autocompleteDropoff.getPlace();
+            
+            
+            
 
-            // if (!pickupPlace || !dropoffPlace) {
-            //     alert('Please select valid pickup and dropoff locations.');
-            //     return;
-            // }
+            
+            
+            
+            
 
-            // Collect stop text values (input values, not Autocomplete objects)
+            
             const stopAddresses = stopAutocompletes
                 .map((auto, index) => {
-                    const input = auto.inputElement; // We'll store this manually when creating each Autocomplete
+                    const input = auto.inputElement; 
                     const value = input.value.trim();
                     if (!value) {
                         alert(
@@ -1673,19 +1654,19 @@ if (hourForm) {
                     }
                     return value;
                 })
-                .filter(Boolean); // Remove empty or invalid entries
+                .filter(Boolean); 
 
             const hourFormEl = document.querySelector("#hourForm");
-            // Clear any existing hidden inputs
-            // const existingHiddenStops = form.querySelectorAll('[name^="stop_"]');
-            // existingHiddenStops.forEach(input => input.remove());
+            
+            
+            
 
-            // Append new hidden input fields for each stop
+            
             stopAddresses.forEach((address, index) => {
                 const hiddenInput = document.createElement("input");
                 hiddenInput.type = "hidden";
-                hiddenInput.name = "stops[]"; // Set the name dynamically
-                hiddenInput.value = address; // Set the stop address as the value
+                hiddenInput.name = "stops[]"; 
+                hiddenInput.value = address; 
                 hourFormEl.appendChild(hiddenInput);
             });
 
@@ -1712,7 +1693,7 @@ function positionAutocomplete(input) {
     if (pacContainer && group) {
         const rect = group.getBoundingClientRect();
 
-        // Use requestAnimationFrame for smoother positioning
+        
         requestAnimationFrame(() => {
             pacContainer.style.position = "absolute";
             pacContainer.style.width = rect.width + "px";
@@ -1728,14 +1709,14 @@ function setupAutocompleteFix() {
         const input = document.getElementById(id);
         if (!input) return;
 
-        // Reposition on any relevant event
+        
         ["focus", "input", "keydown", "click"].forEach((eventName) => {
             input.addEventListener(eventName, () => {
                 setTimeout(() => positionAutocomplete(input), 0);
             });
         });
 
-        // Observe DOM to catch when .pac-container is added
+        
         const observer = new MutationObserver(() => {
             const pacContainer = document.querySelector(".pac-container");
             if (document.activeElement === input && pacContainer) {
@@ -1751,20 +1732,18 @@ function setupAutocompleteFix() {
 }
 
 window.addEventListener("load", setupAutocompleteFix);
-// Run when the page fully loads
+
 window.addEventListener("load", triggerPlaceChangedIfPrefilled);
 
-// ALSO run when user comes back using browser back/forward buttons
 window.addEventListener("pageshow", function (event) {
     if (event.persisted) {
-        // true if coming from bfcache (back-forward cache)
+        
         triggerPlaceChangedIfPrefilled();
     }
 });
 
-// Initialize Material Date Time Picker
 $(document).ready(function () {
-    // Return Trip Checkbox Logic - Moved outside to ensure it works regardless of datepicker
+    
     function toggleReturnTrip() {
         if ($('input[name="round_trip"]').is(":checked")) {
             $(".return-trip").show();
@@ -1775,15 +1754,15 @@ $(document).ready(function () {
         }
     }
 
-    // Initial check
+    
     toggleReturnTrip();
 
-    // Handle change event
+    
     $('input[name="round_trip"]').on("change", function () {
         toggleReturnTrip();
     });
 
-    // Sync Mobile and Desktop Inputs
+    
     function syncInputs(id) {
         const desktopId = "#" + id;
         const mobileId = "#" + id + "_mobile";
@@ -1839,7 +1818,7 @@ $(document).ready(function () {
             switchOnClick: true,
         });
 
-        // Ensure clicking the icon triggers the input
+        
         $(".input-icon-left").on("click", function () {
             $(this).next("input").focus();
         });
@@ -1847,7 +1826,7 @@ $(document).ready(function () {
         console.error("bootstrapMaterialDatePicker plugin is not loaded");
     }
 
-    /** Home banner / search forms: today + time must be at least 2 hours from now */
+    
     function localTodayYmd() {
         var n = new Date();
         return (

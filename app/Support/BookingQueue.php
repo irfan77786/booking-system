@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\Log;
 
 class BookingQueue
 {
-    /**
-     * Queue booking completion (Stripe + DB + email). Returns immediately.
-     *
-     * Local/Herd: run after the HTTP response so no separate worker is required.
-     * Production: push to the database queue (cron/worker must process it).
-     */
+    
+
+
     public static function dispatchProcessBooking(array $payload): void
     {
         if (self::shouldRunAfterResponse()) {

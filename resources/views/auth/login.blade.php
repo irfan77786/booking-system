@@ -6,7 +6,7 @@
     <div class="shadow-card p-4" style="max-width: 420px; width: 100%;">
             <h3 class="text-center mb-4">{{ __('Login') }}</h3>
 
-            <!-- Session Status -->
+            
             @if (session('status'))
                 <div class="alert alert-success mb-3">
                     {{ session('status') }}

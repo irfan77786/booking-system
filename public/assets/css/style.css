@@ -6053,11 +6053,7 @@ li {
   background: #fff;
   border-radius: 12px;
 }
-/*@media (min-width: 768px) {
-  .news-letter-form {
-    max-width: 520px;
-  }
-}*/
+
 .news-letter-form .iti {
   width: 100%;
 }
@@ -6271,9 +6267,8 @@ li {
 }
 .custom-card .icon-holder > img {
   max-width: 25px;
-}/*# sourceMappingURL=style.css.map */
+}
 
-/* Custom Checkbox Color */
 .form-check-input:checked {
     background-color: #e52c43 !important;
     border-color: #e52c43 !important;
@@ -6306,7 +6301,6 @@ h1.h1.fw-bold.text-white.mb-15 {
     line-height: normal;
     margin-bottom: 13px;
 }
-
 
 #home-text-content {
     margin-top: 0px !important;
@@ -6373,7 +6367,6 @@ h2.h2.fw-bold.home-heading-style.home-heading-style {
     font-size: 26px !important;
     text-align: center !important;
 }
-
 
     
 }

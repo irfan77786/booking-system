@@ -97,9 +97,8 @@ class ProcessBookingCompletion implements ShouldQueue
         ]);
     }
 
-    /**
-     * @return array{transaction_id: string, payment_status_label: string}
-     */
+    
+
     private function authorizeStripePayment(array $p): array
     {
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));

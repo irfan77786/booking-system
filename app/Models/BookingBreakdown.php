@@ -8,7 +8,7 @@ class BookingBreakdown extends Model
 {
     use HasFactory;
 
-    protected $table = 'booking_breakdwon'; // still points to the existing table
+    protected $table = 'booking_breakdwon';  
 public $timestamps = false;
     protected $fillable = [
         'booking_id',

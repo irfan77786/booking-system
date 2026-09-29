@@ -7,9 +7,8 @@ use Illuminate\Database\Seeder;
 
 class AirportSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    
+
     public function run(): void
     {
         \App\Models\Airport::truncate();

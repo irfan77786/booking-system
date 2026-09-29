@@ -11,17 +11,15 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+    
+
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
+    
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $login_type = $request->input('login_type');
@@ -48,9 +46,8 @@ class AuthenticatedSessionController extends Controller
         );
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+    
+
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();

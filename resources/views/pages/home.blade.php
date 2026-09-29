@@ -1,7 +1,8 @@
 @extends('master')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/home-brand.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="{{ asset('assets/css/home-brand.css') }}?v={{ @filemtime(public_path('assets/css/home-brand.css')) }}">
 <style>
     @media (max-width: 767px) {
         #hero-banner-container,
@@ -80,15 +81,98 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    var phone = document.querySelector('#contact_no');
-    if (phone && window.intlTelInput) {
-        window.intlTelInput(phone, {
-            initialCountry: 'us',
-            separateDialCode: true,
-            preferredCountries: ['us', 'gb', 'ca'],
-            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/utils.js'
+    if (typeof Swiper === 'undefined') return;
+
+    if (document.querySelector('.logo-swiper')) {
+        new Swiper('.logo-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 80,
+            centeredSlides: true,
+            loop: true,
+            speed: 6000,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            allowTouchMove: false,
+            simulateTouch: false,
+            preventClicks: false,
+            preventClicksPropagation: false,
+            breakpoints: {
+                992: { spaceBetween: 120 },
+                1200: { spaceBetween: 180 }
+            }
+        });
+    }
+
+    if (document.querySelector('.fleet-swiper')) {
+        new Swiper('.fleet-swiper', {
+            slidesPerView: 1.15,
+            spaceBetween: 10,
+            grabCursor: true,
+            loop: true,
+            speed: 650,
+            watchOverflow: true,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.fleet-swiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.fleet-swiper .swiper-button-next',
+                prevEl: '.fleet-swiper .swiper-button-prev',
+            },
+            breakpoints: {
+                576: {
+                    slidesPerView: 1.8,
+                    spaceBetween: 12
+                },
+                768: {
+                    slidesPerView: 2.4,
+                    spaceBetween: 12
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 14
+                },
+                1200: {
+                    slidesPerView: 3,
+                    spaceBetween: 16
+                }
+            }
+        });
+    }
+
+    if (document.querySelector('.testimonial-swiper')) {
+        new Swiper('.testimonial-swiper', {
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 24,
+            grabCursor: true,
+            speed: 1200,
+            loop: true,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.testimonial-swiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.testimonial-swiper .swiper-button-next',
+                prevEl: '.testimonial-swiper .swiper-button-prev',
+            },
+            breakpoints: {
+                768: { slidesPerView: 2, centeredSlides: false }
+            }
         });
     }
 });

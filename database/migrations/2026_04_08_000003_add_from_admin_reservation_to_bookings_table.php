@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Marks bookings created from the admin reservation form (v1/v2) vs other sources.
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('bookings')) {

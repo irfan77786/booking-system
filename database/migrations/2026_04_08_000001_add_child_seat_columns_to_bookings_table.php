@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Child seat add-on for admin reservation (type, quantity, computed fee).
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('bookings')) {

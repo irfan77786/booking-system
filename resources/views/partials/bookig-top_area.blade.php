@@ -89,7 +89,6 @@ session()->has('price') || ($currentStep >= 3)))
         line-height: 1.334em;
     }
 
-
     .stepper {
         position: relative;
         gap: 0;
@@ -136,7 +135,6 @@ session()->has('price') || ($currentStep >= 3)))
         background: linear-gradient(90deg, #e52c43, #ff6c00) !important;
     }
 
-
     .upcoming {
         border-color: #0f121940;
         background: #c7cbd6;
@@ -159,7 +157,6 @@ session()->has('price') || ($currentStep >= 3)))
         background: linear-gradient(90deg, #e52c43, #ff6c00);
         border: none;
     }
-
 
     .summary_toggle_container {
         color: #1E1E1E;
@@ -332,9 +329,6 @@ session()->has('price') || ($currentStep >= 3)))
             display: none;
         }
 
-
-
-
     }
 
     /* Ensure EDIT button text is white */
@@ -363,8 +357,6 @@ session()->has('price') || ($currentStep >= 3)))
             background-color: #fff;
         }
 
-
-
         .step-title {
             font-size: 20px !important;
 
@@ -376,21 +368,15 @@ session()->has('price') || ($currentStep >= 3)))
 
         }
 
-
         .container.step-wrapper.md-py-3 {
             display: none;
         }
-
-
-
-
 
         .mob_stepper_container {
             display: flex;
             padding: 0;
             justify-content: space-between;
         }
-
 
         .booking_step_container>div {
             padding: 0 !important;
@@ -528,7 +514,6 @@ session()->has('price') || ($currentStep >= 3)))
 
     }
 
-
     main {
         background: #ebebeb;
     }
@@ -581,7 +566,6 @@ session()->has('price') || ($currentStep >= 3)))
 </div>
 </div>
 
-<!-- Mobile Steps: moved above summary -->
 <div class="px-3 py-2 d-md-none" style="background-color: rgb(250, 250, 250);">
     <p class="mb-1 step-header">STEP {{ $currentStep }} OF {{ count($steps) }}</p>
     <div class="row">
@@ -642,7 +626,7 @@ session()->has('price') || ($currentStep >= 3)))
             $returnDT = session('return_datetime');
             @endphp
 
-            <!--        <div class="mb-2 summary-section-title">Outward Trip</div>-->
+            
             <div class="summary-row">
                 <p class="summary-label-inline">Pickup Location</p>
                 <span class="summary-leader"></span>
@@ -715,7 +699,6 @@ session()->has('price') || ($currentStep >= 3)))
 </div>
 @endunless
 
-<!-- DESKTOP VIEW (hidden on small devices) -->
 <div class="container px-3 py-3 bg-white d-none d-md-block booking-summary-desktop">
     <div class="d-flex align-items-start justify-content-between">
         <div class="return-inline">
@@ -792,10 +775,7 @@ session()->has('price') || ($currentStep >= 3)))
     </div>
 </div>
 
-
 </div>
-
-
 
 <script>
     function toggleCollapse() {

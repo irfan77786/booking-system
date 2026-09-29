@@ -47,15 +47,12 @@ $step = 3;
         overflow-x: hidden;
     }
 
-
 .container.step-wrapper.md-py-3 {
     max-width: 1160px;
     margin: 0px auto;
     width: 100%;
     padding: 0 0 0 0 !important;
 }
-
-
 
 .stepper::before {
    
@@ -315,7 +312,7 @@ $step = 3;
 
 <div class="passenger-info-container">
     <div class="row loginguestrow">
-        <!-- Left Column: Guest Form -->
+        
         <div class="mb-4 col-lg-6">
             <div class="info-card">
                 <h2 class="section-title">Continue as Guest</h2>
@@ -323,7 +320,7 @@ $step = 3;
                     @csrf
                     @method('POST')
                     <input type="text" name="login_type" value="booking" hidden>
-                    <!-- Email -->
+                    
                     <div class="floating-bordered-input position-relative">
                         <span class="floating-label">Email address *</span>
                         <input type="email" id="guest_email" name="email" value="{{ old('email', session('email') ?? data_get(session('guest'), 'email', '')) }}"
@@ -331,7 +328,7 @@ $step = 3;
                         <div class="mt-1 text-danger small" id="error_email"></div>
                     </div>
 
-                    <!-- First Name & Last Name -->
+                    
                     <div class="form-row-custom">
                         <div>
                             <div class="floating-bordered-input position-relative">
@@ -355,7 +352,7 @@ $step = 3;
                         </div>
                     </div>
 
-                    <!-- Phone -->
+                    
                     <div class="phone-field-wrapper">
                         <div class="floating-bordered-input position-relative phone-input-wrapper">
                             <span class="floating-label">Phone *</span>
@@ -367,7 +364,7 @@ $step = 3;
                             }}@enderror</div>
                     </div>
 
-                    <!-- Hidden fields for booking for someone else -->
+                    
                     <input type="hidden" name="bookingForSomeoneElse" value="0">
                     <input type="hidden" id="booker_first_name" name="booker_first_name" value="">
                     <input type="hidden" id="booker_last_name" name="booker_last_name" value="">
@@ -382,22 +379,22 @@ $step = 3;
             </div>
         </div>
 
-        <!-- Right Column: Login/Account Benefits -->
+        
         <div class="mb-4 col-lg-6 col-divider">
             <div class="benefits-section">
                 <h2 class="section-title">Login or Create account</h2>
 
-                <!-- Login Form -->
+                
                 <form id="loginForm" method="{{ auth()->check() ? 'GET' :  'POST' }}"
                     action="{{ auth()->check() ? '/submit-passengerInfo' : '/login' }}">
                     @csrf
 
                     <input type="text" name="login_type" value="booking" hidden>
                     @if (auth()->check())
-                    {{-- CASE 1: User is Logged In (Authenticated) --}}
+                    
                     <h2>Welcome back, {{ auth()->user()->first_name }}!</h2>
                     @else
-                    {{-- CASE 2: User is NOT Logged In (Unauthenticated) - Show full login/registration inputs --}}
+                    
 
                     <div class="floating-bordered-input position-relative">
                         <span class="floating-label">Email address</span>
@@ -459,7 +456,7 @@ $step = 3;
                         style="padding: .575rem .75rem !important; text-transform: uppercase;">Continue</button>
                 </form>
 
-                <!-- Benefits Section -->
+                
                 <div class="login-section">
                     <h3 class="benefits-title">Why do I need an account?</h3>
 

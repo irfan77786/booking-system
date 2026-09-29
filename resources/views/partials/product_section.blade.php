@@ -234,7 +234,6 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
         white-space: nowrap;
     }
 
-
     .feature-icon {
         font-size: 1rem;
         background: linear-gradient(90deg, #e52c43, #ff6c00);
@@ -940,7 +939,6 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
         }
     }
 
-
     .container,
     .container-lg,
     .container-md,
@@ -949,7 +947,6 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
     .container-xxl {
         max-width: 1172px;
     }
-
 
     a.btn.btn-primary.vehicle-continue-btn {
         border-radius: 4px;
@@ -973,8 +970,6 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
         font-size: 25px;
     }
 </style>
-
-
 
 <div class="booking-product-section-wrap">
     <div class="container pr-0 pl-0">
@@ -1002,7 +997,7 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                     data-requires-more-hours="{{ $requiresMoreHours ? '1' : '0' }}"
                                     data-required-hours="{{ $requiredMinHours }}">
                                     <div class="mb-2 d-flex align-items-center justify-content-between w-100">
-                                        <!-- Vehicle Image -->
+                                        
                                         <div class="vehicle-img-container d-flex align-items-center">
                                             <img src="{{ admin_storage_url($value['vehicle_image'] ?? null) }}"
                                                 alt="{{ $value['vehicle_name'] ?? 'Vehicle' }}"
@@ -1012,7 +1007,7 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                                 referrerpolicy="no-referrer">
                                         </div>
 
-                                        <!-- Vehicle Info -->
+                                        
                                         <div class="mx-3 vehicle-info flex-grow-1">
                                             <h5 class="vehicle-name">{{ $value['vehicle_name'] }}</h5>
                                             <div class="pass-luggage-info">
@@ -1025,7 +1020,7 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                                 available' }}</h6>
                                         </div>
 
-                                        <!-- Price -->
+                                        
                                         <div class="mr-2 text-right car-price-container">
                                             @php $vehicleDistance = $distance[$value['id']] ?? null; @endphp
                                             @if($vehicleDistance && empty($vehicleDistance['error']))
@@ -1066,7 +1061,6 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                             <hr class="feature-grid-hr">
                                             <div class="feature_items_cont feature-items-grid">
 
-
                                                 @foreach ($desktopFeatures as $feature)
                                                 <div class="feature-item">
                                                     <i class="bi {{ $feature['icon'] }} feature-icon"></i>
@@ -1086,12 +1080,11 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                                                     </a>
                                                 </div>
 
-
                                             </div>
 
                                         </div>
                                     </div>
-                                    <!-- Tick icon -->
+                                    
                                     <div class="tick-overlay">
                                         <i class="bi bi-circle tick-circle"></i>
                                         <i class="bi bi-check-circle-fill tick-filled"></i>
@@ -1102,8 +1095,8 @@ return !in_array($feature['text'], $desktopHiddenFeatureTexts, true);
                 @endforeach
             </div>
             <div class="mb-4 col-12 col-md-3 col-lg-4 side_section order-2 order-md-1">
-                <!-- Help Card -->
-                <!-- Perks + Payments + Support Combined Card -->
+                
+                
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title hassle_free text-dark">Stress-Free Travel</h6>

@@ -5,12 +5,12 @@ use App\Http\Controllers\MediaProxyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Same-origin proxy for admin vehicle images (fixes mobile SSL / mixed-content)
+ 
 Route::get('/media/{path}', [MediaProxyController::class, 'show'])
     ->where('path', '.*')
     ->name('media.proxy');
 
-// Booking wizard (steps 1–5 + Stripe)
+ 
 Route::middleware('checkBookingCompletion')->group(function () {
     Route::get('/allVehicle/', [BookingController::class, 'showAll']);
     Route::post('/submit-passengerInfo/{id}', [BookingController::class, 'submitPassengerInfo']);

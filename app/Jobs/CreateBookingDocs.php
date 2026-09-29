@@ -22,25 +22,19 @@ class CreateBookingDocs implements ShouldQueue
 
     public string $customBookingId;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
+    
+
     public function __construct($bookingData, $customBookingId)
     {
         $this->bookingData = $bookingData;
         $this->customBookingId = $customBookingId;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
+    
+
     public function handle()
     {
-        // Generate PDF (non-fatal: a failure here must NOT abort the booking flow).
+         
         $filePath = null;
         try {
             $pdfsDirectory = public_path('pdfs');
@@ -58,10 +52,10 @@ class CreateBookingDocs implements ShouldQueue
                 'booking_id' => $this->customBookingId,
                 'file' => $e->getFile() . ':' . $e->getLine(),
             ]);
-            $filePath = null; // ensure mail can still go out without attachment
+            $filePath = null;  
         }
 
-        // Build recipient list
+         
         $recipients = [];
 
         $customerEmail = $this->bookingData['email'] ?? null;
@@ -91,7 +85,7 @@ class CreateBookingDocs implements ShouldQueue
             'recipients' => $recipients,
         ]);
 
-        // Send each email independently so one failure does not stop the others
+         
         foreach ($recipients as $index => $recipient) {
             try {
                 $email = new \App\Mail\Booking(

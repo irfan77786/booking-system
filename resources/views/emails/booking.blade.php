@@ -31,7 +31,7 @@
         </div>
 
         <div class="content" style="padding: 10px 4px 20px;">
-            {{-- Greeting / Intro --}}
+            
             @if($isAdmin)
             <p style="font-size: 12px; margin: 0 0 10px;"><b>Dear Admin,</b></p>
             <p style="font-size: 12px; margin: 0 0 10px;">A new booking has been received. Please find the details
@@ -53,7 +53,7 @@
                 successfully confirmed. Below are your booking details:</p>
             @endif
 
-            {{-- Booking confirmation fields (aligned with resources/views/pdfs/booking.blade.php) --}}
+            
             <div class="booking-details"
                 style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
@@ -146,7 +146,7 @@
                 </table>
             </div>
 
-            {{-- Booker Information (order/labels match PDF; placeholder omitted on booker-only copy) --}}
+            
             @if(!empty($bookingData['isBookingForOthers']) && (!empty($bookingData['booker_first_name']) || !empty($bookingData['booker_last_name']) || !empty($bookingData['booker_email']) || !empty($bookingData['booker_number'])))
             <div class="booking-details"
                 style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
@@ -188,7 +188,7 @@
             </div>
             @endif
 
-            {{-- Trip Routing (matches PDF labels; hourly shows stop line) --}}
+            
             <div class="booking-details"
                 style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
@@ -222,7 +222,7 @@
                 </table>
             </div>
 
-            {{-- Flight / Airport (aligned with PDF section) --}}
+            
             @php
                 $fd = $bookingData['flight_details'] ?? null;
                 $hasFlightBlock = is_array($fd)
@@ -260,7 +260,7 @@
                 </table>
             </div>
 
-            {{-- Notes (PDF Notes/Comments) --}}
+            
             <div class="booking-details"
                 style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">
                 <h3
@@ -275,7 +275,7 @@
                 </table>
             </div>
 
-            {{-- Charges & Fees (matches PDF breakdown) --}}
+            
             @if(isset($bookingData['total_amount']))
             <div class="booking-details"
                 style="background-color: #f7f4ee; border-radius: 4px; margin: 20px 0; border: 1px solid #e4d7bc;">

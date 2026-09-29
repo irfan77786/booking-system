@@ -6,10 +6,6 @@ input[type="checkbox"] {
   border-color: #e52c43 !important;
 }
 
-/* =========================
-   BRAND COLORS
-========================= */
-
 .main-menu ul li a.active,
 .main-menu > ul li:hover a,
 .item-content h4:hover a,
@@ -125,10 +121,6 @@ a.btn-loadmore:hover {
   color: #fff !important;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 a.btn-booking-start {
   border-color: #e52c43 !important;
   color: #e52c43 !important;
@@ -187,10 +179,6 @@ button.btn.btn-primary.btn-sm {
   width: 95% !important;
 }
 
-/* =========================
-   TABS
-========================= */
-
 ul.nav.nav-tabs li a.active,
 .nav-tabs .nav-link.active,
 .sformlink.active {
@@ -230,10 +218,6 @@ div.search-tab-wrap ul.nav-tabs li.nav-item a.nav-link:focus {
 .search-tab-wrap .submenu {
   padding: 0 !important;
 }
-
-/* =========================
-   FORM WRAPPER
-========================= */
 
 .search-tab-wrap {
   background: #fff;
@@ -325,10 +309,6 @@ div.search-tab-wrap ul.nav-tabs li.nav-item a.nav-link:focus {
 .booking_step_container {
   margin-bottom: 1dvh;
 }
-
-/* =========================
-   FLOATING INPUTS
-========================= */
 
 .floating-bordered-input {
   position: relative;
@@ -435,10 +415,6 @@ div.search-tab-wrap ul.nav-tabs li.nav-item a.nav-link:focus {
   transform: rotate(90deg) !important;
   vertical-align: middle;
 }
-
-/* =========================
-   DATEPICKER
-========================= */
 
 .form-control.flatpickr {
   padding-right: 2.5rem;
@@ -549,10 +525,6 @@ div.search-tab-wrap ul.nav-tabs li.nav-item a.nav-link:focus {
 .dtp-btn-ok {
   text-align: center !important;
 }
-
-/* =========================
-   LAYOUT
-========================= */
 
 .meanmenu-reveal {
   width: 27px !important;
@@ -695,7 +667,6 @@ input.InputElement.is-complete.Input {
   font-size: 16px !important;
 }
 
-/* 16px minimum: iOS Safari zooms focused inputs when font-size is below 16px */
 .form-control,
 .form-select {
   font-size: 16px !important;
@@ -717,8 +688,6 @@ span.pricing_summary_price {
 .container.py-md-5 {
   padding-top: 15px !important;
 }
-
-
 
 .onlyMobile {
   display: none;
@@ -745,10 +714,6 @@ span.pricing_summary_price {
   padding-left: 18px !important;
   padding-right: 18px !important;
 }
-
-/* =========================
-   TYPOGRAPHY
-========================= */
 
 h1.text-white.h2.fw-bold.mb-15 {
   font-size: 37px;
@@ -825,10 +790,6 @@ p.mt-1.mb-0.text-muted.small.text-start {
   font-size: 18px !important;
 }
 
-/* =========================
-   BANNERS / CARDS
-========================= */
-
 section.fifa-main-banner {
   padding: 20px 0;
   height: 435px;
@@ -856,10 +817,6 @@ a.btn.btn-primary.fifa-btn {
   width: 1336px !important;
   margin-right: 0 !important;
 }
-
-/* =========================
-   AUTOCOMPLETE
-========================= */
 
 .search-form-box .floating-bordered-input,
 .get-a-quote-form .position-relative {
@@ -939,10 +896,6 @@ a.btn.btn-primary.fifa-btn {
   font-size: 0.85rem;
   color: #777;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 1367px) {
   #hero-banner-container {
@@ -1037,7 +990,6 @@ div#home-text-content p {
 div#home-text-content a {
     display: none;
 }
-
 
 .container.py-md-5,
 div#pricing-area-wrapper,
@@ -1250,9 +1202,7 @@ div#pricing-area-wrapper,
     box-shadow: none !important;
   }
 
- /* .floating-bordered-input {
-    padding: 12px 20px 12px 40px !important;
-  }*/
+ 
 
   .mob-step-dot.upcoming {
     border-color: #acacac !important;
@@ -1319,8 +1269,6 @@ div#pricing-area-wrapper,
     margin-top: 5px !important;
 }
 
-
-
 }
 
 @media (min-width: 769px) {
@@ -1351,7 +1299,6 @@ div#pricing-area-wrapper,
     margin-top: 0px !important;
     border-radius: 6px;
 }  
-
 
 .why-imgs img {
     border-radius: 7px;
@@ -1399,8 +1346,6 @@ h2.h2.fw-bold {
     line-height: normal;
     margin-bottom: 13px;
 }
-
-
 
 h3.h4.fw-semibold {
     font-size: 21px;

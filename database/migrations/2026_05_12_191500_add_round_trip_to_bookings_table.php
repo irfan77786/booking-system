@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         if (!Schema::hasColumn('bookings', 'round_trip')) {
             Schema::table('bookings', function (Blueprint $table) {
-                // No ->after() so this works regardless of which other
-                // booking columns (return_time, etc.) already exist.
+                 
+                 
                 $table->boolean('round_trip')->default(false);
             });
         }

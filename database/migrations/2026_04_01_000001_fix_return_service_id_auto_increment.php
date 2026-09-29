@@ -6,10 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Shared DB `return_service` may have been created without a PRIMARY KEY on `id`,
-     * so AUTO_INCREMENT cannot be applied (MySQL 1075). Inserts then fail with 1364.
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('return_service')) {
@@ -28,11 +27,11 @@ return new class extends Migration
             return;
         }
 
-        // Legacy table may have invalid timestamp defaults (0000-00-00), blocking ALTER in strict mode.
+         
         try {
             DB::statement('ALTER TABLE `return_service` MODIFY `created_at` TIMESTAMP NULL DEFAULT NULL');
         } catch (\Throwable $e) {
-            // ignore if column already compatible
+             
         }
         try {
             DB::statement('ALTER TABLE `return_service` MODIFY `updated_at` TIMESTAMP NULL DEFAULT NULL');
@@ -49,6 +48,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Intentionally empty: unsafe to strip PK/AI without the original DDL.
+         
     }
 };

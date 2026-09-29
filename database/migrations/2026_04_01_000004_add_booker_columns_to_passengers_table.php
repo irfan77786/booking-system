@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Shared DB may omit booker fields on `passengers` used when booking for someone else.
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('passengers')) {

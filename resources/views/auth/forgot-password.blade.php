@@ -10,7 +10,7 @@
                 {{ __('Forgot your password? No problem. Just enter your email and we will send you a password reset link.') }}
             </p>
 
-            <!-- Session Status -->
+            
             @if (session('status'))
                 <div class="alert alert-success mb-3">
                     {{ session('status') }}
@@ -31,7 +31,7 @@
                     {{ __('Email Password Reset Link') }}
                 </button>
 
-                <!-- Back to login -->
+                
                 <div class="text-center mt-3">
                     <a href="{{ route('login') }}" class="text-decoration-none small">
                         ← {{ __('Back to Login') }}

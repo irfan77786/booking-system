@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('password.confirm') }}">
                 @csrf
 
-                <!-- Password -->
+                
                 <div class="mb-3">
                     <label for="password" class="form-label">{{ __('Password') }}</label>
                     <input id="password"
@@ -29,7 +29,7 @@
                     @enderror
                 </div>
 
-                <!-- Submit -->
+                
                 <button type="submit" class="btn btn-primary w-100">
                     {{ __('Confirm') }}
                 </button>

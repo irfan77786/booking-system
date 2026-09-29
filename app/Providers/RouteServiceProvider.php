@@ -10,20 +10,12 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * The path authenticated users are redirected to when they hit a
-     * `guest`-only route (e.g. /login, /register). This app has no
-     * `/home` page — `/dashboard` is the post-login landing page.
-     *
-     * @var string
-     */
+    
+
     public const HOME = '/';
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     *
-     * @return void
-     */
+    
+
     public function boot()
     {
         $this->configureRateLimiting();
@@ -38,11 +30,8 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
+    
+
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {

@@ -6,11 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFailedJobsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
+
+
     public function up()
     {
         if (Schema::hasTable('failed_jobs')) {
@@ -27,11 +25,9 @@ class CreateFailedJobsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
+
+
     public function down()
     {
         Schema::dropIfExists('failed_jobs');

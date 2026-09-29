@@ -6,11 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * The legacy `users` table was created without AUTO_INCREMENT on `id`,
-     * which causes SQLSTATE[HY000]: 1364 Field 'id' doesn't have a default
-     * value on insert (e.g. during user registration).
-     */
+    
+
     public function up(): void
     {
         if (! in_array(DB::getDriverName(), ['mysql', 'mariadb'], true)) {
@@ -61,6 +58,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        //
+        
     }
 };

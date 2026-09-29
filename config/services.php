@@ -2,17 +2,7 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Third Party Services
-    |--------------------------------------------------------------------------
-    |
-    | This file is for storing the credentials for third party services such
-    | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
-    |
-    */
+    
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
@@ -43,13 +33,11 @@ return [
         'api_key' => env('GOOGLE_MAPS_API_KEY'),
     ],
 
-    /*
-    | Admin panel base URL (vehicle images live under /storage on that host).
-    */
+    
+
     'admin_url' => rtrim(env('ADMIN_URL') ?: 'https://admin.dallasblacklimocars.com', '/'),
 
-    /*
-    | Public brand logo (site, emails, OG). PDF uses a local PNG copy when available.
-    */
+    
+
     'brand_logo_url' => env('BRAND_LOGO_URL', 'https://dallasblackcarslimoservice.com/img/black-car-service-dallas-logo.webp'),
 ];

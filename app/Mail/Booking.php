@@ -18,25 +18,17 @@ class Booking extends Mailable
     public $isAdmin;
     public $sendToBooker;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param array|object $bookingData
-     * @param bool $isAdmin
-     * @return void
-     */
+    
+
     public function __construct($bookingData, $isAdmin = false, $sendToBooker = false)
     {
-        $this->bookingData = (array) $bookingData; // Convert to array if it's an object
+        $this->bookingData = (array) $bookingData;  
         $this->isAdmin = $isAdmin;
         $this->sendToBooker = $sendToBooker;
     }
 
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
+    
+
     public function envelope()
     {
         $pickupDate = $this->bookingData['pickup_date'] ?? null;
@@ -61,11 +53,8 @@ class Booking extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
+    
+
     public function content()
     {
         $logoPath = public_path('assets/img/site/black-car-service-dallas-logo.webp');
@@ -85,11 +74,8 @@ class Booking extends Mailable
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
+    
+
     public function attachments()
     {
         $bookingId = $this->bookingData['booking_id'] ?? null;

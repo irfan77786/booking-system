@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Shared DB `booker` may lack AUTO_INCREMENT on `id` (no usable PRIMARY KEY).
-     * Inserts then fail with: SQLSTATE[HY000]: 1364 Field 'id' doesn't have a default value.
-     *
-     * If another column wrongly has AUTO_INCREMENT, strip it first (#1075: only one auto column).
-     */
+    
+
+
     public function up(): void
     {
         if (! Schema::hasTable('booker')) {
@@ -56,7 +53,7 @@ return new class extends Migration
             try {
                 DB::statement("ALTER TABLE `booker` MODIFY `{$col}` TIMESTAMP NULL DEFAULT NULL");
             } catch (\Throwable $e) {
-                // ignore if column missing or already compatible
+                 
             }
         }
 
@@ -76,6 +73,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Intentionally empty: unsafe to strip PK/AI without the original DDL.
+         
     }
 };

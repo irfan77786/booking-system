@@ -1,6 +1,5 @@
 <?php 
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,9 +27,8 @@ class FlightDetail extends Model
         'inside_pickup_fee' => 'decimal:2',
     ];
 
-    /**
-     * Relationship: FlightDetail belongs to a Passenger.
-     */
+    
+
     public function passenger()
     {
         return $this->belongsTo(Passenger::class, 'passenger_id');

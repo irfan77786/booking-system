@@ -249,7 +249,7 @@
             <strong>Last Modified On:</strong> {{ now()->format('m/d/Y h:i A') }}
           </div>
           <div class="section-content">
-            {{-- Pickup Date --}}
+            
             @if(!empty($bookingData['pickup_date']))
             <div class="row">
               <div class="col-sm-3 no-top-padding"><strong class="mian-cc">Pick-up Date:</strong></div>
@@ -259,7 +259,7 @@
             </div>
             @endif
 
-            {{-- Pickup Time --}}
+            
             @if(!empty($bookingData['pickup_time']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Pick-up Time:</strong></div>
@@ -267,7 +267,7 @@
             </div>
             @endif
 
-            {{-- Return Date --}}
+            
             @if(!empty($bookingData['return_date']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Return Date:</strong></div>
@@ -275,7 +275,7 @@
             </div>
             @endif
 
-            {{-- Return Time --}}
+            
             @if(!empty($bookingData['return_time']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Return Time:</strong></div>
@@ -283,7 +283,7 @@
             </div>
             @endif
 
-            {{-- Hours --}}
+            
             @if(!empty($bookingData['hours']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Hours:</strong></div>
@@ -291,7 +291,7 @@
             </div>
             @endif
 
-            {{-- Service Type --}}
+            
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Service Type:</strong></div>
               <div class="col-sm-9">
@@ -303,7 +303,7 @@
               </div>
             </div>
 
-            {{-- Passenger --}}
+            
             @if(!empty($bookingData['passenger_name']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Passenger:</strong></div>
@@ -311,7 +311,7 @@
             </div>
             @endif
 
-            {{-- Client Ref# --}}
+            
             @if(!empty($bookingData['booking_id']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Client Ref#:</strong></div>
@@ -319,7 +319,7 @@
             </div>
             @endif
 
-            {{-- Phone Number --}}
+            
             @if(!empty($bookingData['phone']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Phone Number:</strong></div>
@@ -327,7 +327,7 @@
             </div>
             @endif
 
-            {{-- No. of Pass --}}
+            
             @if(!empty($bookingData['passengers']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">No. of Pass:</strong></div>
@@ -335,7 +335,7 @@
             </div>
             @endif
 
-            {{-- Vehicle Type --}}
+            
             @if(!empty($bookingData['vehicle_type']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Vehicle Type:</strong></div>
@@ -343,7 +343,7 @@
             </div>
             @endif
 
-            {{-- Primary/Billing Contact --}}
+            
             @if(!empty($bookingData['booker_first_name']) || !empty($bookingData['booker_last_name']))
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Primary/Billing Contact:</strong></div>
@@ -357,7 +357,7 @@
               <div class="col-sm-9">{{ $bookingData['email'] }}</div>
             </div>
 
-            {{-- Payment Method --}}
+            
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Payment Method:</strong></div>
               <div class="col-sm-9">Credit Card</div>
@@ -365,7 +365,7 @@
           </div>
         </div>
 
-        {{-- Booker Info (if booking for others) --}}
+        
         @if(!empty($bookingData['isBookingForOthers']) && ($bookingData['booker_first_name'] ||
         $bookingData['booker_last_name'] || $bookingData['booker_email'] || $bookingData['booker_number']))
         <div class="sections section-light">
@@ -407,7 +407,7 @@
         </div>
         @endif
 
-        {{-- Trip Routing Information --}}
+        
         @if(!empty($bookingData['pickup_location']) || !empty($bookingData['dropoff_location']) ||
         !empty($bookingData['hours']))
         <div class="sections section-light">
@@ -484,7 +484,7 @@
         </div>
         @endif
 
-        {{-- Notes / Comments --}}
+        
         <div class="sections section-light">
           <h2>Notes/Comments:</h2>
           <div class="section-content">
@@ -497,31 +497,31 @@
           </div>
         </div>
 
-        {{-- Charges & Fees --}}
+        
         @if(isset($bookingData['total_amount']))
         <div class="sections section-light">
           <h2>Charges & Fees:</h2>
           <div class="section-content">
-            {{-- Fare --}}
+            
             <div class="row">
               <div class="col-sm-3 no-top-padding"><strong class="mian-cc">Fare (All inclusive):</strong></div>
               <div class="col-sm-9 no-top-padding"><strong>${{ number_format($bookingData['total_amount'], 2)
                   }}</strong></div>
             </div>
 
-            {{-- Other Charges --}}
+            
             <div class="row">
               <div class="col-sm-3"><strong class="mian-cc">Other charges:</strong></div>
               <div class="col-sm-9"><strong>$0.00</strong></div>
             </div>
 
-            {{-- Payment Deposits --}}
+            
             <div class="row" style="color: #28a745;">
               <div class="col-sm-3"><strong class="mian-cc">Payment/Deposits:</strong></div>
               <div class="col-sm-9"><strong>$0.00</strong></div>
             </div>
 
-            {{-- Total Amount --}}
+            
             <div class="row" style="color: red;">
               <div class="col-sm-3"><strong class="mian-cc">Total Due:</strong></div>
               <div class="col-sm-9"><strong>${{ number_format($bookingData['total_amount'], 2) }}</strong></div>
@@ -565,8 +565,6 @@
       <div class="section-content">
         <p> Cancellations must occur during the stated timeframes for each vehicle type. Cancellations outside these
           periods will result in full charges for the reserved services.</p>
-
-
 
       </div>
     </div>
@@ -727,7 +725,6 @@
           Contact us: info@dallasblacklimoservice.com | +1 469-961-2047</p>
       </div>
     </div>
-
 
     <footer
       style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; font-size: 12px; color: #666;">

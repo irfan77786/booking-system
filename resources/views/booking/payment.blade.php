@@ -120,7 +120,6 @@
             margin-top: 10px !important;
         }
 
-
         .p-3.mt-3.rounded-lg.shadow-sm.bg-light {
             margin-top: 0px !important;
             padding-top: 0px !important;
@@ -199,7 +198,6 @@
         padding-top: 20px !important;
     }
 
-
     .last-page-img {
         display: flex !important;
         margin-top: 0px !important;
@@ -241,7 +239,7 @@
                     <input type="radio" name="payment_method" class="me-2 saved-card-radio" value="{{ $card->id }}"
                         data-holder="{{ $holder }}">
 
-                    {{-- FONT AWESOME ICON --}}
+                    
                     @if($brand === 'visa')
                     <i class="fab fa-cc-visa text-primary fs-2 me-3"></i>
                     @elseif($brand === 'mastercard')
@@ -265,16 +263,16 @@
                 @endforelse
                 @endif
 
-                {{-- ✅ FULL NAME + CARD NUMBER (SAME GROUP) --}}
+                
                 <div id="new-card-fields">
 
-                    <!-- Full Name -->
+                    
                     <div class="mb-3 floating-bordered-input position-relative">
                         <span class="floating-label">Full Name</span>
                         <input type="text" id="card-name" class="form-control" placeholder="Name On Card*" required>
                     </div>
 
-                    <!-- Card Number -->
+                    
                     <div class="mb-3 floating-bordered-input position-relative card-element-wrapper">
                         <span class="floating-label">Card Number</span>
                         <div id="card-element" class="form-control"></div>
@@ -293,11 +291,9 @@
                     <div id="card-errors" class="mb-2 text-danger small"></div>
                 </div>
 
-
-
                 <div id="card-errors" class="mb-2 text-danger small"></div>
 
-                {{-- ✅ BUTTON --}}
+                
                 <button type="submit" id="final-pay-button" class="mt-3 btn btn-primary w-100">
                     BOOK NOW
                 </button>
@@ -337,8 +333,6 @@
         if (!show) cardNameInput.value = '';
     }
 
-
-
     // ✅ INITIAL STATE: SHOW NEW CARD FIELDS
     toggleNewCardFields(true);
 
@@ -360,7 +354,6 @@
             errorDiv.innerText = '';
         });
     });
-
 
     // ✅ IF USER TYPES MANUALLY → SWITCH TO NEW CARD MODE
     cardNameInput.addEventListener('input', function () {
@@ -418,7 +411,6 @@ form.addEventListener('submit', async function (event) {
 });
 </script>
 
-{{-- ✅ TERMS MODAL --}}
 <div class="modal fade" id="terms-modal" tabindex="-1" aria-labelledby="terms-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

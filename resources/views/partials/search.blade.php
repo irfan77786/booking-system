@@ -3,7 +3,7 @@ $isHourly = session('service_type') === 'hourlyHire';
 $tabSuffix = $id_suffix ?? '';
 @endphp
 <div class="search-tab-wrap">
-    <!-- Nav tabs -->
+    
     <ul class="nav nav-tabs" style="padding-bottom: 8px;">
         <li class="nav-item" style="flex: 1">
             <a class="nav-link {{ !$isHourly ? 'active' : 'inactive-tab' }} text-center pt-0 sformlink"
@@ -17,9 +17,9 @@ $tabSuffix = $id_suffix ?? '';
         </li>
     </ul>
 
-    <!-- Tab panes -->
+    
     <div class="tab-content">
-        <!-- Point to Point -->
+        
         <div class="tab-pane container p-0 {{ !$isHourly ? 'active show' : '' }}" id="place{{ $tabSuffix }}">
             <div class="search-form-box">
                 <form class="ride-info-form" action="/save-booking-form-session" method="POST">
@@ -28,7 +28,7 @@ $tabSuffix = $id_suffix ?? '';
                     <input type="hidden" name="is_airport" id="is-airport{{ $tabSuffix }}"
                         value="{{ session('is_airport') ?? 0 }}">
 
-                    <!-- Pick-up Location -->
+                    
                     <div class="floating-bordered-input position-relative">
                         <span class="floating-label">Pick-up Location</span>
                         <span class="input-icon-left"><svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -60,12 +60,11 @@ $tabSuffix = $id_suffix ?? '';
                                 </g>
                             </svg>
                         </span>
-                        <!-- Suggestions -->
+                        
                         <div id="pickup-suggestions{{ $tabSuffix }}" class="location-suggestions"></div>
                     </div>
 
-
-                    <!-- Drop-off Location -->
+                    
                     <div class="floating-bordered-input position-relative">
                         <span class="floating-label">Destination</span>
                         <span class="input-icon-left"><svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +84,7 @@ $tabSuffix = $id_suffix ?? '';
                             class="form-control" value="{{ session('dropoff_location') }}" placeholder=" " required
                             autocomplete="off">
 
-                        <!-- Suggestions -->
+                        
                         <div id="dropoff-suggestions{{ $tabSuffix }}" class="location-suggestions"></div>
                     </div>
 
@@ -212,13 +211,13 @@ $tabSuffix = $id_suffix ?? '';
             </div>
         </div>
 
-        <!-- Hourly Hire -->
+        
         <div class="tab-pane container p-0 {{ $isHourly ? 'active show' : '' }}" id="event{{ $tabSuffix }}">
             <div class="search-form-box">
                 <form class="ride-info-form" action="/save-booking-form-session" method="POST">
                     @csrf
                     <input type="hidden" name="form_type" value="ride_info_hourly">
-                    <!-- Pick-up Location (Hourly) -->
+                    
                     <div class="floating-bordered-input position-relative">
                         <span class="floating-label">Pick-up Location</span>
                         <span class="input-icon-left"><svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -238,12 +237,11 @@ $tabSuffix = $id_suffix ?? '';
                             class="form-control" value="{{ session('pickup_location', '') }}" placeholder=" " required
                             autocomplete="off">
 
-                        <!-- Suggestions -->
+                        
                         <div id="pickup-location-hourly-suggestions{{ $tabSuffix }}" class="location-suggestions"></div>
                     </div>
 
-
-                    <!-- Select Hours -->
+                    
                     <div class="floating-bordered-input position-relative rlx-theme">
                         <span class="floating-label">Select Duration</span>
                         <span class="input-icon-left"><i class="bi bi-clock-fill"></i></span>
@@ -273,7 +271,6 @@ $tabSuffix = $id_suffix ?? '';
                             <input type="hidden" name="select_hours" value="{{ session('select_hours') ?? '' }}">
                         </div>
                     </div>
-
 
                     <div class="row g-2">
                         <div class="col-6">

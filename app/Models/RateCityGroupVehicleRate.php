@@ -33,12 +33,8 @@ class RateCityGroupVehicleRate extends Model
         return $this->belongsTo(Vehicle::class);
     }
 
-    /**
-     * Decode distance_rates whether stored as JSON string or array (same as booking pricing).
-     *
-     * @param  mixed  $tiersRaw
-     * @return array<int, array<string, mixed>>
-     */
+    
+
     public static function normalizeDistanceTiers($tiersRaw): array
     {
         if (is_string($tiersRaw)) {
@@ -50,22 +46,8 @@ class RateCityGroupVehicleRate extends Model
         return is_array($tiersRaw) ? $tiersRaw : [];
     }
 
-    /**
-     * Point-to-point fare using base_rate + distance_rates tiers, with legacy per-mile when no tiers.
-     * Works for this model or {@see RateVehicle} (same columns).
-     *
-     * @param  self|RateVehicle|null  $rateModel
-     * @return array{
-     *     distance_km: float,
-     *     distance_miles: float,
-     *     price: float,
-     *     baseFare: float,
-     *     hourlyFare: null,
-     *     perKmRate: float|null,
-     *     hours: null,
-     *     type: string
-     * }
-     */
+    
+
     public static function pointToPointBreakdown(?object $rateModel, Vehicle $vehicle, float $distanceMiles): array
     {
         $base = ($rateModel && isset($rateModel->base_rate))
@@ -135,7 +117,7 @@ class RateCityGroupVehicleRate extends Model
         ];
     }
 
-    /** @return array<string, mixed> */
+     
     public function breakdownForDistance(Vehicle $vehicle, float $distanceMiles): array
     {
         return self::pointToPointBreakdown($this, $vehicle, $distanceMiles);

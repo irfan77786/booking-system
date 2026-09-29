@@ -44,7 +44,6 @@
     }
  
 
-
     .rlx-select .rlx-trigger {
         display: block;
         width: 100%;
@@ -257,7 +256,6 @@
         }
     
 
-
     }
     
     
@@ -309,7 +307,7 @@
                         <div id="outbound-flight-fields" style="display:none;">
                             <h2 class="mb-3">Flight Information</h2>
 
-                            <!-- Pickup Flight Details -->
+                            
                             <div class="mb-3 floating-bordered-input position-relative rlx-theme">
                                 <span class="floating-label">Pickup Flight Details</span>
                                 <div class="rlx-select rlx-select-searchable" id="rlx-pickup-flight" data-name="pickup_flight_details" data-initial="{{ session('pickup_flight_details') ?? '' }}">
@@ -341,14 +339,14 @@
                                     <input type="hidden" name="pickup_flight_details" id="pickup-flight-details" value="{{ session('pickup_flight_details') ?? '' }}">
                                 </div>
                             </div>
-                            <!-- Flight Number -->
+                            
                             <div class="mb-3 floating-bordered-input position-relative">
                             <span class="floating-label">Flight Number</span>
                             <input type="text" id="flight-number" name="flight_number"
                                 class="form-control" placeholder=" "
                                 value="{{ session('flight_number') ?? '' }}">
                             </div>
-                            <!-- Meet Option -->
+                            
                             <div class="mb-3 floating-bordered-input position-relative rlx-theme">
                                 <span class="floating-label">Meet Option</span>
                                 <div class="rlx-select" id="rlx-meet-option" data-name="meet_option" data-initial="{{ session('meet_option') ?? 'none' }}">
@@ -371,11 +369,11 @@
                             </div>
                         </div>
 
-                        <!-- Inside Pickup Fee (Hidden) -->
+                        
                         <input type="hidden" name="inside_pickup_fee" id="inside-pickup-fee"
                             value="{{ session('inside_pickup_fee') ?? 0 }}">
 
-                        <!-- Flight Info Toggle -->
+                        
                         <div class="mt-3 custom-switch-container">
                             <label class="switch-wrapper">
                                 <input type="checkbox" id="no-flight-info-checkbox" name="no_flight_info" value="1" {{ (session('no_flight_info', 0) == 1) ? 'checked' : '' }}>
@@ -403,12 +401,12 @@
                     </div>
             </div>
 
-            <!-- Right Form Container (summary panel remains unchanged) -->
+            
             @include('booking.right_side_pricing_area')
         </div>
     </div>
     </form>
-    <!-- Return Reservation Modal -->
+    
     <div class="modal fade" id="returnReservationModal" tabindex="-1" role="dialog"
         aria-labelledby="returnReservationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -450,7 +448,7 @@
                                 <input type="hidden" name="is_airport_return" id="is-airport_return" value="0">
                                 <input type="hidden" name="return_vehicle_id" id="return-vehicle-id" value="">
 
-                                <!-- Pick-up Location -->
+                                
                                 <div class="mb-3 input-group-container">
                                     <div class="icon-container">
                                         <i class="bi bi-geo-alt"></i>
@@ -466,7 +464,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Drop-off Location -->
+                                
                                 <div class="mb-3 input-group-container">
                                     <div class="icon-container">
                                         <i class="bi bi-geo-alt"></i>
@@ -482,7 +480,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Pickup Date and Time -->
+                                
                                 <div class="row g-2">
                                     <div class="col-6">
                                         <div class="mb-3 input-group-container">
@@ -522,7 +520,7 @@
                                         <h2 class="mb-3">Return Flight Information</h2>
 
                                         <div class="row">
-                                            <!-- Flight Details -->
+                                            
                                             <div class="col-md-6 form-group">
                                                 <div class="input-group-container">
                                                     <div class="icon-container">
@@ -562,7 +560,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Flight Number -->
+                                            
                                             <div class="col-md-6 form-group">
                                                 <div class="input-group-container">
                                                     <div class="icon-container">
@@ -583,7 +581,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- No Flight Info Checkbox -->
+                                        
                                         <div class="pl-5 mt-3 form-check d-flex">
                                             <input type="checkbox" class="form-check-input" id="return-no-flight-info"
                                                 {{ session('return_no_flight_info') == 1 ? 'checked' : '' }}
@@ -595,7 +593,7 @@
                                     </div>
                                 @endif
 
-                                <!-- Vehicle Selection Button -->
+                                
                                 <button type="button" class="btn btn-primary btn-sm w-100 toggle_vehicleSelect">SELECT
                                     VEHICLE</button>
                             </div>
@@ -608,7 +606,7 @@
                                             <div class="p-3 mb-3 text-left vehical-card row text-md-left align-items-center justify-content-center border-bottom"
                                                 style="border-color: #8b8b8b;">
 
-                                                <!-- Vehicle Image and Capacity Info -->
+                                                
                                                 <div class="mb-3 col-12 col-md-4 d-flex flex-column align-items-center">
                                                     <img src="{{ admin_storage_url($value->vehicle_image ?? null) }}"
                                                         alt="{{ $value->vehicle_name ?? 'Vehicle' }}"
@@ -636,7 +634,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Vehicle Details -->
+                                                
                                                 <div class="px-2 mb-3 col-12 col-md-4">
                                                     <h5 class="text-left font-weight-bold text-md-left">
                                                         {{ $value->vehicle_name }}</h5>
@@ -648,7 +646,6 @@
                                                                         <i class="bi {{ $feature['icon'] }} feature-icon"></i>
                                                                         <span class="feature-text">
                                                                             {{ $feature['text'] }}
-
 
                                                                     </span>
                                                                     <span>
@@ -663,7 +660,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Pricing & CTA -->
+                                                
                                                 <div
                                                     class="mb-2 text-left col-12 col-md-4 d-flex flex-column align-items-start align-items-md-end text-md-right">
                                                     @php $vehicleDistance = $distance[$value->id] ?? null; @endphp

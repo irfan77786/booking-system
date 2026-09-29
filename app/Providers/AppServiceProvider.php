@@ -7,11 +7,8 @@ use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+    
+
     public function register()
     {
         $helpers = app_path('helpers.php');
@@ -20,11 +17,8 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+    
+
     public function boot()
     {
         Paginator::useBootstrap();

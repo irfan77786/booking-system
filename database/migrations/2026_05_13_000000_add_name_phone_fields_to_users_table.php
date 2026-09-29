@@ -12,7 +12,7 @@ return new class extends Migration {
             return;
         }
 
-        // 1) Add the columns the application code expects.
+         
         Schema::table('users', function (Blueprint $table) {
             if (! Schema::hasColumn('users', 'first_name')) {
                 $table->string('first_name')->nullable()->after('id');
@@ -27,8 +27,8 @@ return new class extends Migration {
             }
         });
 
-        // 2) Backfill first_name / last_name from the legacy `name` column
-        //    so existing accounts keep working in the UI.
+         
+         
         if (Schema::hasColumn('users', 'name')) {
             DB::table('users')
                 ->whereNull('first_name')
@@ -49,8 +49,8 @@ return new class extends Migration {
                     }
                 });
 
-            // 3) Make `name` nullable so future inserts (which only set
-            //    first_name / last_name) succeed under MySQL strict mode.
+             
+             
             Schema::table('users', function (Blueprint $table) {
                 $table->string('name')->nullable()->change();
             });

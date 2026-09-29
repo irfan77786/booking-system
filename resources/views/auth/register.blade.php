@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <!-- First Name -->
+                
                 <div class="mb-3">
                     <label for="first_name" class="form-label">{{ __('First Name') }}</label>
                     <input id="first_name" type="text"
@@ -23,7 +23,7 @@
                     @enderror
                 </div>
 
-                <!-- Last Name -->
+                
                 <div class="mb-3">
                     <label for="last_name" class="form-label">{{ __('Last Name') }}</label>
                     <input id="last_name" type="text"
@@ -36,7 +36,7 @@
                     @enderror
                 </div>
 
-                <!-- Email -->
+                
                 <div class="mb-3">
                     <label for="email" class="form-label">{{ __('Email Address') }}</label>
                     <input id="email" type="email"
@@ -49,7 +49,7 @@
                     @enderror
                 </div>
 
-                <!-- Password -->
+                
                 <div class="mb-3">
                     <label for="password" class="form-label">{{ __('Password') }}</label>
                     <input id="password" type="password"
@@ -61,7 +61,7 @@
                     @enderror
                 </div>
 
-                <!-- Confirm Password -->
+                
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
                     <input id="password_confirmation" type="password"
@@ -73,12 +73,12 @@
                     @enderror
                 </div>
 
-                <!-- Submit -->
+                
                 <button type="submit" class="btn btn-primary w-100">
                     {{ __('Register') }}
                 </button>
 
-                <!-- Login Link -->
+                
                 <div class="text-center mt-3">
                     <a href="{{ route('login') }}" class="text-decoration-none small">
                         {{ __('Already registered?') }}

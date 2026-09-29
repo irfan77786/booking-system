@@ -30,8 +30,8 @@ class Vehicle extends Model
         return $this->hasMany(CarSeat::class);
     }
 
-    // public function getBreakDownAttribute()
-    // {
-    //     return $this->rateVehicle->breakDown ?? null;
-    // }
+     
+     
+     
+     
 }

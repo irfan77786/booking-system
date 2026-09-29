@@ -9,9 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MediaProxyController extends Controller
 {
-    /**
-     * Serve admin storage files over this site's HTTPS (avoids mobile SSL / mixed-content blocks).
-     */
+    
+
     public function show(Request $request, string $path): Response
     {
         $path = str_replace('\\', '/', $path);
@@ -88,9 +87,8 @@ class MediaProxyController extends Controller
         ]);
     }
 
-    /**
-     * @return list<string>
-     */
+    
+
     private function candidateUrls(string $path): array
     {
         $admin = rtrim((string) config('services.admin_url'), '/');
