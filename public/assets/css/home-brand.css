@@ -148,14 +148,6 @@ body.home-brand .search-tab-wrap .nav-tabs:has(.nav-item:nth-child(2) .nav-link.
     left: 50%;
 }
 
-body.home-brand .search-form-box select:focus,
-body.home-brand .search-form-box input:focus,
-body.home-brand .search-form-box .form-control:focus {
-    outline: none !important;
-    box-shadow: 0 0 0 2px rgba(198, 161, 91, 0.28) !important;
-    border-color: var(--hp-gold) !important;
-}
-
 body.home-brand .search-form-box .floating-bordered-input:hover,
 body.home-brand .search-form-box .floating-bordered-input:focus-within,
 body.home-brand .search-form-box .floating-bordered-input.location-autocomplete-open,
@@ -165,12 +157,29 @@ body.home-brand .floating-bordered-input.location-autocomplete-open,
 body.home-brand .floating-bordered-input.rlx-theme:hover,
 body.home-brand .floating-bordered-input.rlx-theme:focus-within {
     border: 1px solid var(--hp-gold) !important;
-    border-color: var(--hp-gold) !important;
+    box-shadow: none !important;
 }
 
-body.home-brand .search-form-box input:focus,
-body.home-brand .search-form-box select:focus {
-    border-color: var(--hp-gold) !important;
+body.home-brand .search-form-box .floating-bordered-input input,
+body.home-brand .search-form-box .floating-bordered-input select,
+body.home-brand .search-form-box .floating-bordered-input .form-control,
+body.home-brand .floating-bordered-input input,
+body.home-brand .floating-bordered-input select,
+body.home-brand .floating-bordered-input .form-control {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+body.home-brand .search-form-box .floating-bordered-input input:focus,
+body.home-brand .search-form-box .floating-bordered-input select:focus,
+body.home-brand .search-form-box .floating-bordered-input .form-control:focus,
+body.home-brand .floating-bordered-input input:focus,
+body.home-brand .floating-bordered-input select:focus,
+body.home-brand .floating-bordered-input .form-control:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 @keyframes tabActivePopGold {
