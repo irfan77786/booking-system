@@ -4,32 +4,82 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="stylesheet" href="{{ asset('assets/css/home-brand.css') }}?v={{ @filemtime(public_path('assets/css/home-brand.css')) }}">
 <style>
+    body.home-brand .home-banner-section {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    body.home-brand #hero-banner-container,
+    body.home-brand .hero-banner-container {
+        width: 100%;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        position: relative;
+        z-index: 2;
+    }
+
+    body.home-brand #hero-banner-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    body.home-brand #hero-banner-container > .container {
+        position: relative;
+        z-index: 2;
+    }
+
     @media (max-width: 767px) {
-        #hero-banner-container,
-        .hero-banner-container {
+        body.home-brand #hero-banner-container,
+        body.home-brand .hero-banner-container {
             min-height: 300px !important;
             height: 300px !important;
-            background-size: cover !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
+            padding-top: 40px !important;
+            padding-bottom: 40px !important;
+            display: flex;
+            align-items: center;
         }
 
-        #home-text-content h1 {
+        body.home-brand #home-text-content {
             text-align: center !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100%;
+            margin-top: 0 !important;
+        }
+
+        body.home-brand #home-text-content h1 {
+            text-align: center !important;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 
     @media (min-width: 768px) {
-        #hero-banner-container,
-        .hero-banner-container {
+        body.home-brand #hero-banner-container,
+        body.home-brand .hero-banner-container {
             min-height: 570px;
+            padding-top: 80px;
+            padding-bottom: 80px;
         }
 
-        #home-text-content {
+        body.home-brand #home-text-content {
             margin-top: 130px;
         }
 
-        .search-form-wrapper-desktop {
+        body.home-brand .search-form-wrapper-desktop {
             position: absolute;
             width: 100%;
             z-index: 10;
@@ -49,28 +99,30 @@
 
     <section class="home-banner-section">
         <div id="hero-banner-container"
-             class="hero-banner-container py-60 ah-container position-relative py-sm-70 py-md-80 py-lg-100"
-             style="z-index: 2; background-image: url('{{ asset($backgroundImage ?? 'assets/new_theme/img/banner-1.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+             class="hero-banner-container position-relative"
+             style="background-image: url('{{ asset($backgroundImage ?? 'assets/new_theme/img/banner-1.webp') }}');">
             <div id="map" class="position-absolute w-100 h-100" style="top:0; left:0; z-index: 1; display:none;"></div>
 
-            <div class="row" style="pointer-events: none;">
-                <div id="home-text-content"
-                     class="col-12 col-md-6 d-flex flex-column justify-content-center"
-                     style="pointer-events: auto; position: relative; z-index: 0;">
-                    <h1 class="text-white h2 fw-bold mb-15">Dallas Black Car Service</h1>
-                    <div class="d-none d-md-block">
-                        <p class="text-white font-lg fw-medium mb-30">
-                            Book reliable black car transportation for airport transfers, corporate travel, and special events across Dallas-Fort Worth.
-                        </p>
-                        <p class="text-white font-base d-flex align-items-center mb-30 mb-md-0">
-                            Call Now:
-                            <a href="tel:+14699612047" class="mx-2 fw-bold font-lg theme-color">+1 469-961-2047</a>
-                        </p>
+            <div class="container">
+                <div class="row" style="pointer-events: none;">
+                    <div id="home-text-content"
+                         class="col-12 col-md-6 d-flex flex-column justify-content-center"
+                         style="pointer-events: auto; position: relative; z-index: 2;">
+                        <h1 class="text-white h2 fw-bold mb-15">Dallas Black Car Service</h1>
+                        <div class="d-none d-md-block">
+                            <p class="text-white font-lg fw-medium mb-30">
+                                Book reliable black car transportation for airport transfers, corporate travel, and special events across Dallas-Fort Worth.
+                            </p>
+                            <p class="text-white font-base d-flex align-items-center mb-30 mb-md-0">
+                                Call Now:
+                                <a href="tel:+14699612047" class="mx-2 fw-bold font-lg theme-color">+1 469-961-2047</a>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="d-none col-12 col-md-6 d-md-block" style="pointer-events: auto; position: relative; z-index: 2;">
-                    <div class="search-form-wrapper-desktop">
-                        @include('partials.search', ['id_suffix' => ''])
+                    <div class="d-none col-12 col-md-6 d-md-block" style="pointer-events: auto; position: relative; z-index: 2;">
+                        <div class="search-form-wrapper-desktop">
+                            @include('partials.search', ['id_suffix' => ''])
+                        </div>
                     </div>
                 </div>
             </div>

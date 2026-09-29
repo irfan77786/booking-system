@@ -84,9 +84,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Our Fleet</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">FIFA World Cup 26</a>
-                                </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">

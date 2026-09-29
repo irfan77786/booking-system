@@ -124,6 +124,68 @@ body.home-brand input[type="checkbox"] {
     accent-color: var(--hp-gold);
 }
 
+body.home-brand #round-trip:checked,
+body.home-brand #round-trip_mobile:checked {
+    border-color: var(--hp-gold) !important;
+    accent-color: var(--hp-gold);
+}
+
+body.home-brand ul.nav.nav-tabs li a.active,
+body.home-brand .nav-tabs .nav-link.active,
+body.home-brand .sformlink.active,
+body.home-brand div.search-tab-wrap ul.nav-tabs li.nav-item a.nav-link.active,
+body.home-brand .nav-link.inactive-tab.active {
+    color: var(--hp-gold) !important;
+    border-bottom-color: transparent !important;
+    background-color: transparent !important;
+}
+
+body.home-brand .search-tab-wrap .nav-tabs::after {
+    background: var(--hp-gold) !important;
+}
+
+body.home-brand .search-tab-wrap .nav-tabs:has(.nav-item:nth-child(2) .nav-link.active)::after {
+    left: 50%;
+}
+
+body.home-brand .search-form-box select:focus,
+body.home-brand .search-form-box input:focus,
+body.home-brand .search-form-box .form-control:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(198, 161, 91, 0.28) !important;
+    border-color: var(--hp-gold) !important;
+}
+
+body.home-brand .search-form-box .floating-bordered-input:hover,
+body.home-brand .search-form-box .floating-bordered-input:focus-within,
+body.home-brand .search-form-box .floating-bordered-input.location-autocomplete-open,
+body.home-brand .floating-bordered-input:hover,
+body.home-brand .floating-bordered-input:focus-within,
+body.home-brand .floating-bordered-input.location-autocomplete-open,
+body.home-brand .floating-bordered-input.rlx-theme:hover,
+body.home-brand .floating-bordered-input.rlx-theme:focus-within {
+    border: 1px solid var(--hp-gold) !important;
+    border-color: var(--hp-gold) !important;
+}
+
+body.home-brand .search-form-box input:focus,
+body.home-brand .search-form-box select:focus {
+    border-color: var(--hp-gold) !important;
+}
+
+@keyframes tabActivePopGold {
+    0% {
+        background-color: rgba(198, 161, 91, 0.22);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+body.home-brand .search-tab-wrap .nav-tabs .nav-link.active {
+    animation: tabActivePopGold 0.45s ease forwards;
+}
+
 body.home-brand .footer {
     background: var(--hp-charcoal);
     border-top: 1px solid rgba(198, 161, 91, 0.55);

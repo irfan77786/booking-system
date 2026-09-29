@@ -109,24 +109,13 @@
         </div>
 
         <div class="hp-services">
-            <a href="#" class="hp-service hp-service--feature">
-                <span class="hp-service__media">
-                    <img src="{{ asset('assets/new_theme/img/airport-transfers.webp') }}" alt="DFW and Love Field transfers" loading="lazy" width="800" height="520">
-                </span>
-                <span class="hp-service__copy">
-                    <span class="hp-service__index">01</span>
-                    <strong>DFW &amp; Love Field transfers</strong>
-                    <span>Flight-tracked pickups with curbside or inside meet. The chauffeur stages for your arrival so you walk out to a waiting car—not a scramble at the curb.</span>
-                </span>
-            </a>
-
             <div class="hp-services__grid">
                 <a href="#" class="hp-service">
                     <span class="hp-service__media">
                         <img src="{{ asset('assets/new_theme/img/corporate-transportation.webp') }}" alt="Corporate travel" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">02</span>
+                        <span class="hp-service__index">01</span>
                         <strong>Corporate &amp; executive</strong>
                         <span>Meetings and office loops across Downtown, Plano, Frisco, and Allen.</span>
                     </span>
@@ -136,7 +125,7 @@
                         <img src="{{ asset('assets/new_theme/img/hourly-as-directed.webp') }}" alt="Hourly chauffeur" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">03</span>
+                        <span class="hp-service__index">02</span>
                         <strong>Hourly as-directed</strong>
                         <span>Flexible hours for multi-stop days without opening a new reservation.</span>
                     </span>
@@ -146,7 +135,7 @@
                         <img src="{{ asset('assets/new_theme/img/private-aviation.webp') }}" alt="Private aviation" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">04</span>
+                        <span class="hp-service__index">03</span>
                         <strong>Private aviation &amp; FBO</strong>
                         <span>Discreet FBO pickups timed to the aircraft, not a commercial gate.</span>
                     </span>
@@ -156,7 +145,7 @@
                         <img src="{{ asset('assets/new_theme/img/sports-and-entertainment-venues.webp') }}" alt="Events" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">05</span>
+                        <span class="hp-service__index">04</span>
                         <strong>Events &amp; venues</strong>
                         <span>Stadiums, concerts, and private events with coordinated arrivals.</span>
                     </span>
@@ -166,7 +155,7 @@
                         <img src="{{ asset('assets/new_theme/img/corporate-shuttle-service.webp') }}" alt="Corporate shuttle" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">06</span>
+                        <span class="hp-service__index">05</span>
                         <strong>Corporate shuttle</strong>
                         <span>Group movement between hotels, offices, conferences, and airports.</span>
                     </span>
@@ -176,7 +165,7 @@
                         <img src="{{ asset('assets/new_theme/img/austin.webp') }}" alt="City-to-city black car" loading="lazy" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
-                        <span class="hp-service__index">07</span>
+                        <span class="hp-service__index">06</span>
                         <strong>City-to-city rides</strong>
                         <span>Dallas to Austin, Houston, OKC, and other Texas routes with a confirmed fare.</span>
                     </span>
