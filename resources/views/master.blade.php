@@ -10,19 +10,27 @@
     <meta name="description" content="{{ $seo['description'] ?? 'Book your black car or limousine ride online.' }}">
     <link rel="shortcut icon" href="{{ asset('assets/img/site/dallas-black-car-service-favicon.png') }}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/css/intlTelInput.min.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    @yield('preload')
+
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"></noscript>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-material-datetimepicker.min.css') }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @unless (request()->is('/'))
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
+    @endunless
+    @if (request()->is('user-login') || request()->is('user-login/*'))
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/css/intlTelInput.min.css" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/css/intlTelInput.min.css"></noscript>
+    @endif
 
     @yield('styles')
     @if (request()->is('booking/*') || request()->is('user-login/*') || request()->is('bookRide') || request()->is('passengerInfo') || request()->is('submit-passengerInfo') || request()->is('submit-passengerInfo/*') || request()->is('thank-you'))
@@ -38,8 +46,8 @@
                 <div class="col-6 col-md-3">
                     <div class="logo">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('assets/img/site/black-car-service-dallas-logo.webp') }}" width="230" height="68"
-                                alt="Dallas Black Cars Limo Service" class="img-fluid brand-logo">
+                            <img src="{{ asset('assets/img/site/black-car-service-dallas-logo.webp') }}" width="316" height="72"
+                                alt="Dallas Black Cars Limo Service" class="img-fluid brand-logo" decoding="async">
                         </a>
                     </div>
                 </div>
@@ -203,13 +211,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap-min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.min.js') }}?v={{ filemtime(public_path('assets/js/custom.js')) }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places&callback=initAutocomplete"></script>
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/intlTelInput.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/min/moment-with-locales.min.js" defer></script>
-    <script src="{{ asset('assets/js/bootstrap-material-datetimepicker.min.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    @if (request()->is('user-login') || request()->is('user-login/*'))
+        <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/intlTelInput.min.js" defer></script>
+    @endif
+    <script>
+        (function () {
+            function injectMaps() {
+                if (window.__gmapsStarted) return;
+                if (typeof window.initAutocomplete !== 'function') {
+                    setTimeout(injectMaps, 50);
+                    return;
+                }
+                window.__gmapsStarted = true;
+                var script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places&callback=initAutocomplete&loading=async';
+                script.async = true;
+                document.head.appendChild(script);
+            }
+            window.loadGoogleMaps = function () {
+                window.__gmapsQueued = true;
+                injectMaps();
+            };
+            var nodes = document.querySelectorAll('input[id^="pickup-location"], input[id^="dropoff-location"], input#pickup_address, input#dropoff_address');
+            if (!nodes.length) return;
+            var prefilled = false;
+            nodes.forEach(function (el) {
+                if ((el.value || '').trim()) prefilled = true;
+                el.addEventListener('focus', window.loadGoogleMaps, { once: true });
+                el.addEventListener('pointerdown', window.loadGoogleMaps, { once: true });
+            });
+            if (prefilled) window.loadGoogleMaps();
+        })();
+    </script>
     @yield('scripts')
 </body>
 

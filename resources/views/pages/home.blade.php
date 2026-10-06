@@ -1,7 +1,17 @@
 @extends('master')
 
+@php
+    $heroImage = asset($backgroundImage ?? 'assets/new_theme/img/banner-1.webp');
+    $heroImageMobile = asset('assets/new_theme/img/banner-1-800.webp');
+@endphp
+
+@section('preload')
+<link rel="preload" as="image" href="{{ $heroImageMobile }}" imagesrcset="{{ $heroImageMobile }} 800w, {{ $heroImage }} 1000w" imagesizes="100vw" fetchpriority="high">
+@endsection
+
 @section('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
 <link rel="stylesheet" href="{{ asset('assets/css/home-brand.css') }}?v={{ @filemtime(public_path('assets/css/home-brand.css')) }}">
 <style>
     body.home-brand .home-banner-section {
@@ -19,11 +29,20 @@
         margin-right: 0 !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        background-repeat: no-repeat !important;
         position: relative;
         z-index: 2;
+        overflow: hidden;
+    }
+
+    body.home-brand .hero-banner-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 0;
+        pointer-events: none;
     }
 
     body.home-brand #hero-banner-container::after {
@@ -31,7 +50,7 @@
         position: absolute;
         inset: 0;
         background: rgba(0, 0, 0, 0.7);
-        z-index: 0;
+        z-index: 1;
         pointer-events: none;
     }
 
@@ -98,10 +117,17 @@
     </section>
 
     <section class="home-banner-section">
-        <div id="hero-banner-container"
-             class="hero-banner-container position-relative"
-             style="background-image: url('{{ asset($backgroundImage ?? 'assets/new_theme/img/banner-1.webp') }}');">
-            <div id="map" class="position-absolute w-100 h-100" style="top:0; left:0; z-index: 1; display:none;"></div>
+        <div id="hero-banner-container" class="hero-banner-container position-relative">
+            <img class="hero-banner-img"
+                 src="{{ $heroImageMobile }}"
+                 srcset="{{ $heroImageMobile }} 800w, {{ $heroImage }} 1000w"
+                 sizes="100vw"
+                 width="1000"
+                 height="523"
+                 alt=""
+                 fetchpriority="high"
+                 decoding="async">
+            <div id="map" class="position-absolute w-100 h-100" style="top:0; left:0; z-index: 2; display:none;"></div>
 
             <div class="container">
                 <div class="row" style="pointer-events: none;">
@@ -133,7 +159,7 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof Swiper === 'undefined') return;

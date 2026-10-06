@@ -24,7 +24,7 @@
                     <article class="luxury-cars-item">
                         <div class="img-holder mb-15">
                             <span class="img-zoom">
-                                <img loading="lazy" decoding="async" src="{{ asset('assets/new_theme/img/Sedan.webp') }}" alt="Executive sedan" width="750" height="410">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="{{ asset('assets/new_theme/img/Sedan.webp') }}" alt="Executive sedan" width="750" height="410">
                             </span>
                         </div>
                         <h3 class="fw-medium h5 mb-2">Executive sedan</h3>
@@ -39,7 +39,7 @@
                     <article class="luxury-cars-item">
                         <div class="img-holder mb-15">
                             <span class="img-zoom">
-                                <img loading="lazy" decoding="async" src="{{ asset('assets/new_theme/img/suv.webp') }}" alt="Full-size SUV" width="750" height="410">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="{{ asset('assets/new_theme/img/suv.webp') }}" alt="Full-size SUV" width="750" height="410">
                             </span>
                         </div>
                         <h3 class="fw-medium h5 mb-2">Full-size SUV</h3>
@@ -54,7 +54,7 @@
                     <article class="luxury-cars-item">
                         <div class="img-holder mb-15">
                             <span class="img-zoom">
-                                <img loading="lazy" decoding="async" src="{{ asset('assets/new_theme/img/luxury-suv.webp') }}" alt="Luxury SUV" width="750" height="410">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="{{ asset('assets/new_theme/img/luxury-suv.webp') }}" alt="Luxury SUV" width="750" height="410">
                             </span>
                         </div>
                         <h3 class="fw-medium h5 mb-2">Luxury SUV</h3>
@@ -69,7 +69,7 @@
                     <article class="luxury-cars-item">
                         <div class="img-holder mb-15">
                             <span class="img-zoom">
-                                <img loading="lazy" decoding="async" src="{{ asset('assets/new_theme/img/sprinter.webp') }}" alt="Sprinter van" width="750" height="410">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="{{ asset('assets/new_theme/img/sprinter.webp') }}" alt="Sprinter van" width="750" height="410">
                             </span>
                         </div>
                         <h3 class="fw-medium h5 mb-2">Business Sprinter</h3>
@@ -84,7 +84,7 @@
                     <article class="luxury-cars-item">
                         <div class="img-holder mb-15">
                             <span class="img-zoom">
-                                <img loading="lazy" decoding="async" src="{{ asset('assets/new_theme/img/mini-bus.webp') }}" alt="Mini coach" width="750" height="410">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="{{ asset('assets/new_theme/img/mini-bus.webp') }}" alt="Mini coach" width="750" height="410">
                             </span>
                         </div>
                         <h3 class="fw-medium h5 mb-2">Mini coach</h3>
@@ -112,7 +112,7 @@
             <div class="hp-services__grid">
                 <a href="#" class="hp-service">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/corporate-transportation.webp') }}" alt="Corporate travel" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/corporate-transportation.webp') }}" alt="Corporate travel" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">01</span>
@@ -122,7 +122,7 @@
                 </a>
                 <a href="#" class="hp-service">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/hourly-as-directed.webp') }}" alt="Hourly chauffeur" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/hourly-as-directed.webp') }}" alt="Hourly chauffeur" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">02</span>
@@ -132,7 +132,7 @@
                 </a>
                 <a href="#" class="hp-service">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/private-aviation.webp') }}" alt="Private aviation" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/private-aviation.webp') }}" alt="Private aviation" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">03</span>
@@ -142,7 +142,7 @@
                 </a>
                 <a href="#" class="hp-service d-none d-md-flex">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/sports-and-entertainment-venues.webp') }}" alt="Events" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/sports-and-entertainment-venues.webp') }}" alt="Events" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">04</span>
@@ -152,7 +152,7 @@
                 </a>
                 <a href="#" class="hp-service d-none d-md-flex">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/corporate-shuttle-service.webp') }}" alt="Corporate shuttle" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/corporate-shuttle-service.webp') }}" alt="Corporate shuttle" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">05</span>
@@ -162,7 +162,7 @@
                 </a>
                 <a href="#" class="hp-service d-none d-md-flex">
                     <span class="hp-service__media">
-                        <img src="{{ asset('assets/new_theme/img/austin.webp') }}" alt="City-to-city black car" loading="lazy" width="640" height="400">
+                        <img src="{{ asset('assets/new_theme/img/austin.webp') }}" alt="City-to-city black car" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     </span>
                     <span class="hp-service__copy">
                         <span class="hp-service__index">06</span>
@@ -195,7 +195,7 @@
             @endphp
             @foreach ($routes as $route)
                 <a href="#" class="hp-route-card">
-                    <img src="{{ asset('assets/new_theme/img/' . $route['img']) }}" alt="{{ $route['from'] }} to {{ $route['to'] }}" loading="lazy" width="640" height="400">
+                    <img src="{{ asset('assets/new_theme/img/' . $route['img']) }}" alt="{{ $route['from'] }} to {{ $route['to'] }}" loading="lazy" decoding="async" fetchpriority="low" width="640" height="400">
                     <span class="hp-route-card__shade" aria-hidden="true"></span>
                     <span class="hp-route-card__content">
                         <span class="hp-route-card__title">{{ $route['from'] }} <i>→</i> {{ $route['to'] }}</span>
@@ -214,7 +214,7 @@
                 @for ($n = 0; $n < 2; $n++)
                     @for ($i = 1; $i <= 8; $i++)
                         <div class="swiper-slide">
-                            <img src="{{ asset('assets/new_theme/img/logo-0' . $i . '.png') }}" alt="" class="img-fluid" loading="lazy">
+                            <img src="{{ asset('assets/new_theme/img/logo-0' . $i . '.webp') }}" alt="" class="img-fluid" width="100" height="40" loading="lazy" decoding="async" fetchpriority="low">
                         </div>
                     @endfor
                 @endfor

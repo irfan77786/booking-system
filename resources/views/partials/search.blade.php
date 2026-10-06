@@ -204,7 +204,9 @@ $tabSuffix = $id_suffix ?? '';
                     <button type="submit" class="btn btn-primary w-100 search_btn point-button"
                         style="text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; font-size: 0.8rem;line-height: 2;">
                         Get My Prices
-                        <i class="fa-solid fa-arrow-right" style="font-size: 14px; margin: 2px;"></i>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-left: 4px; vertical-align: -2px;">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
                     </button>
 
                 </form>
@@ -244,7 +246,12 @@ $tabSuffix = $id_suffix ?? '';
                     
                     <div class="floating-bordered-input position-relative rlx-theme">
                         <span class="floating-label">Select Duration</span>
-                        <span class="input-icon-left"><i class="bi bi-clock-fill"></i></span>
+                        <span class="input-icon-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </span>
 
                         <div class="rlx-select" id="rlx-hours{{ $tabSuffix }}" data-name="select_hours"
                             data-initial="{{ session('select_hours') ?? '' }}">
@@ -313,7 +320,9 @@ $tabSuffix = $id_suffix ?? '';
                     <button type="submit" class="btn btn-primary w-100 search_btn point-button"
                         style="text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; font-size: 0.8rem;line-height: 2;">
                         Get My Prices
-                        <i class="fa-solid fa-arrow-right" style="font-size: 14px; margin: 2px;"></i>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-left: 4px; vertical-align: -2px;">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
                     </button>
                 </form>
             </div>

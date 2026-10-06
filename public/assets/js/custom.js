@@ -766,6 +766,8 @@ function initAutocomplete() {
     if (typeof updateMapWidth === "function") {
         window.addEventListener("resize", updateMapWidth);
     }
+
+    triggerPlaceChangedIfPrefilled();
 }
 
 function updateMapWidth() {
@@ -1822,8 +1824,6 @@ $(document).ready(function () {
         $(".input-icon-left").on("click", function () {
             $(this).next("input").focus();
         });
-    } else {
-        console.error("bootstrapMaterialDatePicker plugin is not loaded");
     }
 
     
